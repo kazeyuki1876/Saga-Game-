@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerHp.text = "MyHp"+MyHp;
+        PlayerHp.text = "PlayerHP" + MyHp;
         PlayerMOVE();
     }
     void PlayerMOVE() {

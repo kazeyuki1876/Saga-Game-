@@ -28,6 +28,7 @@ public class WitchUIScript : MonoBehaviour
     public string[] CardComment;
     int CardX = 1660;
     int[] CardY = new int[5] { 939, 789, 639, 489, 339 };
+    public GameObject InAdvanceInstallation;
 
     /*　
      1　　　700
@@ -69,14 +70,16 @@ public class WitchUIScript : MonoBehaviour
             {
                 // Debug.Log(" HandMax[HandNum]" + HandMax[HandNum]);
                 HandNumSheet = HandNum;
-                CardInstantiate();
+               
+                CardInstantiate();//card 実例化
                 break;
             }
         }
       //  Debug.Log("俺のターン ドロー 手札から" + HandNumSheet + "枚を引こう");
     }
    
-    void CardInstantiate() {
+    void CardInstantiate()
+    {//Instantiate
         int CardID = Random.Range(0, 5);
        
         Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX,0, 0.0f), transform.rotation);//Start Pos
@@ -130,19 +133,24 @@ public class WitchUIScript : MonoBehaviour
          //  Debug.Log("カードを使用" + Hand[HandNumSheet]);
             if (Hand[SelecImeji] != null)
             {
-                Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
+               // InAdvanceInstallation = Hand[SelecImeji].GetComponent<CardScript>().Monsu;
+               GameObject NewInAdvanceInstallation = Instantiate(InAdvanceInstallation,  new Vector3(70, 8, 5), transform.rotation);
+                
+              //  Instantiate(Monsu, new Vector3(70, 8, 5), transform.rotation);
+
+
+
+                /*if()
+                     Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
                 GameObject.Destroy(Hand[SelecImeji]);//崩壊使ったのカード //CardStart
                 IsHandsArray = true;//カード再さい配列
                 SelecImeji--;//
                 if (SelecImeji < 0) { SelecImeji = 0; }
+                     */
+
+
             }
-
-
         }
-
-
-
-
         if (Hand[SelecImeji] != null)
         {
             SelectionCard.transform.position = Hand[SelecImeji].transform.position;
@@ -173,8 +181,7 @@ public class WitchUIScript : MonoBehaviour
                     Hand[HandNum] = Hand[HandLoadingNum];
                     Hand[HandLoadingNum] = null;
                     Hand[HandNum].GetComponent<CardScript>().MyY = CardY[HandNum];
-                    Hand[HandNum].GetComponent<CardScript>().SpeedTime =0.5f;
-
+                    if (Hand[HandNum].GetComponent<CardScript>().SpeedTime < 0.0f) { Hand[HandNum].GetComponent<CardScript>().SpeedTime = 0.5f; }
                     // Hand[HandNum].transform.position = new Vector3(CardX, CardY[HandNum]); 
                 }
             }

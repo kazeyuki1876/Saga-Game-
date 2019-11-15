@@ -12,7 +12,16 @@ public class MonsterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
-        Target = GameObject.Find("Player").GetComponent<Transform>();
+        bool Boolean = (Random.value > 0.5f);
+        Debug.Log(Boolean);
+        if (Boolean)
+        {
+            Target = GameObject.Find("Player").GetComponent<Transform>();
+        }
+        else {
+            Target = GameObject.Find("Castle").GetComponent<Transform>();
+        }
+       
     }
 
     // Update is called once per frame
@@ -38,8 +47,16 @@ public class MonsterScript : MonoBehaviour
         {
           //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
             collisionInfo.gameObject.GetComponent<PlayerScript>().MyHp = collisionInfo.gameObject.GetComponent<PlayerScript>().MyHp - MyDamage;
+
+
+        }
+
+        if (collisionInfo.gameObject.name == "Castle")
+        {
+            //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
+            collisionInfo.gameObject.GetComponent<CastleScript>().MyHp = collisionInfo.gameObject.GetComponent<CastleScript>().MyHp - (int)MyDamage;
+            collisionInfo.gameObject.GetComponent<CastleScript>().IsOVER();
         }
 
     }
-  
 }
