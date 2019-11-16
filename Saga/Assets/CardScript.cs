@@ -20,7 +20,16 @@ public class CardScript : MonoBehaviour
     public float MyX=700;
     public float MyY;
     float Speed;
-    
+    public float MonsterStartX;
+    public float MonsterStartY;
+    public float MonsterStartZ;
+    float []PosX= new float[10] {0,13, 13, 26, 26, 26, 39, 39, 39, 39 };
+    float[] PosZ = new float[10]{ 0, -7,7,-14,0,14,-21,-7,7,21};
+    public int Moves;
+    public int MonsterSpeed;
+
+
+
     //カードが発動したら使うもの
     public GameObject  Monsu;
    
@@ -42,9 +51,28 @@ public class CardScript : MonoBehaviour
     }
 
     public void CardStart() {
-       // Debug.Log(this.name);
+        // Debug.Log(this.name);
+        bool Boolean = (Random.value > 0.5f);//randomで
+        //Debug.Log(Boolean);
+       
+        for (int Move = 0; Move < Moves; Move++) {
+            GameObject Mons = Instantiate(Monsu, new Vector3(MonsterStartX + PosX[Move], MonsterStartY, MonsterStartZ + PosZ[Move]), transform.rotation);
+            if (Boolean)
+            {
+                Mons.GetComponent<MonsterScript>().Target = GameObject.Find("Player").GetComponent<Transform>();
+            }
+            else
+            {
+                Mons.GetComponent<MonsterScript>().Target = GameObject.Find("Castle").GetComponent<Transform>();
+            }
+            Mons.name = Monsu.name + Move;
+            Mons.GetComponent<MonsterScript>().MySeppt = MonsterSpeed;
 
-        Monsu = Instantiate(Monsu, new Vector3(70,8, 5), transform.rotation);
+
+
+        }
+
+       
     }
     public float SpeedTime =2;
     public void CardMove() {

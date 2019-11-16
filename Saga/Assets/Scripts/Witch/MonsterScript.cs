@@ -12,15 +12,7 @@ public class MonsterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
-        bool Boolean = (Random.value > 0.5f);
-        Debug.Log(Boolean);
-        if (Boolean)
-        {
-            Target = GameObject.Find("Player").GetComponent<Transform>();
-        }
-        else {
-            Target = GameObject.Find("Castle").GetComponent<Transform>();
-        }
+      
        
     }
 

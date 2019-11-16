@@ -14,7 +14,10 @@ public class WitchUIScript : MonoBehaviour
     //手札
    
     public GameObject[] Hand = new GameObject[5];//手札最大枚数
-
+    public float MyMagic = 100;
+    public float MyMagicMAX = 100;
+    public float MagicRecoverySpeed;
+    public Image MyMagicUI;
     //
     //手札チャージ
     public int HandNumSheet = 0;
@@ -28,8 +31,11 @@ public class WitchUIScript : MonoBehaviour
     public string[] CardComment;
     int CardX = 1660;
     int[] CardY = new int[5] { 939, 789, 639, 489, 339 };
+    public int []Monsters= new int[10] { 1,2,3,4,5,6,7,8,9,10 };
+    public int[] MonsterSpeeds = new int[10] { 10, 15,20,25,30, 6, 7, 8, 9, 10 };
     public GameObject InAdvanceInstallation;
-
+    public GameObject NewInAdvanceInstallation;
+    public float InAdvanceInstallationSpeed=30;
     /*　
      1　　　700
      2
@@ -48,6 +54,7 @@ public class WitchUIScript : MonoBehaviour
 
     void Start()
     {
+        InvokeRepeating("HandCharge",0,2);
         
     }
 
@@ -59,7 +66,19 @@ public class WitchUIScript : MonoBehaviour
             HandCharge();
         }
         WitchPlayerMove();
+        MagicCharge();
     }
+
+    void MagicCharge() {
+        if (MyMagic < MyMagicMAX) {
+            MyMagic += MagicRecoverySpeed * Time.deltaTime;
+            if (MyMagic > MyMagicMAX) {
+                MyMagic = MyMagicMAX;
+            }
+
+        }
+        MyMagicUI.GetComponent<Image>().fillAmount = MyMagic / MyMagicMAX;
+    }//魔力回復
     void HandCharge()
     {//(手札Tefuda)をチャージ
        
@@ -76,7 +95,7 @@ public class WitchUIScript : MonoBehaviour
             }
         }
       //  Debug.Log("俺のターン ドロー 手札から" + HandNumSheet + "枚を引こう");
-    }
+    }//カードリロード
    
     void CardInstantiate()
     {//Instantiate
@@ -91,77 +110,117 @@ public class WitchUIScript : MonoBehaviour
         Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
         Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
         Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Resources.Load<GameObject>("Card/Monsu"+ CardID);//魔物まだ魔法
- 
-    }
-   
+        Hand[HandNumSheet].GetComponent<CardScript>().Moves = Monsters[CardID];
+        Hand[HandNumSheet].GetComponent<CardScript>().MonsterSpeed = MonsterSpeeds[CardID];
+
+
+
+    }//カード実例
+
 
     void WitchPlayerMove() {
-
-        if (Input.GetKeyDown(KeyCode.S))
+        if (NewInAdvanceInstallation == null)
         {
-            SelecImeji= SelecImeji+1;
-            if (SelecImeji >= 5)
+            if (Input.GetKeyDown(KeyCode.S))
             {
-                SelecImeji = 0;
+                SelecImeji = SelecImeji + 1;
+                if (SelecImeji >= 5)
+                {
+                    SelecImeji = 0;
+                }
+                if (Hand[SelecImeji] == null)
+                {
+                    SelecImeji = 0;
+                    Debug.Log(Hand[SelecImeji]);
+                }
+
+
             }
-            if (Hand[SelecImeji] == null) {
-                SelecImeji = 0;
-                Debug.Log(Hand[SelecImeji]);
-            }
-         
-          
-        } else if (Input.GetKeyDown(KeyCode.W)) {
-            SelecImeji = SelecImeji - 1;
-            if (SelecImeji <0 )
+            else if (Input.GetKeyDown(KeyCode.W))
             {
-                for (int HandNum = 4; HandNum > 0; HandNum--) {
-                    if (Hand[HandNum] != null)
+                SelecImeji = SelecImeji - 1;//SelecImeji--
+                if (SelecImeji < 0)
+                {
+
+                    for (int HandNum = 4; HandNum > -1; HandNum--)
                     {
-                        // Debug.Log(" HandMax[HandNum]" + HandMax[HandNum]);
-                        SelecImeji = HandNum;
-                        break;
+                        if (Hand[HandNum] != null)
+                        {
+                            Debug.Log(" HandMax[HandNum]" + Hand[HandNum]);
+
+                            SelecImeji = HandNum;
+                            Debug.Log(HandNum);
+                            break;
+                        }
                     }
                 }
+                if (SelecImeji < 0)
+                {
+                    SelecImeji = 0;
+                }
+                if (Hand[SelecImeji] == null)
+                {
+                    SelecImeji = 0;
+                    Debug.Log(Hand[SelecImeji]);
+                }
+
+            }//Hand[HandNumSheet]!=null
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {//カードを使用
+             //  Debug.Log("カードを使用" + Hand[HandNumSheet]);
+                if (Hand[SelecImeji] != null&& MyMagic > Hand[SelecImeji].GetComponent<CardScript>().MyCost)
+                {
+
+                    // InAdvanceInstallation = Hand[SelecImeji].GetComponent<CardScript>().Monsu;
+                    NewInAdvanceInstallation = Instantiate(InAdvanceInstallation, new Vector3(70, 8, 5), transform.rotation);
+
+                    //  Instantiate(Monsu, new Vector3(70, 8, 5), transform.rotation);
+                    /*if()
+                       
+                         */
+
+                }
             }
-            if (Hand[SelecImeji] == null)
+        }
+        else {
+            if (Input.GetKey(KeyCode.W))
             {
-                SelecImeji = 0;
-                Debug.Log(Hand[SelecImeji]);
+                NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z + InAdvanceInstallationSpeed * Time.deltaTime);
             }
-        }//Hand[HandNumSheet]!=null
-        if (Input.GetKeyDown(KeyCode.D)  ) {//カードを使用
-         //  Debug.Log("カードを使用" + Hand[HandNumSheet]);
-            if (Hand[SelecImeji] != null)
+            if (Input.GetKey(KeyCode.S))
             {
-               // InAdvanceInstallation = Hand[SelecImeji].GetComponent<CardScript>().Monsu;
-               GameObject NewInAdvanceInstallation = Instantiate(InAdvanceInstallation,  new Vector3(70, 8, 5), transform.rotation);
-                
-              //  Instantiate(Monsu, new Vector3(70, 8, 5), transform.rotation);
+                NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z - InAdvanceInstallationSpeed * Time.deltaTime);
+            }
+            if (Input.GetKeyDown(KeyCode.D)&& !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster) {//召喚する居場所に他のモンスターがないこと
+                MyMagic = MyMagic - Hand[SelecImeji].GetComponent<CardScript>().MyCost;
+                Hand[SelecImeji].GetComponent<CardScript>().MonsterStartX = NewInAdvanceInstallation.transform.position.x;
+                Hand[SelecImeji].GetComponent<CardScript>().MonsterStartY = NewInAdvanceInstallation.transform.position.y;
+                Hand[SelecImeji].GetComponent<CardScript>().MonsterStartZ = NewInAdvanceInstallation.transform.position.z;
 
+                GameObject.Destroy(NewInAdvanceInstallation);
+                Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
 
-
-                /*if()
-                     Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
                 GameObject.Destroy(Hand[SelecImeji]);//崩壊使ったのカード //CardStart
+              
                 IsHandsArray = true;//カード再さい配列
                 SelecImeji--;//
                 if (SelecImeji < 0) { SelecImeji = 0; }
-                     */
-
-
             }
+                     
         }
-        if (Hand[SelecImeji] != null)
+        if (Hand[SelecImeji] == null)
         {
-            SelectionCard.transform.position = Hand[SelecImeji].transform.position;
+            SelectionCard.transform.position = new Vector3(CardX, 939, 0.0f);
+           
 
         }
         else {
 
-            SelectionCard.transform.position = new Vector3(CardX, 939, 0.0f);
+            SelectionCard.transform.position = Hand[SelecImeji].transform.position;
         }
        
-    }
+    }//PlayerMove
     void HandsArray()//カード配列のコントロール
     {
         if (IsHandsArray)
