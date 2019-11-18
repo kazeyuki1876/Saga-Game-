@@ -57,6 +57,7 @@ public class CardScript : MonoBehaviour
        
         for (int Move = 0; Move < Moves; Move++) {
             GameObject Mons = Instantiate(Monsu, new Vector3(MonsterStartX + PosX[Move], MonsterStartY, MonsterStartZ + PosZ[Move]), transform.rotation);
+            if (Mons.GetComponent<MonsterScript>() != null) { 
             if (Boolean)
             {
                 Mons.GetComponent<MonsterScript>().Target = GameObject.Find("Player").GetComponent<Transform>();
@@ -67,9 +68,7 @@ public class CardScript : MonoBehaviour
             }
             Mons.name = Monsu.name + Move;
             Mons.GetComponent<MonsterScript>().MySeppt = MonsterSpeed;
-
-
-
+            }
         }
 
        

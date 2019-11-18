@@ -99,7 +99,7 @@ public class WitchUIScript : MonoBehaviour
    
     void CardInstantiate()
     {//Instantiate
-        int CardID = Random.Range(0, 5);
+        int CardID = Random.Range(0, 6);
        
         Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX,0, 0.0f), transform.rotation);//Start Pos
         Hand[HandNumSheet].GetComponent<CardScript>().MyX = CardX;//Card PosX
@@ -110,6 +110,7 @@ public class WitchUIScript : MonoBehaviour
         Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
         Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
         Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Resources.Load<GameObject>("Card/Monsu"+ CardID);//魔物まだ魔法
+
         Hand[HandNumSheet].GetComponent<CardScript>().Moves = Monsters[CardID];
         Hand[HandNumSheet].GetComponent<CardScript>().MonsterSpeed = MonsterSpeeds[CardID];
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerBullets
   - Monster
+  - Machine
   layers:
   - Default
   - TransparentFX

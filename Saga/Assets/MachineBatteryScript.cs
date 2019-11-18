@@ -76,7 +76,7 @@ public class MachineBatteryScript : MonoBehaviour
         if (IsShooting) {
             IsShooting = false;
             GunsMOVE();
-            Invoke("ShootingON",0.2f);
+            Invoke("ShootingON",0.33f);
         }
 
     }
@@ -102,7 +102,7 @@ public class MachineBatteryScript : MonoBehaviour
         Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
         Bullet.GetComponent<BulletMove>().MySeppt = 150;
         Bullet.GetComponent<BulletMove>().MyLifespan = 2;
-        Bullet.GetComponent<BulletMove>().MyDamage = 5;
+        Bullet.GetComponent<BulletMove>().MyDamage = 1;
         
         //残弾量計算
     }
