@@ -61,7 +61,7 @@ public class MachineBatteryScript : MonoBehaviour
         }
 
         //対象の位置の方向を向く
-
+        if(nearObj!=null)
         if (nearObj.transform.position.x > this.transform.position.x - 30.0f && nearObj.transform.position.x < this.transform.position.x + 30.0f) {
             transform.LookAt(nearObj.transform);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
