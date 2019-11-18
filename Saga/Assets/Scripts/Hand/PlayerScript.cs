@@ -86,10 +86,13 @@ public class PlayerScript : MonoBehaviour
             searchTime = 0;
         }
 
-        //対象の位置の方向を向く
+            //対象の位置の方向を向く
+            if (nearObj != null) {
 
-        transform.LookAt(nearObj.transform);
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                transform.LookAt(nearObj.transform);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            }
+       
             //自分自身の位置から相対的に移動する
             //transform.Translate(Vector3.forward * 0.01f);
         }
@@ -182,12 +185,13 @@ public class PlayerScript : MonoBehaviour
         //銃が撃つときの音
 
         //銃によっての弾
-       // string BulletName = Bullets[0].name;
-        Bullet = Instantiate(Bullets[0], this.transform.position, this.transform.rotation);//弾丸を作り　位置と向きを与える
-        Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
-        Bullet.GetComponent<BulletMove>().MySeppt = BulletSeppts[0];
-        Bullet.GetComponent<BulletMove>().MyLifespan = BulletLifespans[0];
-        Bullet.GetComponent<BulletMove>().MyDamage = BulletDamages[0];
+        // string BulletName = Bullets[0].name;
+
+            Bullet = Instantiate(Bullets[0], this.transform.position, this.transform.rotation);//弾丸を作り　位置と向きを与える
+            Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
+            Bullet.GetComponent<BulletMove>().MySeppt = BulletSeppts[0];
+            Bullet.GetComponent<BulletMove>().MyLifespan = BulletLifespans[0];
+            Bullet.GetComponent<BulletMove>().MyDamage = BulletDamages[0];
 
 
        
