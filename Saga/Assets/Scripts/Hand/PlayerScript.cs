@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {//プレイヤー
-    public float MyHp=100;
+    public float MyHp = 100;
     public float Seppt = 5;//ＰＬＡＹＥＲ速度
     public float AroundSeppt = 5;//周り速度
     public GameObject Player;//ＰＬＡＹＥＲ
@@ -16,14 +16,50 @@ public class PlayerScript : MonoBehaviour
     public float[] BulletLifespans;//銃弾の存在時間
     public float[] BulletDamages;//銃弾のダメージ
     public GameObject Bullet;//いま射撃する銃弾
-    public int[]BulletNumer;//一つの銃に置いてなん発を打ちましたか。
+    public int[] BulletNumer;//一つの銃に置いてなん発を打ちましたか。
     //UI
     public Text PlayerHp;
     // Start is called before the first frame update
+
+    //----------狙えサポート
+    public bool IsShootingSupport;
+    private GameObject nearObj;         //最も近いオブジェクト
+    private float searchTime = 0;    //経過時間
+    GameObject serchTag(GameObject nowObj, string tagName)
+    {
+        float tmpDis = 0;           //距離用一時変数
+        float nearDis = 0;          //最も近いオブジェクトの距離
+        //string nearObjName = "";    //オブジェクト名称
+        GameObject targetObj = null; //オブジェクト
+
+        //タグ指定されたオブジェクトを配列で取得する
+        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
+        {
+            //自身と取得したオブジェクトの距離を取得
+            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+
+            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
+            //一時変数に距離を格納
+            if (nearDis == 0 || nearDis > tmpDis)
+            {
+                nearDis = tmpDis;
+                //nearObjName = obs.name;
+                targetObj = obs;
+            }
+
+        }
+        //最も近かったオブジェクトを返す
+        //return GameObject.Find(nearObjName);
+        return targetObj;
+    }//-----------
+
+
+
+
     void Start()
     {
 
-      
+
 
     }
 
@@ -32,28 +68,95 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerHp.text = "PlayerHP" + MyHp;
         PlayerMOVE();
+        ShootingSupport();
+
     }
+    void ShootingSupport() {//IsShootingSupport 射撃サポート
+                            //経過時間を取得
+        if (IsShootingSupport) { 
+        searchTime += Time.deltaTime;
+
+        if (searchTime >= 1.0f)
+        {
+            //最も近かったオブジェクトを取得
+            nearObj = serchTag(gameObject, "Monster");
+
+            //経過時間を初期化
+            searchTime = 0;
+        }
+
+        //対象の位置の方向を向く
+
+        transform.LookAt(nearObj.transform);
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            //自分自身の位置から相対的に移動する
+            //transform.Translate(Vector3.forward * 0.01f);
+        }
+    }
+
     void PlayerMOVE() {
         //移動
-        if (Input.GetKey("up"))
+    
+        if (IsShootingSupport && nearObj != null)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
+          
+            if (Input.GetKey("up"))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+ Time.deltaTime * Seppt);
+                //transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
 
-        }else if (Input.GetKey("down"))
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
+            }
+            else if (Input.GetKey("down"))
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * (-Seppt * 0.75f));
+               // transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
 
-        }
-        if (Input.GetKey("right"))
-        {
-            transform.Rotate(0, AroundSeppt, 0, Space.World);
+            }
+            if (Input.GetKey("right"))
+            {
+                transform.position = new Vector3(transform.position.x + Time.deltaTime * Seppt, transform.position.y, transform.position.z);
+               // transform.Translate(Vector3.right * Time.deltaTime * Seppt, Space.Self);
 
 
-        }else if (Input.GetKey("left"))
-        {
-            transform.Rotate(0, -AroundSeppt, 0, Space.World);
+            }
+            else if (Input.GetKey("left"))
+            {
+                transform.position = new Vector3(transform.position.x + Time.deltaTime * -Seppt, transform.position.y, transform.position.z);
+            //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
+            }
+
+            } else {
+
+                if (Input.GetKey("up"))
+                {
+                    transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
+
+                }else if (Input.GetKey("down"))
+                {
+                    transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
+
+                }
+                if (Input.GetKey("right"))
+                {
+                    transform.Rotate(0, AroundSeppt, 0, Space.World);
+
+
+                }else if (Input.GetKey("left"))
+                {
+                    transform.Rotate(0, -AroundSeppt, 0, Space.World);
+                }
+
         }
         //射撃
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (IsShootingSupport) {
+                IsShootingSupport = false;
+            } else {
+                IsShootingSupport = true; }
+                     
+                   
+        }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             GunsMOVE();

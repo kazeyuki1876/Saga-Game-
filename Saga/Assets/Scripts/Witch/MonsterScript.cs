@@ -22,12 +22,13 @@ public class MonsterScript : MonoBehaviour
         transform.LookAt(Target);//目標をみる
         transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
                                                                                     // transform.rotation(0，0，0);//見ている方向に進む
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
     public void Isdie() {
         if (MyHP <= 0) {
 
          
-            Destroy(this.gameObject);
+            Destroy(this.gameObject,0.1f);
         }
 
     }
