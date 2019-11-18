@@ -31,7 +31,6 @@ public class PlayerScript : MonoBehaviour
         float nearDis = 0;          //最も近いオブジェクトの距離
         //string nearObjName = "";    //オブジェクト名称
         GameObject targetObj = null; //オブジェクト
-
         //タグ指定されたオブジェクトを配列で取得する
         foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
         {
@@ -53,6 +52,8 @@ public class PlayerScript : MonoBehaviour
         return targetObj;
     }//-----------
 
+    //------------機械設置
+    public GameObject[] Machine;
 
 
 
@@ -146,6 +147,15 @@ public class PlayerScript : MonoBehaviour
                     transform.Rotate(0, -AroundSeppt, 0, Space.World);
                 }
 
+        }
+
+        /*
+         Machine 機械
+         Battery 
+         
+         */
+        if (Input.GetKeyDown(KeyCode.C)) {
+            GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((int)transform.position.x + 10.0f, (int)transform.position.y, (int)transform.position.z), new Quaternion(0, 0, 0,0));
         }
         //射撃
         if (Input.GetKeyDown(KeyCode.X))
