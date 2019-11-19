@@ -35,5 +35,6 @@ public class DamageUI : MonoBehaviour
 
             Destroy(gameObject);
         }
+
     }
 }
