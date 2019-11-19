@@ -16,7 +16,7 @@ public class fireballScript : MonoBehaviour
         //  Debug.Log(collisionInfo.gameObject.name);
         if (col.gameObject.tag == "Machine")
         {
-            Debug.Log(col.gameObject.name+"         " + col.gameObject.tag);
+          //  Debug.Log(col.gameObject.name+"         " + col.gameObject.tag);
             Destroy(col.gameObject);
             Destroy(this.gameObject);
 

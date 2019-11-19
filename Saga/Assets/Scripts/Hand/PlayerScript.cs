@@ -15,8 +15,12 @@ public class PlayerScript : MonoBehaviour
     public float[] BulletSeppts;//銃弾の速度
     public float[] BulletLifespans;//銃弾の存在時間
     public float[] BulletDamages;//銃弾のダメージ
+    public float[] BulletLimit;//銃弾の射撃速度
+    public int[] BulletS;//一回の射撃につき何発を撃つか
     public GameObject Bullet;//いま射撃する銃弾
     public int[] BulletNumer;//一つの銃に置いてなん発を打ちましたか。
+    public int[] GunRecoils;//反発
+    public bool IsTrigger=true;
     //UI
     public Text PlayerHp;
     // Start is called before the first frame update
@@ -74,17 +78,17 @@ public class PlayerScript : MonoBehaviour
     }
     void ShootingSupport() {//IsShootingSupport 射撃サポート
                             //経過時間を取得
-        if (IsShootingSupport) { 
-        searchTime += Time.deltaTime;
+        if (IsShootingSupport) {
+            searchTime += Time.deltaTime;
 
-        if (searchTime >= 1.0f)
-        {
-            //最も近かったオブジェクトを取得
-            nearObj = serchTag(gameObject, "Monster");
+            if (searchTime >= 1.0f)
+            {
+                //最も近かったオブジェクトを取得
+                nearObj = serchTag(gameObject, "Monster");
 
-            //経過時間を初期化
-            searchTime = 0;
-        }
+                //経過時間を初期化
+                searchTime = 0;
+            }
 
             //対象の位置の方向を向く
             if (nearObj != null) {
@@ -92,7 +96,7 @@ public class PlayerScript : MonoBehaviour
                 transform.LookAt(nearObj.transform);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
-       
+
             //自分自身の位置から相対的に移動する
             //transform.Translate(Vector3.forward * 0.01f);
         }
@@ -100,55 +104,55 @@ public class PlayerScript : MonoBehaviour
 
     void PlayerMOVE() {
         //移動
-    
+
         if (IsShootingSupport && nearObj != null)
         {
-          
+
             if (Input.GetKey("up"))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z+ Time.deltaTime * Seppt);
+                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * Seppt);
                 //transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
 
             }
             else if (Input.GetKey("down"))
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * (-Seppt * 0.75f));
-               // transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
+                // transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
 
             }
             if (Input.GetKey("right"))
             {
                 transform.position = new Vector3(transform.position.x + Time.deltaTime * Seppt, transform.position.y, transform.position.z);
-               // transform.Translate(Vector3.right * Time.deltaTime * Seppt, Space.Self);
+                // transform.Translate(Vector3.right * Time.deltaTime * Seppt, Space.Self);
 
 
             }
             else if (Input.GetKey("left"))
             {
                 transform.position = new Vector3(transform.position.x + Time.deltaTime * -Seppt, transform.position.y, transform.position.z);
-            //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
+                //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
             }
 
-            } else {
+        } else {
 
-                if (Input.GetKey("up"))
-                {
-                    transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
+            if (Input.GetKey("up"))
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
 
-                }else if (Input.GetKey("down"))
-                {
-                    transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
+            } else if (Input.GetKey("down"))
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
 
-                }
-                if (Input.GetKey("right"))
-                {
-                    transform.Rotate(0, AroundSeppt, 0, Space.World);
+            }
+            if (Input.GetKey("right"))
+            {
+                transform.Rotate(0, AroundSeppt, 0, Space.World);
 
 
-                }else if (Input.GetKey("left"))
-                {
-                    transform.Rotate(0, -AroundSeppt, 0, Space.World);
-                }
+            } else if (Input.GetKey("left"))
+            {
+                transform.Rotate(0, -AroundSeppt, 0, Space.World);
+            }
 
         }
 
@@ -158,7 +162,7 @@ public class PlayerScript : MonoBehaviour
          
          */
         if (Input.GetKeyDown(KeyCode.C)) {
-            GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((int)transform.position.x + 10.0f, (int)transform.position.y, (int)transform.position.z), new Quaternion(0, 0, 0,0));
+            GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((int)transform.position.x + 10.0f, (int)transform.position.y, (int)transform.position.z), new Quaternion(0, 0, 0, 0));
         }
         //射撃
         if (Input.GetKeyDown(KeyCode.X))
@@ -167,13 +171,31 @@ public class PlayerScript : MonoBehaviour
                 IsShootingSupport = false;
             } else {
                 IsShootingSupport = true; }
-                     
-                   
+
+
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z))
         {
-            GunsMOVE();
+
+            if (IsTrigger){
+                IsTrigger = false;
+                for (int Moves = 0; Moves < BulletS[GunsNum]; Moves++) {
+                    GunsMOVE();
+                    Invoke("TriggerMove", BulletLimit[GunsNum]);
+            }
+           
+
+            }
         }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Debug.Log("V");
+            GunsChange();
+        }
+    }
+    void TriggerMove() {
+        IsTrigger = true;
+
     }
     void GunsMOVE() {
         //　いまＰＬＡＹＥＲが持っている銃
@@ -186,19 +208,28 @@ public class PlayerScript : MonoBehaviour
 
         //銃によっての弾
         // string BulletName = Bullets[0].name;
-
-            Bullet = Instantiate(Bullets[0], this.transform.position, this.transform.rotation);//弾丸を作り　位置と向きを与える
-            Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
-            Bullet.GetComponent<BulletMove>().MySeppt = BulletSeppts[0];
-            Bullet.GetComponent<BulletMove>().MyLifespan = BulletLifespans[0];
-            Bullet.GetComponent<BulletMove>().MyDamage = BulletDamages[0];
-
-
-       
-    BulletNumer[0]++;//この銃弾いくらを打ちましたか；
-        Bullet.name = Bullets[0].name + BulletNumer[0];//名前を付ける　何銃の何発
-        
+     
+        Bullet = Instantiate(Bullets[GunsNum], this.transform.position, this.transform.rotation);//弾丸を作り　位置と向きを与える
+        Bullet.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y+ Random.Range(-GunRecoils[GunsNum], GunRecoils[GunsNum]), 0);
+        Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
+        Bullet.GetComponent<BulletMove>().MySeppt = BulletSeppts[GunsNum];
+        Bullet.GetComponent<BulletMove>().MyLifespan = BulletLifespans[GunsNum];
+        Bullet.GetComponent<BulletMove>().MyDamage = BulletDamages[GunsNum];
+        BulletNumer[GunsNum]++;//この銃弾いくらを打ちましたか；
+        Bullet.name = Bullets[GunsNum].name + BulletNumer[GunsNum];//名前を付ける　何銃の何発
         //残弾量計算
     }
+    //銃の種類
+    public int GunsNum;
+    public int GunsNumMIN=0;
+    public int GunsNumMAX = 3;
 
+    void GunsChange() {
+        Debug.Log("GunsChange");
+        GunsNumMIN++;
+        GunsNum = GunsNumMIN  % GunsNumMAX;
+        Debug.Log(GunsNum+"="+ GunsNumMIN+"/"+ GunsNumMAX);
+
+
+    }
 }

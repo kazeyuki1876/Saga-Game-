@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4372013, g: 0.48494285, b: 0.5652116, a: 1}
+  m_IndirectSpecularColor: {r: 0.43720153, g: 0.48494345, b: 0.5652123, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2056,26 +2056,34 @@ MonoBehaviour:
   - {fileID: 0}
   Bullets:
   - {fileID: 7755664565542621122, guid: 68a4e289bb3180741b931af2f10f42ff, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3045462806711292591, guid: 65f30584ac042f7479b8085e736ccabb, type: 3}
+  - {fileID: 7755664565542621122, guid: 68a4e289bb3180741b931af2f10f42ff, type: 3}
   - {fileID: 0}
   BulletSeppts:
   - 100
-  - 0
-  - 0
+  - 200
+  - 75
   - 0
   BulletLifespans:
-  - 10
-  - 0
-  - 0
+  - 1
+  - 0.25
+  - 1
   - 0
   BulletDamages:
   - 2
+  - 4
+  - 2
   - 0
+  BulletLimit:
+  - 0.4
+  - 0.6
+  - 0.2
   - 0
-  - 0
+  BulletS: 01000000030000000100000000000000
   Bullet: {fileID: 0}
   BulletNumer: 0000000000000000000000000000000000000000
+  GunRecoils: 050000000f0000000a00000000000000
+  IsTrigger: 1
   PlayerHp: {fileID: 1315714644}
   IsShootingSupport: 0
   Machine:
@@ -2084,6 +2092,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  GunsNum: 0
+  GunsNumMIN: 0
+  GunsNumMAX: 3
 --- !u!54 &1604985443
 Rigidbody:
   m_ObjectHideFlags: 0
