@@ -1,9 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CamaraScript : MonoBehaviour
 {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+
+            SceneManager.LoadScene("OVER");
+        }
+    }
+    /*
     // Start is called before the first frame update
     public GameObject objectToFollow;
 
@@ -28,5 +38,6 @@ public class CamaraScript : MonoBehaviour
 
             this.transform.position = position;
 
-    }
+    }*/
+
 }
