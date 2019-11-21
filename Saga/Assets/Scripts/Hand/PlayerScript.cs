@@ -20,7 +20,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject Bullet;//いま射撃する銃弾
     public int[] BulletNumer;//一つの銃に置いてなん発を打ちましたか。
     public int[] GunRecoils;//反発
-    public bool IsTrigger=true;
+    public bool IsTrigger = true;
+   
     //UI
     public Text PlayerHp;
     // Start is called before the first frame update
@@ -162,7 +163,8 @@ public class PlayerScript : MonoBehaviour
          
          */
         if (Input.GetKeyDown(KeyCode.C)) {
-            GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((int)transform.position.x + 10.0f, (int)transform.position.y, (int)transform.position.z), new Quaternion(0, 0, 0, 0));
+            Debug.Log("C");
+            C1();
         }
         //射撃
         if (Input.GetKeyDown(KeyCode.X))
@@ -177,13 +179,13 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey(KeyCode.Z))
         {
 
-            if (IsTrigger){
+            if (IsTrigger) {
                 IsTrigger = false;
                 for (int Moves = 0; Moves < BulletS[GunsNum]; Moves++) {
                     GunsMOVE();
                     Invoke("TriggerMove", BulletLimit[GunsNum]);
-            }
-           
+                }
+
 
             }
         }
@@ -192,6 +194,42 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("V");
             GunsChange();
         }
+    }
+    void C1()
+    {
+        Debug.Log("C1");
+        //---------------kikai
+        int MachineBatteryX=0;
+     int MachineBatteryZ=0;
+
+        if ((int)transform.position.x % 10 == 0)
+        {
+            MachineBatteryX = (int)transform.position.x;
+
+        }
+        else {
+            for (int MachineX = (int)transform.position.x; MachineX % 10 != 0; MachineX++)
+            {
+                Debug.Log(MachineX);
+                MachineBatteryX = MachineX;
+            }
+        }
+
+        if ((int)transform.position.z % 10 == 0)
+        {
+            MachineBatteryZ = (int)transform.position.z;
+
+        }
+        else
+        {
+            for (int MachineZ = (int)transform.position.z; MachineZ % 10 != 0; MachineZ++)
+            {
+                Debug.Log(MachineZ);
+                MachineBatteryZ = MachineZ;
+            }
+        }
+        GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((float)MachineBatteryX + 10.0f, (int)transform.position.y, (float)MachineBatteryZ), new Quaternion(0, 0, 0, 0));
+
     }
     void TriggerMove() {
         IsTrigger = true;
