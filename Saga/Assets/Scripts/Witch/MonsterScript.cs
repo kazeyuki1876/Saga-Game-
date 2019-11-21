@@ -10,6 +10,8 @@ public class MonsterScript : MonoBehaviour
     public float MySeppt = 10;//モンスターの速度
     public float MyDamage = 10;
     // Start is called before the first frame update
+    public bool IsATK = true;
+      TakeDamage takeDamage;//
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
       
@@ -23,6 +25,8 @@ public class MonsterScript : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
                                                                                     // transform.rotation(0，0，0);//見ている方向に進む
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        if (transform.position.y > 4.7f) {
+            transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);   }
     }
     public void Isdie() {
         if (MyHP <= 0) {
@@ -32,24 +36,37 @@ public class MonsterScript : MonoBehaviour
         }
 
     }
-    void OnCollisionEnter(Collision collisionInfo) //当进入碰撞器
+    void OnCollisionStay(Collision col) //当进入碰撞器
     {
+       
       //  Debug.Log("collisionInfo");
       //  Debug.Log(collisionInfo.gameObject.name);
-        if (collisionInfo.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player"&& IsATK)
         {
-          //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
-            collisionInfo.gameObject.GetComponent<PlayerScript>().MyHp = collisionInfo.gameObject.GetComponent<PlayerScript>().MyHp - MyDamage;
-
-
-        }
-
-        if (collisionInfo.gameObject.name == "Castle")
-        {
+            IsATK = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
-            collisionInfo.gameObject.GetComponent<CastleScript>().MyHp = collisionInfo.gameObject.GetComponent<CastleScript>().MyHp - (int)MyDamage;
-            collisionInfo.gameObject.GetComponent<CastleScript>().IsOVER();
+            col.gameObject.GetComponent<PlayerScript>().MyHp = col.gameObject.GetComponent<PlayerScript>().MyHp - MyDamage;
+            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+            col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+
+
+            Invoke("ATKok", 1.0f);
         }
 
+        if (col.gameObject.name == "Castle"&& IsATK)
+        {
+            IsATK = false;
+            //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
+            col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)MyDamage;
+            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+            col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+            col.gameObject.GetComponent<CastleScript>().IsOVER();
+          
+            Invoke("ATKok", 1.0f);
+        }
+
+    }
+    void ATKok() {
+        IsATK = true;
     }
 }
