@@ -108,6 +108,7 @@ public class PlayerScript : MonoBehaviour
 
         if (IsShootingSupport && nearObj != null)
         {
+        
 
             if (Input.GetKey("up"))
             {

@@ -25,8 +25,8 @@ public class MonsterScript : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
                                                                                     // transform.rotation(0，0，0);//見ている方向に進む
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        if (transform.position.y > 4.7f) {
-            transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);   }
+       // if (transform.position.y > 4.7f) {
+         //   transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);   }
     }
     public void Isdie() {
         if (MyHP <= 0) {

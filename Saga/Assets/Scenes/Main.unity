@@ -2040,11 +2040,11 @@ MonoBehaviour:
   - {fileID: 0}
   CardParent: {fileID: 155134369}
   CardName:
-  - "\u8D64\u3044\u3077\u30ED\u30C3\u30AF"
-  - "\u767D\u3044\u3077\u30ED\u30C3\u30AF"
-  - "\u9752\u3044\u3077\u30ED\u30C3\u30AF"
-  - "\u9ED2\u3044\u3077\u30ED\u30C3\u30AF"
-  - "\u9EC4\u3044\u3077\u30ED\u30C3\u30AF"
+  - "\u8D64\u30AA\u30FC\u30AF"
+  - "\u767D\u30AA\u30FC\u30AF"
+  - "\u9752\u30AA\u30FC\u30AF"
+  - "\u9ED2\u30AA\u30FC\u30AF"
+  - "\u9EC4\u30AA\u30FC\u30AF"
   - fireball
   - 
   - 

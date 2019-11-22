@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2386322359604012193}
   - component: {fileID: 8152059805443207968}
   - component: {fileID: 6170312420910980493}
-  - component: {fileID: 9201525819148302750}
   - component: {fileID: 5676491756785219405}
   - component: {fileID: 745568247211069345}
   - component: {fileID: 7080494306362006510}
+  - component: {fileID: 6646157522457850957}
   m_Layer: 0
   m_Name: Monsu2
   m_TagString: Monster
@@ -81,19 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &9201525819148302750
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2302380201081419648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5676491756785219405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +97,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   MySeppt: 10
   MyDamage: 10
+  IsATK: 1
 --- !u!54 &745568247211069345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -118,8 +106,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2302380201081419648}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 1
+  m_Mass: 10
+  m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -141,3 +129,16 @@ MonoBehaviour:
   damageUI: {fileID: 1933311803687809520, guid: 04a76ce659d18214ba5e33a71ad2b89e,
     type: 3}
   DamageNum: 0
+--- !u!135 &6646157522457850957
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2302380201081419648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5926422
+  m_Center: {x: -0.001834333, y: -0.00020447373, z: -0.00025749207}
