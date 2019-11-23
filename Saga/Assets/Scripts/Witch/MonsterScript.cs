@@ -6,7 +6,9 @@ public class MonsterScript : MonoBehaviour
 {
     public float MyHP;//HP
                       // public GameObject Player;
-    public Transform Target;//モンスターの目標
+    public Transform StartTarget;
+        
+        public Transform Target;//モンスターの目標
     public float MySeppt = 10;//モンスターの速度
     public float MyDamage = 10;
     // Start is called before the first frame update
@@ -14,13 +16,17 @@ public class MonsterScript : MonoBehaviour
       TakeDamage takeDamage;//
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
-      
-       
+        Target = StartTarget;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Target == null) {
+            Target = StartTarget;
+        }
         transform.LookAt(Target);//目標をみる
         transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
                                                                                     // transform.rotation(0，0，0);//見ている方向に進む
@@ -45,6 +51,7 @@ public class MonsterScript : MonoBehaviour
         {
             IsATK = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
+
             col.gameObject.GetComponent<PlayerScript>().MyHp = col.gameObject.GetComponent<PlayerScript>().MyHp - MyDamage;
             col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
@@ -62,6 +69,16 @@ public class MonsterScript : MonoBehaviour
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.gameObject.GetComponent<CastleScript>().IsOVER();
           
+            Invoke("ATKok", 1.0f);
+        }
+
+        if (col.gameObject.name== "testbaru" && IsATK) {
+            IsATK = false;
+            col.gameObject.GetComponent<ststberuhontai>().MyHp = col.gameObject.GetComponent<ststberuhontai>().MyHp - (int)MyDamage;
+            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+            col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+            col.gameObject.GetComponent<ststberuhontai>().IsDIe();
+
             Invoke("ATKok", 1.0f);
         }
 

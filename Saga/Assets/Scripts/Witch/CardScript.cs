@@ -60,11 +60,11 @@ public class CardScript : MonoBehaviour
             if (Mons.GetComponent<MonsterScript>() != null) { 
             if (Boolean)
             {
-                Mons.GetComponent<MonsterScript>().Target = GameObject.Find("Player").GetComponent<Transform>();
+                Mons.GetComponent<MonsterScript>().StartTarget = GameObject.Find("Player").GetComponent<Transform>();
             }
             else
             {
-                Mons.GetComponent<MonsterScript>().Target = GameObject.Find("Castle").GetComponent<Transform>();
+                Mons.GetComponent<MonsterScript>().StartTarget = GameObject.Find("Castle").GetComponent<Transform>();
             }
             Mons.name = Monsu.name + Move;
             Mons.GetComponent<MonsterScript>().MySeppt = MonsterSpeed;
