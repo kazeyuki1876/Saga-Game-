@@ -15,6 +15,9 @@ public class MachineBatteryScript : MonoBehaviour
     //--------------------
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間
+
+    //------------- 
+    public GameObject Cate; //回ろ
     GameObject serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
@@ -42,9 +45,11 @@ public class MachineBatteryScript : MonoBehaviour
         return targetObj;
     }//-----------
 
-    private void Update()
+     void Update()
     {
         ShootingSupport(); }
+    public float A;
+    public bool isMOve = true;
     void ShootingSupport()
     {//IsShootingSupport 射撃サポート
      //経過時間を取得
@@ -59,14 +64,28 @@ public class MachineBatteryScript : MonoBehaviour
             //経過時間を初期化
             searchTime = 0;
         }
+       float R = 0;
+        float RMAX = 90;
+       
 
         //対象の位置の方向を向く
-        if(nearObj!=null)
+        if(nearObj!=null&& isMOve)
         if (nearObj.transform.position.x > this.transform.position.x - 30.0f && nearObj.transform.position.x < this.transform.position.x + 30.0f) {
             transform.LookAt(nearObj.transform);
-           // transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             Shooting();
-        }
+                //   R = R + 360 * Time.deltaTime;
+                //   A = R % RMAX;
+                if (A <= 360)
+                {
+                    A = A + 720 * Time.deltaTime;
+                    Cate.transform.eulerAngles = new Vector3(A, transform.eulerAngles.y, 0);
+                }
+                else { Cate.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0); }
+              
+
+             
+            }
 
         //自分自身の位置から相対的に移動する
         //transform.Translate(Vector3.forward * 0.01f);
@@ -75,8 +94,12 @@ public class MachineBatteryScript : MonoBehaviour
     void Shooting() {
         if (IsShooting) {
             IsShooting = false;
+            isMOve = false;
+            A = 0;
             GunsMOVE();
-            Invoke("ShootingON",0.33f);
+            Invoke("IsMoveON", 0.5f);
+            Invoke("ShootingON",1.1f);
+
         }
 
     }
@@ -84,7 +107,10 @@ public class MachineBatteryScript : MonoBehaviour
 
         IsShooting = true;
     }
-
+    void IsMoveON() {
+        isMOve = true;
+        A = 0;
+    }
     void GunsMOVE()
     {
       
