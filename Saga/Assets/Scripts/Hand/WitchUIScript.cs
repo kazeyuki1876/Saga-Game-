@@ -29,6 +29,7 @@ public class WitchUIScript : MonoBehaviour
     public string[] CardName;
     public int[] CardCost;
     public string[] CardComment;
+    public int[] MonsterMagicStone;
     int CardX = 1660;
     int[] CardY = new int[5] { 939, 789, 639, 489, 339 };
     public int []Monsters= new int[10] { 1,2,3,4,5,6,7,8,9,10 };

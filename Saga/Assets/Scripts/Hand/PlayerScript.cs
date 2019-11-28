@@ -12,6 +12,11 @@ public class PlayerScript : MonoBehaviour
     //射撃関係
     public GameObject[] Guns;//銃
     public GameObject[] Bullets;//銃弾
+    //銃の種類
+    public int GunsNum;
+    public int GunsNumMIN = 0;
+    public int GunsNumMAX = 3;
+    //弾関係
     public float[] BulletSeppts;//銃弾の速度
     public float[] BulletLifespans;//銃弾の存在時間
     public float[] BulletDamages;//銃弾のダメージ
@@ -21,15 +26,19 @@ public class PlayerScript : MonoBehaviour
     public int[] BulletNumer;//一つの銃に置いてなん発を打ちましたか。
     public int[] GunRecoils;//反発
     public bool IsTrigger = true;
-   
+
     //UI
     public Text PlayerHp;
-    // Start is called before the first frame update
 
+    //魔力
+    [SerializeField] private int MyMagicStone = 0;
     //----------狙えサポート
     public bool IsShootingSupport;
     private GameObject nearObj;         //最も近いオブジェクト
-    private float searchTime = 0;    //経過時間
+    private float searchTime = 0;    //経過時間       
+
+
+    //
     GameObject serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
@@ -59,30 +68,24 @@ public class PlayerScript : MonoBehaviour
 
     //------------機械設置
     public GameObject[] Machine;
-
-
-
     void Start()
     {
-
-
-
     }
-
     // Update is called once per frame
     void Update()
     {
         PlayerHp.text = "PlayerHP" + MyHp;
         PlayerMOVE();
         ShootingSupport();
-
     }
-    void ShootingSupport() {//IsShootingSupport 射撃サポート
-                            //経過時間を取得
-        if (IsShootingSupport) {
+    void ShootingSupport()
+    {//IsShootingSupport 射撃サポート
+     //経過時間を取得
+        if (IsShootingSupport)
+        {
             searchTime += Time.deltaTime;
 
-            if (searchTime >= 1.0f)
+            if (searchTime >= 0.3f)
             {
                 //最も近かったオブジェクトを取得
                 nearObj = serchTag(gameObject, "Monster");
@@ -92,7 +95,8 @@ public class PlayerScript : MonoBehaviour
             }
 
             //対象の位置の方向を向く
-            if (nearObj != null) {
+            if (nearObj != null)
+            {
 
                 transform.LookAt(nearObj.transform);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -103,12 +107,13 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void PlayerMOVE() {
+    void PlayerMOVE()
+    {
         //移動
 
         if (IsShootingSupport && nearObj != null)
         {
-        
+
 
             if (Input.GetKey("up"))
             {
@@ -135,13 +140,16 @@ public class PlayerScript : MonoBehaviour
                 //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
             }
 
-        } else {
+        }
+        else
+        {
 
             if (Input.GetKey("up"))
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
 
-            } else if (Input.GetKey("down"))
+            }
+            else if (Input.GetKey("down"))
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
 
@@ -151,7 +159,8 @@ public class PlayerScript : MonoBehaviour
                 transform.Rotate(0, AroundSeppt, 0, Space.World);
 
 
-            } else if (Input.GetKey("left"))
+            }
+            else if (Input.GetKey("left"))
             {
                 transform.Rotate(0, -AroundSeppt, 0, Space.World);
             }
@@ -163,26 +172,33 @@ public class PlayerScript : MonoBehaviour
          Battery 
          
          */
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
             Debug.Log("C");
             C1();
         }
         //射撃
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (IsShootingSupport) {
+            if (IsShootingSupport)
+            {
                 IsShootingSupport = false;
-            } else {
-                IsShootingSupport = true; }
+            }
+            else
+            {
+                IsShootingSupport = true;
+            }
 
 
         }
         if (Input.GetKey(KeyCode.Z))
         {
 
-            if (IsTrigger) {
+            if (IsTrigger)
+            {
                 IsTrigger = false;
-                for (int Moves = 0; Moves < BulletS[GunsNum]; Moves++) {
+                for (int Moves = 0; Moves < BulletS[GunsNum]; Moves++)
+                {
                     GunsMOVE();
                     Invoke("TriggerMove", BulletLimit[GunsNum]);
                 }
@@ -200,15 +216,16 @@ public class PlayerScript : MonoBehaviour
     {
         Debug.Log("C1");
         //---------------kikai
-        int MachineBatteryX=0;
-     int MachineBatteryZ=0;
+        int MachineBatteryX = 0;
+        int MachineBatteryZ = 0;
 
         if ((int)transform.position.x % 10 == 0)
         {
             MachineBatteryX = (int)transform.position.x;
 
         }
-        else {
+        else
+        {
             for (int MachineX = (int)transform.position.x; MachineX % 10 != 0; MachineX++)
             {
                 Debug.Log(MachineX);
@@ -232,11 +249,13 @@ public class PlayerScript : MonoBehaviour
         GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((float)MachineBatteryX + 10.0f, (int)transform.position.y, (float)MachineBatteryZ), new Quaternion(0, 0, 0, 0));
 
     }
-    void TriggerMove() {
+    void TriggerMove()
+    {
         IsTrigger = true;
 
     }
-    void GunsMOVE() {
+    void GunsMOVE()
+    {
         //　いまＰＬＡＹＥＲが持っている銃
 
         //銃弾あるか
@@ -247,9 +266,9 @@ public class PlayerScript : MonoBehaviour
 
         //銃によっての弾
         // string BulletName = Bullets[0].name;
-     
+
         Bullet = Instantiate(Bullets[GunsNum], this.transform.position, this.transform.rotation);//弾丸を作り　位置と向きを与える
-        Bullet.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y+ Random.Range(-GunRecoils[GunsNum], GunRecoils[GunsNum]), 0);
+        Bullet.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-GunRecoils[GunsNum], GunRecoils[GunsNum]), 0);
         Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
         Bullet.GetComponent<BulletMove>().MySeppt = BulletSeppts[GunsNum];
         Bullet.GetComponent<BulletMove>().MyLifespan = BulletLifespans[GunsNum];
@@ -258,17 +277,25 @@ public class PlayerScript : MonoBehaviour
         Bullet.name = Bullets[GunsNum].name + BulletNumer[GunsNum];//名前を付ける　何銃の何発
         //残弾量計算
     }
-    //銃の種類
-    public int GunsNum;
-    public int GunsNumMIN=0;
-    public int GunsNumMAX = 3;
 
-    void GunsChange() {
+
+    void GunsChange()
+    {
         Debug.Log("GunsChange");
         GunsNumMIN++;
-        GunsNum = GunsNumMIN  % GunsNumMAX;
-        Debug.Log(GunsNum+"="+ GunsNumMIN+"/"+ GunsNumMAX);
+        GunsNum = GunsNumMIN % GunsNumMAX;
+        Debug.Log(GunsNum + "=" + GunsNumMIN + "/" + GunsNumMAX);
+    }
+    void OnTriggerEnter(Collider MagicStone)
+    {
 
-
+        // 魔石拾い
+        if (MagicStone.gameObject.tag == "MagicStone")
+        {
+            Debug.Log("MagicStone");
+            //  MyMagicStone = MyMagicStone + MagicStone.GetComponent<MagicStoneScript>().MagicStone;
+              Destroy(MagicStone.gameObject);  // MyMagicStoneを崩壊
+            MyMagicStone++;
+        }
     }
 }
