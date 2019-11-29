@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Animations;
+
 
 public class PlayerScript : MonoBehaviour
 {//プレイヤー
@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
     //UI
     public Text PlayerHp;
     public GameObject Kyara;
- 
+
     //----------狙えサポート
     public bool IsShootingSupport;
     private GameObject nearObj;         //最も近いオブジェクト
@@ -42,14 +42,12 @@ public class PlayerScript : MonoBehaviour
 
     //--------キャラクターアニメ
 
-    private Animator animator;
 
-    // 設定したフラグの名前
-    private const string key_isRun = "isRun";
-    private const string key_isJump = "isJump";
+
+
 
     // 初期化メソッド
-  
+
 
     //********
     //
@@ -84,7 +82,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject[] Machine;
     void Start()
     {
-        this.animator = Kyara.GetComponent<Animator>();
+
     }
     // Update is called once per frame
     void Update()
@@ -154,20 +152,12 @@ public class PlayerScript : MonoBehaviour
                 transform.position = new Vector3(transform.position.x + Time.deltaTime * -Seppt, transform.position.y, transform.position.z);
                 //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
             }
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                // WaitからRunに遷移する
-                this.animator.SetBool(key_isRun, true);
-            }
-            else
-            {
-                // RunからWaitに遷移する
-                this.animator.SetBool(key_isRun, false);
-            }
+
+
+
         }
         else
         {
-
             if (Input.GetKey("up"))
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
@@ -189,12 +179,20 @@ public class PlayerScript : MonoBehaviour
                 transform.Rotate(0, -AroundSeppt, 0, Space.World);
             }
 
+
+
+
+
+
+           
+         
         }
+
 
         /*
          Machine 機械
          Battery 
-         
+
          */
         if (Input.GetKeyDown(KeyCode.C))
         {
@@ -224,7 +222,8 @@ public class PlayerScript : MonoBehaviour
                 for (int Moves = 0; Moves < BulletS[GunsNum]; Moves++)
                 {
                     GunsMOVE();
-                    Invoke("TriggerMove", BulletLimit[GunsNum]);
+
+                    Invoke("GunTriggerMove", BulletLimit[GunsNum]);
                 }
 
 
@@ -236,6 +235,15 @@ public class PlayerScript : MonoBehaviour
             GunsChange();
         }
     }
+    void GunTriggerMove()
+    {
+        if (IsTrigger == false)
+        {
+            IsTrigger = true;
+        }
+
+    }
+
     void C1()
     {
         Debug.Log("C1");
@@ -273,11 +281,10 @@ public class PlayerScript : MonoBehaviour
         GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((float)MachineBatteryX + 10.0f, 0, (float)MachineBatteryZ), new Quaternion(0, 0, 0, 0));
 
     }
-    void TriggerMove()
-    {
-        IsTrigger = true;
 
-    }
+
+
+
     void GunsMOVE()
     {
         //　いまＰＬＡＹＥＲが持っている銃
@@ -299,7 +306,7 @@ public class PlayerScript : MonoBehaviour
         Bullet.GetComponent<BulletMove>().MyDamage = BulletDamages[GunsNum];
         BulletNumer[GunsNum]++;//この銃弾いくらを打ちましたか；
         Bullet.name = Bullets[GunsNum].name + BulletNumer[GunsNum];//名前を付ける　何銃の何発
-        //残弾量計算
+                                                                   //残弾量計算
     }
 
 
@@ -318,8 +325,9 @@ public class PlayerScript : MonoBehaviour
         {
             Debug.Log("MagicStone");
             //  MyMagicStone = MyMagicStone + MagicStone.GetComponent<MagicStoneScript>().MagicStone;
-              Destroy(MagicStone.gameObject);  // MyMagicStoneを崩壊
+            Destroy(MagicStone.gameObject);  // MyMagicStoneを崩壊
             MyMagicStone++;
         }
     }
+
 }

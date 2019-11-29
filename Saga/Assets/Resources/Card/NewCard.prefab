@@ -197,7 +197,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -260, y: -534.2}
-  m_SizeDelta: {x: 250, y: 100}
+  m_SizeDelta: {x: 264, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3000446448658962248
 CanvasRenderer:
@@ -255,6 +255,7 @@ MonoBehaviour:
   MyName: MyName
   MyCost: 0
   MyComment: MyComment
+  MonsterHP: 0
   MyX: 0
   MyY: 0
   MonsterStartX: 0
@@ -262,6 +263,7 @@ MonoBehaviour:
   MonsterStartZ: 0
   Moves: 0
   MonsterSpeed: 0
+  MonsterMagicStone: 0
   Monsu: {fileID: 0}
   SpeedTime: 2
 --- !u!1 &6358258957059899200

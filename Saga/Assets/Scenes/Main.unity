@@ -1237,7 +1237,7 @@ Terrain:
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: ddd1dcba729f86b4082fc532b4b73728, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 500
+  m_TreeBillboardDistance: 10
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -1653,7 +1653,7 @@ Transform:
   m_GameObject: {fileID: 1604985437}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3, y: 8, z: 6.33}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1816902273}
   m_Father: {fileID: 0}
@@ -1750,8 +1750,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 1.2, z: 0.8}
-  m_Center: {x: 0, y: -0.3, z: 0}
+  m_Size: {x: 0.4, y: 1.4, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1633698331
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,9 +1844,9 @@ MonoBehaviour:
   NewInAdvanceInstallation: {fileID: 0}
   InAdvanceInstallationSpeed: 50
   CardImaje:
-  - {fileID: 21300000, guid: 7fe001e26fdd3fc4c993e5da45298dd8, type: 3}
-  - {fileID: 21300000, guid: 7fe001e26fdd3fc4c993e5da45298dd8, type: 3}
-  - {fileID: 21300000, guid: 7fe001e26fdd3fc4c993e5da45298dd8, type: 3}
+  - {fileID: 21300000, guid: 82938267513da64479e25840a22efc6f, type: 3}
+  - {fileID: 21300000, guid: 82938267513da64479e25840a22efc6f, type: 3}
+  - {fileID: 21300000, guid: 82938267513da64479e25840a22efc6f, type: 3}
   - {fileID: 21300000, guid: 7fe001e26fdd3fc4c993e5da45298dd8, type: 3}
   - {fileID: 21300000, guid: 7fe001e26fdd3fc4c993e5da45298dd8, type: 3}
   - {fileID: 21300000, guid: 7fe001e26fdd3fc4c993e5da45298dd8, type: 3}
@@ -2023,7 +2023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400096, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2073,6 +2073,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed2d0f96c0577a34b9ca2fdb20574d5a, type: 2}
+    - target: {fileID: 11400002, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100182, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 412b92d4feeb9c548bfa98f62c4d1022, type: 3}
 --- !u!4 &1816902273 stripped
@@ -2087,6 +2107,31 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1816902272}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1816902275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816902274}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc8c55458e51224a8a2131a9f539a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1816902280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816902274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ab51570bc8ba64d9244c101b8de228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1945494612
 GameObject:
   m_ObjectHideFlags: 0

@@ -62,7 +62,7 @@ public class WitchUIScript : MonoBehaviour
     }
     void Load(){
         HandCharge();
-        Debug.Log(Time.time + ":呼び出された");
+      //  Debug.Log(Time.time + ":呼び出された");
     }
 
     // Update is called once per frame
