@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations;
 
 public class PlayerScript : MonoBehaviour
 {//プレイヤー
@@ -32,14 +33,25 @@ public class PlayerScript : MonoBehaviour
 
     //UI
     public Text PlayerHp;
-
+    public GameObject Kyara;
  
     //----------狙えサポート
     public bool IsShootingSupport;
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間       
 
+    //--------キャラクターアニメ
 
+    private Animator animator;
+
+    // 設定したフラグの名前
+    private const string key_isRun = "isRun";
+    private const string key_isJump = "isJump";
+
+    // 初期化メソッド
+  
+
+    //********
     //
     GameObject serchTag(GameObject nowObj, string tagName)
     {
@@ -72,6 +84,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject[] Machine;
     void Start()
     {
+        this.animator = Kyara.GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -141,7 +154,16 @@ public class PlayerScript : MonoBehaviour
                 transform.position = new Vector3(transform.position.x + Time.deltaTime * -Seppt, transform.position.y, transform.position.z);
                 //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
             }
-
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                // WaitからRunに遷移する
+                this.animator.SetBool(key_isRun, true);
+            }
+            else
+            {
+                // RunからWaitに遷移する
+                this.animator.SetBool(key_isRun, false);
+            }
         }
         else
         {
@@ -248,7 +270,7 @@ public class PlayerScript : MonoBehaviour
                 MachineBatteryZ = MachineZ;
             }
         }
-        GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((float)MachineBatteryX + 10.0f, (int)transform.position.y, (float)MachineBatteryZ), new Quaternion(0, 0, 0, 0));
+        GameObject NewMachineBattery = Instantiate(Machine[0], new Vector3((float)MachineBatteryX + 10.0f, 0, (float)MachineBatteryZ), new Quaternion(0, 0, 0, 0));
 
     }
     void TriggerMove()
