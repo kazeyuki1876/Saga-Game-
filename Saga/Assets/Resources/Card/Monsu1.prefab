@@ -95,10 +95,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyHP: 10
+  StartTarget: {fileID: 0}
   Target: {fileID: 0}
   MySeppt: 10
   MyDamage: 10
+  MonsterMagicStone: 0
   IsATK: 1
+  MagicStone: {fileID: 741804544046519146, guid: 1de08452c7b3648458349ea1b97cdf94,
+    type: 3}
 --- !u!54 &481782504946755733
 Rigidbody:
   m_ObjectHideFlags: 0

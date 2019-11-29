@@ -12,7 +12,7 @@ public class WitchUIScript : MonoBehaviour
 
 
     //手札
-   
+
     public GameObject[] Hand = new GameObject[5];//手札最大枚数
     public float MyMagic = 100;
     public float MyMagicMAX = 100;
@@ -30,13 +30,16 @@ public class WitchUIScript : MonoBehaviour
     public int[] CardCost;
     public string[] CardComment;
     public int[] MonsterMagicStone;
+    public int[] MonsterHP;
     int CardX = 1660;
     int[] CardY = new int[5] { 939, 789, 639, 489, 339 };
-    public int []Monsters= new int[10] { 1,2,3,4,5,6,7,8,9,10 };
-    public int[] MonsterSpeeds = new int[10] { 10, 15,20,25,30, 6, 7, 8, 9, 10 };
+    public int[] Monsters = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    public int[] MonsterSpeeds = new int[10] { 10, 15, 20, 25, 30, 6, 7, 8, 9, 10 };
     public GameObject InAdvanceInstallation;
     public GameObject NewInAdvanceInstallation;
-    public float InAdvanceInstallationSpeed=30;
+    public float InAdvanceInstallationSpeed = 30;
+    public Sprite[]CardImaje;
+
     /*　
      1　　　700
      2
@@ -55,8 +58,11 @@ public class WitchUIScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("HandCharge",0,2);
-        
+        InvokeRepeating("Load", 0,0.5f);
+    }
+    void Load(){
+        HandCharge();
+        Debug.Log(Time.time + ":呼び出された");
     }
 
     // Update is called once per frame
@@ -111,9 +117,14 @@ public class WitchUIScript : MonoBehaviour
         Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
         Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
         Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Resources.Load<GameObject>("Card/Monsu"+ CardID);//魔物まだ魔法
-
+        Hand[HandNumSheet].GetComponent<CardScript>().MonsterHP = MonsterHP[CardID];
         Hand[HandNumSheet].GetComponent<CardScript>().Moves = Monsters[CardID];
         Hand[HandNumSheet].GetComponent<CardScript>().MonsterSpeed = MonsterSpeeds[CardID];
+        Hand[HandNumSheet].GetComponent<CardScript>().MonsterMagicStone = MonsterMagicStone[CardID]; 
+    
+        Hand[HandNumSheet].GetComponent<Image>().sprite = CardImaje[CardID];
+
+
 
 
 

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {//プレイヤー
     public float MyHp = 100;
+    //魔力
+    [SerializeField] private int MyMagicStone = 0;
+
     public float Seppt = 5;//ＰＬＡＹＥＲ速度
     public float AroundSeppt = 5;//周り速度
     public GameObject Player;//ＰＬＡＹＥＲ
@@ -30,8 +33,7 @@ public class PlayerScript : MonoBehaviour
     //UI
     public Text PlayerHp;
 
-    //魔力
-    [SerializeField] private int MyMagicStone = 0;
+ 
     //----------狙えサポート
     public bool IsShootingSupport;
     private GameObject nearObj;         //最も近いオブジェクト

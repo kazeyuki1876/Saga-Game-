@@ -94,10 +94,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyHP: 10
+  StartTarget: {fileID: 0}
+  MonsterHP: 0
   Target: {fileID: 0}
   MySeppt: 10
   MyDamage: 10
+  MonsterMagicStone: 0
   IsATK: 1
+  MagicStone: {fileID: 741804544046519146, guid: 1de08452c7b3648458349ea1b97cdf94,
+    type: 3}
 --- !u!54 &1692871618370023744
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -110,7 +115,7 @@ Rigidbody:
   m_Drag: 0.1
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0

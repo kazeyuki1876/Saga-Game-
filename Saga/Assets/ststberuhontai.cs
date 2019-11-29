@@ -5,8 +5,11 @@ using UnityEngine;
 public class ststberuhontai : MonoBehaviour
 {
 public int MyHp = 100;
-
-   public void IsDIe()
+    private void Start()
+    {
+       
+    }
+    public void IsDIe()
     {
         if (MyHp <= 0)
         {

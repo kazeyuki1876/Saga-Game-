@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class testberu : MonoBehaviour
-{
+{ bool isMove;
     // Start is called before the first frame update
     void Start()
     {
-        
+        InvokeRepeating("Load", 12, 12);
     }
 
     // Update is called once per frame
-    void Update()
+    void Move()
     {
-
+        if (!isMove) {
+            isMove = true;
+        } else if (isMove) {
+            isMove = false;
+        }
     }
     void OnTriggerStay(Collider Mo)
     {
-        Debug.Log("testberu");
-        if (Input.GetKeyDown(KeyCode.G)&& Mo.gameObject.tag=="Monster") {
-            Debug.Log("testberu");
+      
+        if (isMove && Mo.gameObject.tag=="Monster") {
+            //Debug.Log("testberu");
             Mo.GetComponent<MonsterScript>().Target = this.GetComponent<Transform>();
         }
     }

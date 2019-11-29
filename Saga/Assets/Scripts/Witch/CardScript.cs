@@ -16,6 +16,7 @@ public class CardScript : MonoBehaviour
                       //何かできる。
                       //コメント
     public string MyComment;//カードの説明
+    public int MonsterHP;
     // pos
     public float MyX=700;
     public float MyY;
@@ -27,9 +28,7 @@ public class CardScript : MonoBehaviour
     float[] PosZ = new float[10]{ 0, -7,7,-14,0,14,-21,-7,7,21};
     public int Moves;
     public int MonsterSpeed;
-
-
-
+    public int MonsterMagicStone;
     //カードが発動したら使うもの
     public GameObject  Monsu;
    
@@ -68,6 +67,8 @@ public class CardScript : MonoBehaviour
             }
             Mons.name = Monsu.name + Move;
             Mons.GetComponent<MonsterScript>().MySeppt = MonsterSpeed;
+                Mons.GetComponent<MonsterScript>().MonsterMagicStone = MonsterMagicStone;
+                Mons.GetComponent<MonsterScript>().MyHP = MonsterHP;
             }
         }
 
