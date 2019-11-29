@@ -832,11 +832,11 @@ Camera:
     y: 0
     width: 0.8
     height: 1
-  near clip plane: 10
-  far clip plane: 200
+  near clip plane: 0
+  far clip plane: 219.3
   field of view: 115.7
   orthographic: 1
-  orthographic size: 93.8
+  orthographic size: 90
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -860,7 +860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.39594626, y: 0, z: 0, w: 0.91827375}
-  m_LocalPosition: {x: 0, y: 70.8, z: -20}
+  m_LocalPosition: {x: 0, y: 80, z: -80.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1468,7 +1468,7 @@ Terrain:
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: ddd1dcba729f86b4082fc532b4b73728, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 300
+  m_TreeBillboardDistance: 500
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
   m_DetailObjectDistance: 80
@@ -2131,7 +2131,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 100
   m_Drag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

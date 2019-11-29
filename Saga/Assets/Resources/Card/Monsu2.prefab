@@ -93,8 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a38c4b4ada1d2044bdbe72104ffe8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyHP: 10
+  MyHP: 1
   StartTarget: {fileID: 0}
+  MonsterHP: 0
   Target: {fileID: 0}
   MySeppt: 10
   MyDamage: 10
