@@ -6,16 +6,21 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {//プレイヤー
+    //プレイヤーＨＰ
     public float MyHp = 100;
-    //魔力
+    //魔石数
     [SerializeField] private int MyMagicStone = 0;
-
-    public float Seppt = 5;//ＰＬＡＹＥＲ速度
-    public float AroundSeppt = 5;//周り速度
-    public GameObject Player;//ＰＬＡＹＥＲ
+    //ＰＬＡＹＥＲ速度
+    public float Seppt = 5;
+    //周り速度
+    public float AroundSeppt = 5;
+    //ＰＬＡＹＥＲ
+    public GameObject Player;
     //射撃関係
-    public GameObject[] Guns;//銃
-    public GameObject[] Bullets;//銃弾
+    //銃
+    public GameObject[] Guns;
+    //銃弾
+    public GameObject[] Bullets;
     //銃の種類
     public int GunsNum;
     public int GunsNumMIN = 0;
@@ -31,21 +36,17 @@ public class PlayerScript : MonoBehaviour
     public int[] GunRecoils;//反発
     public bool IsTrigger = true;
 
-    //UI
+    //UI　
     public Text PlayerHp;
-    public GameObject Kyara;
+    public GameObject Kyara;//？いらないらしい
 
     //----------狙えサポート
-    public bool IsShootingSupport;
+    public bool IsShootingSupport;　//今の狙えてるモンスターあるか
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間       
 
     //--------キャラクターアニメ
-
-
-
-
-
+    
     // 初期化メソッド
 
 
@@ -77,6 +78,7 @@ public class PlayerScript : MonoBehaviour
         //return GameObject.Find(nearObjName);
         return targetObj;
     }//-----------
+
 
     //------------機械設置
     public GameObject[] Machine;
@@ -329,5 +331,12 @@ public class PlayerScript : MonoBehaviour
             MyMagicStone++;
         }
     }
+
+    //動作
+    // 射擊
+    // 數據
+    // 機械製造
+    //狀態控制
+    // 動畫控制
 
 }
