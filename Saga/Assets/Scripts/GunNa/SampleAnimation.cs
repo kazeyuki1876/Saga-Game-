@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class SampleAnimation : MonoBehaviour
 {
-
+    //キャラ動きアニメーション
     // Animator コンポーネント
     public Animator animator;
 
