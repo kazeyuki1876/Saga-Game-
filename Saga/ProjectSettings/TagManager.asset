@@ -8,6 +8,7 @@ TagManager:
   - Monster
   - Machine
   - MagicStone
+  - Gunner
   layers:
   - Default
   - TransparentFX
