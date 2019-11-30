@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MagicStoneScript : MonoBehaviour
 {
+    /// <summary>
+    ///魔石が回るスクリプト
+    /// </summary>
     [SerializeField]
     private float MySpeed=20.0f;
        // Start is called before the first frame update
