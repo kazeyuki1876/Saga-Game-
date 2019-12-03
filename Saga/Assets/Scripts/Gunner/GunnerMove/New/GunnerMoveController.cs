@@ -46,8 +46,6 @@ public class GunnerMoveController : MonoBehaviour
     private void Update()
     {
         GunnerMOVE();//キー入力
-
-
     }
 
     private void ShootingSupport()
@@ -148,19 +146,13 @@ public class GunnerMoveController : MonoBehaviour
             }
             */
         }
-
-        /*
-        /*
-         Machine 機械
-         Battery 
-
-         *
+        
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("C");
-            C1();
+            Debug.Log("instantiateInstallationBattery");
+            this.GetComponent<GunnerBatteryInstallationMove>().instantiateBatteryInstallationMoveStart();
         }
-        */
+        
         if (Input.GetKeyDown(KeyCode.X))
         {
             if (isShootingSupport)

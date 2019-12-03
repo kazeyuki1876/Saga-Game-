@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 3918040840346237991, guid: 8250a0718bbc9d249971a8385fde2782,
         type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: T
       objectReference: {fileID: 0}
     - target: {fileID: 3918040840346237991, guid: 8250a0718bbc9d249971a8385fde2782,
         type: 3}
