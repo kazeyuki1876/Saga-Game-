@@ -142,31 +142,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullets:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 7755664565542621122, guid: 68a4e289bb3180741b931af2f10f42ff, type: 3}
+  - {fileID: 3045462806711292591, guid: 65f30584ac042f7479b8085e736ccabb, type: 3}
   - {fileID: 0}
   bulletSeppts:
-  - 0
+  - 10
   - 0
   - 0
   bulletLifespans:
-  - 0
+  - 10
   - 0
   - 0
   bulletDamages:
-  - 0
+  - 10
   - 0
   - 0
   bulletLimit:
+  - 10
   - 0
   - 0
-  - 0
-  bulletNums: 000000000000000000000000
+  bulletNums: 0a0000000000000000000000
   gunRecoils:
+  - 10
   - 0
   - 0
-  - 0
-  bulletNumer: 000000000000000000000000
+  bulletNumer: 0a0000000000000000000000
 --- !u!4 &27360857
 Transform:
   m_ObjectHideFlags: 0

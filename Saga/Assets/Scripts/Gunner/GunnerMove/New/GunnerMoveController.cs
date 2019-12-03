@@ -83,7 +83,9 @@ public class GunnerMoveController : MonoBehaviour
     {
         //移動
 
-        if (isShootingSupport && nearObj != null)
+        if (isShootingSupport 
+            //&& nearObj != null//これでもっといいがな
+            )
         {
             if (Input.GetKey("up"))
             {
@@ -131,7 +133,7 @@ public class GunnerMoveController : MonoBehaviour
         //射撃
         if (Input.GetKey(KeyCode.Z))
         {
-            /*
+            this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();           /*
             if (IsTrigger)
             {
                 IsTrigger = false;
@@ -158,16 +160,16 @@ public class GunnerMoveController : MonoBehaviour
             Debug.Log("C");
             C1();
         }
-        //射撃
+        */
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (IsShootingSupport)
+            if (isShootingSupport)
             {
-                IsShootingSupport = false;
+                isShootingSupport = false;
             }
             else
             {
-                IsShootingSupport = true;
+                isShootingSupport = true;
             }
 
 
@@ -176,10 +178,11 @@ public class GunnerMoveController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             Debug.Log("V");
-            GunsChange();
+            this.GetComponent<GunnerShootingMoveController>().GunsChange();
         }
-        */
-    }
 
-  
+    }
+   
+
+
 }
