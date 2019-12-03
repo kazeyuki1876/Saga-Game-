@@ -1792,6 +1792,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 27360855}
   bullet: {fileID: 0}
+  isTrigger: 1
+  gunNumberMax: 2
+  gunNumber: 0
 --- !u!1 &1460555107
 GameObject:
   m_ObjectHideFlags: 0
