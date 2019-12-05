@@ -149,7 +149,7 @@ public class GunnerMoveController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Debug.Log("instantiateInstallationBattery");
+           // Debug.Log("instantiateInstallationBattery");
             this.GetComponent<GunnerBatteryInstallationMove>().instantiateBatteryInstallationMoveStart();
         }
         

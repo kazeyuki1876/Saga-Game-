@@ -5,35 +5,37 @@ using UnityEngine;
 public class IsGameObject : MonoBehaviour
 {
     public bool isGoj;
+    private void Start()
+    {
+        GetComponent<Renderer>().material.color = Color.cyan;
+        isGoj = true;
+    }
 
     private void Update()
     {
         if (!isGoj)
         {
-            GetComponent<Renderer>().material.color = Color.red;
+          
         }
         else {
-            GetComponent<Renderer>().material.color = Color.cyan;
+          
         }
     }
-    void OnTriggerExit(Collider collisionInfo) //当进入碰撞器
+    private void OnTriggerStay(Collider collisionInfo) //振られてる
     {
-        //  Debug.Log("collisionInfo");
-        //  Debug.Log(collisionInfo.gameObject.name);
-        if (collisionInfo.gameObject==null)
+        if (collisionInfo.gameObject.tag == "Monster" || collisionInfo.gameObject.tag == "Machine")
         {
+            GetComponent<Renderer>().material.color = Color.red;
             Debug.Log(collisionInfo.name);
             isGoj = false;
         }
     }
-    void OnTriggerStay(Collider collisionInfo) //当进入碰撞器
+    private void OnTriggerExit(Collider collisionInfo) //離れる
     {
-        //  Debug.Log("collisionInfo");
-        //  Debug.Log(collisionInfo.gameObject.name);
-        if (collisionInfo.gameObject!=null)
+        if (collisionInfo.gameObject.tag == "Monster" || collisionInfo.gameObject.tag == "Machine")
         {
-            Debug.Log(collisionInfo.name);
             isGoj = true;
+            GetComponent<Renderer>().material.color = Color.cyan;
         }
     }
 }

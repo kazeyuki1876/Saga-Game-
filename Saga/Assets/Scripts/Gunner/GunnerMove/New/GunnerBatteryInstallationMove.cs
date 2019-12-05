@@ -29,7 +29,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         {
             instantiateInstallationBattery = Instantiate(data.GetComponent<GunnerData>().instantiateInstallationBattery[0], new Vector3((float)machineBatteryX + machineBatteryXplusplus, 1.1f, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
         }
-        else if (instantiateInstallationBattery != null&& instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj) {
+        else if (instantiateInstallationBattery != null&& instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj==true) {
 
             installationBattery = Instantiate(data.GetComponent<GunnerData>().InstallationBattery[0], new Vector3((float)machineBatteryX + machineBatteryXplusplus, 0, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
             Destroy(instantiateInstallationBattery.gameObject);  // instantiateInstallationBatteryを崩壊
@@ -42,7 +42,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
 
     private void instantiateBatteryInstallationMove()
     {
-        Debug.Log("instantiateBatteryInstallationMove");
+       // Debug.Log("instantiateBatteryInstallationMove");
         //---------------kikai
 
         if ((int)transform.position.x % 3 == 0)
@@ -53,7 +53,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         {
             for (int MachineX = (int)transform.position.x; MachineX % 3 != 0; MachineX++)
             {
-                Debug.Log(MachineX);
+              //  Debug.Log(MachineX);
                 machineBatteryX = MachineX;
             }
         }
@@ -65,7 +65,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         {
             for (int MachineZ = (int)transform.position.z; MachineZ % 3 != 0; MachineZ++)
             {
-                Debug.Log(MachineZ);
+            //    Debug.Log(MachineZ);
                 machineBatteryZ = MachineZ;
             }
         }
