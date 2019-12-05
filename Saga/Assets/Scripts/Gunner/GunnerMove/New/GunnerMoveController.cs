@@ -85,6 +85,7 @@ public class GunnerMoveController : MonoBehaviour
             //&& nearObj != null//これでもっといいがな
             )
         {
+            ShootingSupport();
             if (Input.GetKey("up"))
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * seppt);

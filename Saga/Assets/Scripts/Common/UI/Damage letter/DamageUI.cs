@@ -10,7 +10,7 @@ public class DamageUI : MonoBehaviour
     private float fadeOutSpeed = 1f;
     //　移動値
     [SerializeField]
-    private float moveSpeed = 0.4f;
+    private float moveSpeed = 0.1f;
     public  int DamageNum;
     void Start()
     {
@@ -18,7 +18,7 @@ public class DamageUI : MonoBehaviour
 
         this.damageText.text = ""+transform.root.gameObject.GetComponent<TakeDamage>().DamageNum;
         transform.rotation = Camera.main.transform.rotation;
-        transform.position = new Vector3(transform.position.x+Random.Range(-5,5), transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x+Random.Range(-1,1), transform.position.y, transform.position.z);
         transform.SetParent(GameObject.Find("DamageBOX").transform);//Handの子ともGameObjectであり
     }
 
