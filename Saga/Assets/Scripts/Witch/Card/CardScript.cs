@@ -55,11 +55,11 @@ public class CardScript : MonoBehaviour
         //Debug.Log(Boolean);
        
         for (int Move = 0; Move < Moves; Move++) {
-            GameObject Mons = Instantiate(Monsu, new Vector3(MonsterStartX + PosX[Move], MonsterStartY, MonsterStartZ + PosZ[Move]), transform.rotation);
+            GameObject Mons = Instantiate(Monsu, new Vector3(MonsterStartX + PosX[Move], 5.6f, MonsterStartZ + PosZ[Move]), transform.rotation);
             if (Mons.GetComponent<MonsterScript>() != null) { 
             if (Boolean)
             {
-                Mons.GetComponent<MonsterScript>().StartTarget = GameObject.Find("Player").GetComponent<Transform>();
+                Mons.GetComponent<MonsterScript>().StartTarget = GameObject.Find("Gunner").GetComponent<Transform>();
             }
             else
             {

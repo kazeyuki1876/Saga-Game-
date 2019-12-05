@@ -55,6 +55,7 @@ public class WitchUIScript : MonoBehaviour
     public Image SelectionCard;//選択中のカード
     //カードの配列
     public bool IsHandsArray;//
+    [SerializeField] GameObject  Ganner;
 
     void Start()
     {
@@ -186,7 +187,7 @@ public class WitchUIScript : MonoBehaviour
                 {
 
                     // InAdvanceInstallation = Hand[SelecImeji].GetComponent<CardScript>().Monsu;
-                    NewInAdvanceInstallation = Instantiate(InAdvanceInstallation, new Vector3(70, 8, 5), transform.rotation);
+                    NewInAdvanceInstallation = Instantiate(InAdvanceInstallation, new Vector3(15,8, -2), transform.rotation);
 
                     //  Instantiate(Monsu, new Vector3(70, 8, 5), transform.rotation);
                     /*if()

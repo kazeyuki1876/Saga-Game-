@@ -16,6 +16,7 @@ public class MonsterScript : MonoBehaviour
     public bool IsATK = true;
     public GameObject MagicStone;
 
+     bool isMove=true;
     TakeDamage takeDamage;//
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
@@ -27,18 +28,19 @@ public class MonsterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Target == null)
+        if (Target == null&& isMove)
         {
             Target = StartTarget;
         }
         transform.LookAt(Target);//目標をみる
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
                                                                                     // transform.rotation(0，0，0);//見ている方向に進む
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        if (transform.position.y > 4.7f)
+      
+      /*  if (transform.position.y > 4.7f)
         {
             transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);
-        }
+        }*/
     }
     public void Isdie()
     {
@@ -60,6 +62,7 @@ public class MonsterScript : MonoBehaviour
         if (col.gameObject.tag == "Player" && IsATK)
         {
             IsATK = false;
+            isMove = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
 
             col.gameObject.GetComponent<PlayerScript>().MyHp = col.gameObject.GetComponent<PlayerScript>().MyHp - MyDamage;
@@ -73,6 +76,7 @@ public class MonsterScript : MonoBehaviour
         if (col.gameObject.name == "Castle" && IsATK)
         {
             IsATK = false;
+            isMove = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
             col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)MyDamage;
             col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
@@ -85,6 +89,7 @@ public class MonsterScript : MonoBehaviour
         if (col.gameObject.name == "testbaru" && IsATK)
         {
             IsATK = false;
+            isMove = false;
             col.gameObject.GetComponent<ststberuhontai>().MyHp = col.gameObject.GetComponent<ststberuhontai>().MyHp - (int)MyDamage;
             col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
@@ -94,7 +99,14 @@ public class MonsterScript : MonoBehaviour
         }
 
     }
-    void ATKok()
+    void OnCollisionExet(Collision col) //当进入碰撞器
+    {
+
+        if (col.gameObject.name == "testbaru" & col.gameObject.name == "Castle" && col.gameObject.name == "testbaru") {
+            isMove = true;
+        }
+    }
+        void ATKok()
     {
         IsATK = true;
     }
