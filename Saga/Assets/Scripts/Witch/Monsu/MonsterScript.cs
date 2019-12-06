@@ -65,9 +65,10 @@ public class MonsterScript : MonoBehaviour
             isMove = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
 
-            col.gameObject.GetComponent<PlayerScript>().MyHp = col.gameObject.GetComponent<PlayerScript>().MyHp - MyDamage;
-            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+            col.gameObject.GetComponent<GunnaerHealth>().MyHp = col.gameObject.GetComponent<GunnaerHealth>().MyHp - MyDamage;
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+        
 
 
             Invoke("ATKok", 1.0f);

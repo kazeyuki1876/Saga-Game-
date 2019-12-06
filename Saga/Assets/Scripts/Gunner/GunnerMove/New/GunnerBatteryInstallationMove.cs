@@ -7,6 +7,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     [SerializeField]
     private GameObject
          data, //データの
+        
 
         instantiateInstallationBattery,//設置しようGameObject
         installationBattery;//設置しするGameObject
@@ -15,6 +16,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         machineBatteryX = 0,
         machineBatteryZ = 0,
     machineBatteryXplusplus=3;
+    public float y;
 
     private void Update()
     {
@@ -31,7 +33,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         }
         else if (instantiateInstallationBattery != null&& instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj==true) {
 
-            installationBattery = Instantiate(data.GetComponent<GunnerData>().InstallationBattery[0], new Vector3((float)machineBatteryX + machineBatteryXplusplus, 0, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
+            installationBattery = Instantiate(data.GetComponent<GunnerData>().InstallationBattery[0], new Vector3((float)machineBatteryX + machineBatteryXplusplus, y, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
             Destroy(instantiateInstallationBattery.gameObject);  // instantiateInstallationBatteryを崩壊
             installationBattery.transform.parent = GameObject.Find("InstallationBatteryBox").transform;//InstallationBatteryBoxの子ともGameObjectであり
 
@@ -70,7 +72,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
             }
         }
 
-        instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, 1.1f, (float)machineBatteryZ);
+        instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, y, (float)machineBatteryZ);
 
     }
 }

@@ -14,9 +14,10 @@ public class DamageUI : MonoBehaviour
     public  int DamageNum;
     void Start()
     {
-        damageText = GetComponentInChildren<Text>();
+        
+           damageText = GetComponentInChildren<Text>();
 
-        this.damageText.text = ""+transform.root.gameObject.GetComponent<TakeDamage>().DamageNum;
+        damageText.text = ""+ DamageNum;
         transform.rotation = Camera.main.transform.rotation;
         transform.position = new Vector3(transform.position.x+Random.Range(-1,1), transform.position.y, transform.position.z);
         transform.SetParent(GameObject.Find("DamageBOX").transform);//Handの子ともGameObjectであり

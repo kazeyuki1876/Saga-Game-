@@ -37,19 +37,18 @@ public class BulletMove : MonoBehaviour
     //OnTriggerEnter
     void OnTriggerEnter(Collider col)
     {
-      
        // Debug.Log(other.gameObject.name);
         if (col.gameObject.tag == "Monster")
         {
 
-            Destroy(this.gameObject);  // 銃弾を崩壊
+           
             col.GetComponent<MonsterScript>().MyHP= col.GetComponent<MonsterScript>().MyHP - MyDamage; //着弾されたもののHP判定
+            col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+            col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
          
-            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
            
             col.GetComponent<MonsterScript>().Isdie();//
-            //
+             Destroy(this.gameObject);  // 銃弾を崩壊
 
             // takeDamage.Damage(other);
 

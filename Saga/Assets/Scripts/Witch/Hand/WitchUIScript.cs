@@ -39,7 +39,7 @@ public class WitchUIScript : MonoBehaviour
     public GameObject NewInAdvanceInstallation;
     public float InAdvanceInstallationSpeed = 30;
     public Sprite[]CardImaje;
-
+    public GameObject[] Monsus;
     /*　
      1　　　700
      2
@@ -117,11 +117,16 @@ public class WitchUIScript : MonoBehaviour
         Hand[HandNumSheet].GetComponent<CardScript>().MyName = CardName[CardID];//CardName
         Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
         Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
-        Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Resources.Load<GameObject>("Card/Monsu"+ CardID);//魔物まだ魔法
-        Hand[HandNumSheet].GetComponent<CardScript>().MonsterHP = MonsterHP[CardID];
-        Hand[HandNumSheet].GetComponent<CardScript>().Moves = Monsters[CardID];
-        Hand[HandNumSheet].GetComponent<CardScript>().MonsterSpeed = MonsterSpeeds[CardID];
-        Hand[HandNumSheet].GetComponent<CardScript>().MonsterMagicStone = MonsterMagicStone[CardID]; 
+        if (CardID < 6) {
+            Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Monsus[CardID];
+            Hand[HandNumSheet].GetComponent<CardScript>().MonsterHP = MonsterHP[CardID];
+            Hand[HandNumSheet].GetComponent<CardScript>().Moves = Monsters[CardID];
+            Hand[HandNumSheet].GetComponent<CardScript>().MonsterSpeed = MonsterSpeeds[CardID];
+            Hand[HandNumSheet].GetComponent<CardScript>().MonsterMagicStone = MonsterMagicStone[CardID];
+        }
+            
+
+       
     
         Hand[HandNumSheet].GetComponent<Image>().sprite = CardImaje[CardID];
 

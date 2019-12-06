@@ -69,6 +69,7 @@ public class CardScript : MonoBehaviour
             Mons.GetComponent<MonsterScript>().MySeppt = MonsterSpeed;
                 Mons.GetComponent<MonsterScript>().MonsterMagicStone = MonsterMagicStone;
                 Mons.GetComponent<MonsterScript>().MyHP = MonsterHP;
+                Mons.transform.parent = GameObject.Find("MonstersBOX").transform;//MonstersBOXの子ともGameObjectであり
             }
         }
 
