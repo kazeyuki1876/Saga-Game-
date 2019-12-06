@@ -10,7 +10,8 @@ public class GunnerMoveController : MonoBehaviour
     [SerializeField] private float seppt = 5;
     //周り速度
     [SerializeField] private float aroundSeppt = 5;
-
+    [SerializeField]
+    private float RotateSpeed = 0.2f;
 
     //----------狙えサポート aim
     public bool isShootingSupport;　//今の狙えてるモンスターあるか
@@ -112,22 +113,49 @@ public class GunnerMoveController : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey("up"))
+
+            
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
+            
+            transform.position += new Vector3(x * seppt, 0, y * seppt);
+
+            if (Input.GetKeyDown("joystick button 10")) {
+                gameObject.transform.position += Vector3.up * seppt;
+            }
+
+
+/*
+
+            float KeyVertical = Input.GetAxis("R3X");
+            float KeyHorizontal = Input.GetAxis("R3Y");
+            Vector3 newDir = new Vector3(KeyHorizontal, 0, KeyVertical).normalized;
+            transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
+
+
+            if (Input.GetKeyDown("joystick button 11"))
             {
+
+
                 transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
             }
-            else if (Input.GetKey("down"))
-            {
-                transform.Translate(Vector3.forward * Time.deltaTime * (-seppt * 0.75f), Space.Self);
-            }
-            if (Input.GetKey("right"))
-            {
-                transform.Rotate(0, aroundSeppt, 0, Space.World);
-            }
-            else if (Input.GetKey("left"))
-            {
-                transform.Rotate(0, -aroundSeppt, 0, Space.World);
-            }
+        /*
+        if (Input.GetKey("up"))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+        }
+        else if (Input.GetKey("down"))
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * (-seppt * 0.75f), Space.Self);
+        }
+        if (Input.GetKey("right"))
+        {
+            transform.Rotate(0, aroundSeppt, 0, Space.World);
+        }
+        else if (Input.GetKey("left"))
+        {
+            transform.Rotate(0, -aroundSeppt, 0, Space.World);
+        }*/
         }
         //射撃
         if (Input.GetKey(KeyCode.Z))
@@ -175,7 +203,15 @@ public class GunnerMoveController : MonoBehaviour
         }
 
     }
-   
 
 
+    /*
+     koko
+     https://hakonebox.hatenablog.com/entry/2018/04/15/125152
+     https://blog.csdn.net/Architet_Yang/article/details/77938930
+     ]https://blog.csdn.net/zqckzqck/article/details/73172479
+     https://blog.csdn.net/lengyoumo/article/details/91386404
+     https://blog.csdn.net/qq_26074263/article/details/79765082
+     
+     */
 }
