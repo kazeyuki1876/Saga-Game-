@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class GunnerData : MonoBehaviour
 {
-    public static int arrayMax=2;
-  //----------
+    public static int arrayMax = 2;
+    //----------
     public GameObject[] bullets = new GameObject[arrayMax];//銃弾の速度
     public float[] bulletSeppts = new float[arrayMax];//銃弾の速度
     public float[] bulletLifespans = new float[arrayMax];//銃弾の存在時間
@@ -23,10 +24,41 @@ public class GunnerData : MonoBehaviour
     public GameObject[] instantiateInstallationBattery = new GameObject[arrayMax];//設置しようGameObject
     public GameObject[] InstallationBattery = new GameObject[arrayMax];//設置しするGameObject
     public int[] InstallationBatteryNumer = new int[arrayMax];//設置しするGameObject
+
+
+    int GunnerDataStartNum;
     private void Start()
     {
-        
+
     }
+    /*
+    void GunnerDataStart()
+    {
+        TextAsset csv = Resources.Load("CsvFolder/TextCsvData") as TextAsset;
+        StringReader reader = new StringReader(csv.text);
+        while (reader.Peek() > -1)
+        {
+
+            string line = reader.ReadLine();
+            string[] values = line.Split(',');
+            GunnerDataStartNum++;
+            Debug.Log(values[0] + values[1] + values[2] + values[3]);
+            if (GunnerDataStartNum > 1)
+            {
+                Name[GunnerDataStartNum - 2] = values[0];
+
+                HP[GunnerDataStartNum - 2] = int.Parse(values[1]);
+                ATK[GunnerDataStartNum - 2] = int.Parse(values[2]);
+                DEF[GunnerDataStartNum - 2] = int.Parse(values[3]);
+                Debug.Log(Name[GunnerDataStartNum - 1] + HP[GunnerDataStartNum - 1] + ATK[GunnerDataStartNum - 1] + DEF[GunnerDataStartNum - 1]);
+            }
 
 
+            //  Debug.Log(csv.name);
+
+
+
+        }
+    }
+    */
 }

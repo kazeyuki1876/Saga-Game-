@@ -1,0 +1,3 @@
+Name, Hp, Atk, Def
+player, 250, 250, 200
+slime, 510, 180, 140
