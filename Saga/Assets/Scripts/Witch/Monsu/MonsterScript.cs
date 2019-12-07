@@ -32,15 +32,18 @@ public class MonsterScript : MonoBehaviour
         {
             Target = StartTarget;
         }
-        transform.LookAt(Target);//目標をみる
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
-                                                                                    // transform.rotation(0，0，0);//見ている方向に進む
-      
-      /*  if (transform.position.y > 4.7f)
-        {
-            transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);
-        }*/
+        if (IsATK) {
+            transform.LookAt(Target);//目標をみる
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
+                                                                                        // transform.rotation(0，0，0);//見ている方向に進む
+
+        }
+
+        /*  if (transform.position.y > 4.7f)
+          {
+              transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);
+          }*/
     }
     public void Isdie()
     {
@@ -48,6 +51,7 @@ public class MonsterScript : MonoBehaviour
         {
             for (int i = 0;i< MonsterMagicStone; i++) {
                 MagicStone = Instantiate(MagicStone, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y,transform.position.z+Random.Range(-2, 2)), transform.rotation);
+                MagicStone.transform.parent = GameObject.Find("MagicStoneBOX").transform;//MagicStoneBOXの子ともGameObjectであり
             }
 
             Destroy(this.gameObject, 0.1f);

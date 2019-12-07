@@ -12,7 +12,6 @@ public class GunnerMoveController : MonoBehaviour
     [SerializeField] private float aroundSeppt = 5;
     [SerializeField]
     private float RotateSpeed = 0.2f;
-
     //----------狙えサポート aim
     public bool isShootingSupport;　//今の狙えてるモンスターあるか
     private GameObject nearObj;         //最も近いオブジェクト
@@ -43,17 +42,71 @@ public class GunnerMoveController : MonoBehaviour
         //return GameObject.Find(nearObjName);
         return targetObj;
     }//-----------//----------狙えサポート
-
     private void Update()
-    {
-        GunnerMOVE();//キー入力
+    { GunnerMOVE();//キー入力
+      //  FoundationMove();
     }
+    void FoundationMove()
+    {//移動
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        transform.position += new Vector3(x * seppt, 0, y * seppt);
+        if (Input.GetKeyDown("joystick button 10"))
+        {
+            gameObject.transform.position += Vector3.up * seppt;
+        }
+        //---顔むき　L2押し
+        if (Input.GetKey("joystick button 6"))
+        {
+            float KeyVertical = Input.GetAxis("Vertical2");
+            float KeyHorizontal = Input.GetAxis("Horizontal2");
+            Vector3 newDir = new Vector3(KeyHorizontal, 0, -KeyVertical).normalized;
+            transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
+            if (Input.GetKeyDown("joystick button 11"))
+            {
+                Debug.Log("joystick");
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+            }
+        }  //---顔むき　isShootingSupport 射撃サポート
+        else if ( isShootingSupport)
+        {
+            //isShootingSupport 射撃サポート
+            //経過時間を取得
+            searchTime += Time.deltaTime;
+            if (searchTime >= 0.3f)
+            {
+                //最も近かったオブジェクトを取得
+                nearObj = serchTag(gameObject, "Monster");
 
-    private void ShootingSupport()
+                //経過時間を初期化
+                searchTime = 0;
+            }
+            //もし　 射撃サポート　狙える　対象の位置の方向を向く
+            if (nearObj != null)
+            {
+                transform.LookAt(nearObj.transform);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+            }
+            else//　L2 推してない　　狙えるやつがない
+            {
+                Vector3 newDir = new Vector3(x, 0, y).normalized;
+                transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+            }
+            
+        }
+        else
+        {
+            Vector3 newDir = new Vector3(x, 0, y).normalized;
+            transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
+            gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+        }
+    }
+ /*   private void ShootingSupport()
     {//isShootingSupport 射撃サポート
      //経過時間を取得
-        if (isShootingSupport)
-        {
+     
             searchTime += Time.deltaTime;
 
             if (searchTime >= 0.3f)
@@ -65,124 +118,42 @@ public class GunnerMoveController : MonoBehaviour
                 searchTime = 0;
             }
 
-            //対象の位置の方向を向く
-            if (nearObj != null)
-            {
-
-                transform.LookAt(nearObj.transform);
-                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            }
-
-            //自分自身の位置から相対的に移動する
-            //transform.Translate(Vector3.forward * 0.01f);
-        }
-    }
-
-    private void GunnerMOVE()
-    {
-        //移動
-
-        if (isShootingSupport 
-            //&& nearObj != null//これでもっといいがな
-            )
+        //対象の位置の方向を向く
+        if (nearObj != null)
         {
-            ShootingSupport();
-            if (Input.GetKey("up"))
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * seppt);
-                //transform.Translate(Vector3.forward * Time.deltaTime * Seppt, Space.Self);
-            }
-            else if (Input.GetKey("down"))
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Time.deltaTime * (-seppt * 0.75f));
-                // transform.Translate(Vector3.forward * Time.deltaTime * (-Seppt * 0.75f), Space.Self);
-            }
-            if (Input.GetKey("right"))
-            {
-                transform.position = new Vector3(transform.position.x + Time.deltaTime * seppt, transform.position.y, transform.position.z);
-                // transform.Translate(Vector3.right * Time.deltaTime * Seppt, Space.Self);
-            }
-            else if (Input.GetKey("left"))
-            {
-                transform.position = new Vector3(transform.position.x + Time.deltaTime * -seppt, transform.position.y, transform.position.z);
-                //    transform.Translate(Vector3.right * Time.deltaTime * -Seppt, Space.Self);
-            }
 
-
+            transform.LookAt(nearObj.transform);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 
         }
         else
         {
-
-            
-            float x = Input.GetAxis("Horizontal");
-            float y = Input.GetAxis("Vertical");
-            
-            transform.position += new Vector3(x * seppt, 0, y * seppt);
-
-            if (Input.GetKeyDown("joystick button 10")) {
-                gameObject.transform.position += Vector3.up * seppt;
-            }
-
-
-/*
-
-            float KeyVertical = Input.GetAxis("R3X");
-            float KeyHorizontal = Input.GetAxis("R3Y");
-            Vector3 newDir = new Vector3(KeyHorizontal, 0, KeyVertical).normalized;
-            transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
-
-
-            if (Input.GetKeyDown("joystick button 11"))
-            {
-
-
-                transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
-            }
-        /*
-        if (Input.GetKey("up"))
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
         }
-        else if (Input.GetKey("down"))
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * (-seppt * 0.75f), Space.Self);
-        }
-        if (Input.GetKey("right"))
-        {
-            transform.Rotate(0, aroundSeppt, 0, Space.World);
-        }
-        else if (Input.GetKey("left"))
-        {
-            transform.Rotate(0, -aroundSeppt, 0, Space.World);
-        }*/
-        }
+           
+
+
+            //自分自身の位置から相対的に移動する
+            //transform.Translate(Vector3.forward * 0.01f);
+        
+      
+    }
+  */
+    private void GunnerMOVE()
+    {
+        FoundationMove();
+       
         //射撃
-        if (Input.GetKey(KeyCode.Z))
+        if (Input.GetKey(KeyCode.Z)|| Input.GetKey("joystick button 7"))//
         {
-            this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();           /*
-            if (IsTrigger)
-            {
-                IsTrigger = false;
-                for (int Moves = 0; Moves < BulletS[GunsNum]; Moves++)
-                {
-                    GunsMOVE();
-
-                    Invoke("GunTriggerMove", BulletLimit[GunsNum]);
-                }
-
-
-            }
-            */
+            Debug.Log("  if (Input.GetKey(KeyCode.Z))");
+            this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();   
         }
-        
-        if (Input.GetKeyDown(KeyCode.C))
+        //機械の設置
+        if (Input.GetKeyDown(KeyCode.C)|| Input.GetKeyDown("joystick button 3"))
         {
-           // Debug.Log("instantiateInstallationBattery");
             this.GetComponent<GunnerBatteryInstallationMove>().instantiateBatteryInstallationMoveStart();
-        }
-        
-        if (Input.GetKeyDown(KeyCode.X))
+        }  //狙える
+        if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 11"))
         {
             if (isShootingSupport)
             {
@@ -192,26 +163,64 @@ public class GunnerMoveController : MonoBehaviour
             {
                 isShootingSupport = true;
             }
-
-
         }
-        
-        if (Input.GetKeyDown(KeyCode.V))
+        //武器の切り替え
+        if (Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown("joystick button 4"))
         {
             Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().GunsChange();
         }
+        //スキル切り替え
+        //建物の切り替え
+        //スキル使い
+        //
+        Spot();
+
 
     }
-
-
+    void Spot() {
+        if (transform.position.z > 8) {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 7.9f);
+        }
+        if (transform.position.z< -28)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -27.9f);
+        }
+        if (transform.position.x < -20)
+        {
+            transform.position = new Vector3(-19.90f, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > 19)
+        {
+            transform.position = new Vector3(18.90f, transform.position.y, transform.position.z);
+        }
+       
+    }
+   
     /*
-     koko
-     https://hakonebox.hatenablog.com/entry/2018/04/15/125152
-     https://blog.csdn.net/Architet_Yang/article/details/77938930
-     ]https://blog.csdn.net/zqckzqck/article/details/73172479
-     https://blog.csdn.net/lengyoumo/article/details/91386404
-     https://blog.csdn.net/qq_26074263/article/details/79765082
-     
-     */
+
+    //--転移
+            float x = Input.GetAxis("Horizontal");
+            float y = Input.GetAxis("Vertical");
+            transform.position += new Vector3(x * seppt, 0, y * seppt);
+            if (Input.GetKeyDown("joystick button 10"))
+            {
+                gameObject.transform.position += Vector3.up * seppt;
+            }
+
+            //--向き
+            float KeyVertical = Input.GetAxis("Vertical2");
+            float KeyHorizontal = Input.GetAxis("Horizontal2");
+            Vector3 newDir = new Vector3(KeyHorizontal, 0, KeyVertical).normalized;
+            transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
+            
+            if (Input.GetKeyDown("joystick button 11"))
+            {
+                Debug.Log("joystick");
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+            }
+            */
+    //------
+
+
 }

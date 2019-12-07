@@ -7,7 +7,7 @@ public class GunnerData : MonoBehaviour
 {
     public static int arrayMax = 2;
     //----------
-    public GameObject[] bullets = new GameObject[arrayMax];//銃弾の速度
+    public GameObject[] bullets = new GameObject[arrayMax];//銃によっての弾
     public float[] bulletSeppts = new float[arrayMax];//銃弾の速度
     public float[] bulletLifespans = new float[arrayMax];//銃弾の存在時間
     public float[] bulletDamages = new float[arrayMax];//銃弾のダメージ

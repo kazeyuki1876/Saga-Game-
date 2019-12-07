@@ -36,9 +36,9 @@ public class CSVLoader : MonoBehaviour
            //   /  Debug.Log(Name[Num - 1] + HP[Num - 1] + ATK[Num - 1] + DEF[Num - 1]);
             }
             int B = Num-1;
-            Debug.Log(values[0] + values[1] + values[2] + values[3]);
+         //   Debug.Log(values[0] + values[1] + values[2] + values[3]);
             if (Num - 2>=0) {
-                Debug.Log("Num" + Num + "" + "Name" + Name[Num - 2] + "HP" + HP[Num - 2] + "ATK" + ATK[Num - 2] + "DEF" + DEF[Num - 2]);
+               // Debug.Log("Num" + Num + "" + "Name" + Name[Num - 2] + "HP" + HP[Num - 2] + "ATK" + ATK[Num - 2] + "DEF" + DEF[Num - 2]);
             }
            
             //  Debug.Log(csv.name);

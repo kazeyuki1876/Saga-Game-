@@ -50,7 +50,7 @@ public class newpp : MonoBehaviour
         float vert = Input.GetAxis("Vertical");
         if ((hori != 0) || (vert != 0))
         {
-            Debug.Log("stick:" + hori + "," + vert);
+      //      Debug.Log("stick:" + hori + "," + vert);
         }
     }
 
