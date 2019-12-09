@@ -43,8 +43,8 @@ public class GunnerMoveController : MonoBehaviour
         return targetObj;
     }//-----------//----------狙えサポート
     private void Update()
-    { GunnerMOVE();//キー入力
-      //  FoundationMove();
+    {
+        GunnerMOVE();//キー入力  //  FoundationMove();
     }
     void FoundationMove()
     {//移動
@@ -68,7 +68,7 @@ public class GunnerMoveController : MonoBehaviour
                 gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
             }
         }  //---顔むき　isShootingSupport 射撃サポート
-        else if ( isShootingSupport)
+        else if (isShootingSupport)
         {
             //isShootingSupport 射撃サポート
             //経過時間を取得
@@ -94,7 +94,7 @@ public class GunnerMoveController : MonoBehaviour
                 transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
                 gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
             }
-            
+
         }
         else
         {
@@ -103,56 +103,60 @@ public class GunnerMoveController : MonoBehaviour
             gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
         }
     }
- /*   private void ShootingSupport()
-    {//isShootingSupport 射撃サポート
-     //経過時間を取得
-     
-            searchTime += Time.deltaTime;
+    /*   private void ShootingSupport()
+       {//isShootingSupport 射撃サポート
+        //経過時間を取得
 
-            if (searchTime >= 0.3f)
-            {
-                //最も近かったオブジェクトを取得
-                nearObj = serchTag(gameObject, "Monster");
+               searchTime += Time.deltaTime;
 
-                //経過時間を初期化
-                searchTime = 0;
-            }
+               if (searchTime >= 0.3f)
+               {
+                   //最も近かったオブジェクトを取得
+                   nearObj = serchTag(gameObject, "Monster");
 
-        //対象の位置の方向を向く
-        if (nearObj != null)
-        {
+                   //経過時間を初期化
+                   searchTime = 0;
+               }
 
-            transform.LookAt(nearObj.transform);
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+           //対象の位置の方向を向く
+           if (nearObj != null)
+           {
 
-        }
-        else
-        {
-        }
-           
+               transform.LookAt(nearObj.transform);
+               transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+           }
+           else
+           {
+           }
 
 
-            //自分自身の位置から相対的に移動する
-            //transform.Translate(Vector3.forward * 0.01f);
-        
-      
-    }
-  */
+
+               //自分自身の位置から相対的に移動する
+               //transform.Translate(Vector3.forward * 0.01f);
+
+
+       }
+     */
     private void GunnerMOVE()
     {
         FoundationMove();
-       
-        //射撃
-        if (Input.GetKey(KeyCode.Z)|| Input.GetKey("joystick button 7"))//
+
+        //射撃R２
+        if (Input.GetKey(KeyCode.Z) || Input.GetKey("joystick button 7"))//
         {
             Debug.Log("  if (Input.GetKey(KeyCode.Z))");
-            this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();   
+            this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();
         }
-        //機械の設置
-        if (Input.GetKeyDown(KeyCode.C)|| Input.GetKeyDown("joystick button 3"))
+        //建物の切り替え
+        if (Input.GetKey("joystick button 4") && Input.GetKeyDown("joystick button 3"))
+        {
+        }
+        //機械の設置　三角
+        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown("joystick button 3"))  
         {
             this.GetComponent<GunnerBatteryInstallationMove>().instantiateBatteryInstallationMoveStart();
-        }  //狙える
+        }  //狙えるR3
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 11"))
         {
             if (isShootingSupport)
@@ -164,25 +168,35 @@ public class GunnerMoveController : MonoBehaviour
                 isShootingSupport = true;
             }
         }
-        //武器の切り替え
-        if (Input.GetKeyDown(KeyCode.V) || Input.GetKeyDown("joystick button 4"))
+        //武器の切り替え R1+□（■しかく）
+        if (Input.GetKey("joystick button 4") && Input.GetKeyDown("joystick button 0")) {
+            this.GetComponent<GunnerShootingMoveController>().GunsChange();
+        }
+        if (Input.GetKeyDown(KeyCode.V) )
         {
             Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().GunsChange();
         }
         //スキル切り替え
-        //建物の切り替え
+     
         //スキル使い
-        //
+        //リロード　□
+        if (Input.GetKeyDown(KeyCode.B) ||  Input.GetKeyDown("joystick button 0"))
+        {
+            Debug.Log("V");
+            this.GetComponent<GunnerShootingMoveController>().Reload();
+        }
         Spot();
 
 
     }
-    void Spot() {
-        if (transform.position.z > 8) {
+    void Spot()
+    {
+        if (transform.position.z > 8)
+        {
             transform.position = new Vector3(transform.position.x, transform.position.y, 7.9f);
         }
-        if (transform.position.z< -28)
+        if (transform.position.z < -28)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -27.9f);
         }
@@ -194,9 +208,9 @@ public class GunnerMoveController : MonoBehaviour
         {
             transform.position = new Vector3(18.90f, transform.position.y, transform.position.z);
         }
-       
+
     }
-   
+
     /*
 
     //--転移

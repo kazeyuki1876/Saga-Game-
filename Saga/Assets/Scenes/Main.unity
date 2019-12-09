@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43720153, g: 0.48494345, b: 0.5652123, a: 1}
+  m_IndirectSpecularColor: {r: 0.4372013, g: 0.48494285, b: 0.5652116, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,13 +155,17 @@ MonoBehaviour:
   - 20
   - 30
   bulletLimit:
-  - 0.5
-  - 1.5
+  - 0.1
+  - 1
   bulletNums: 0100000007000000
   gunRecoils:
   - 5
   - 15
   bulletNumer: 0000000000000000
+  cartridgeClipMax: 1e00000007000000
+  ReloadLimit:
+  - 2
+  - 4
   instantiateInstallationBattery:
   - {fileID: 1378914037558643208, guid: c8db79249f41a92408cf39e60aa41f99, type: 3}
   - {fileID: 3223809289229555089, guid: 4ee3089efe5b1734fa3faf0cbe73af43, type: 3}
@@ -2441,9 +2445,11 @@ MonoBehaviour:
   data: {fileID: 27360855}
   bullet: {fileID: 0}
   gunPos: {fileID: 1463253377}
+  isReload: 0
   isTrigger: 1
   gunNumberMax: 2
   gunNumber: 0
+  cartridgeClip: 1e00000007000000
 --- !u!4 &1459283148 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1255934117955973559, guid: 80aaa4a965038df4baf870128609ae17,

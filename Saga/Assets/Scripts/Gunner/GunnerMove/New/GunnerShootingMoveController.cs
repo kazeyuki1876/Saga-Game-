@@ -11,20 +11,30 @@ public class GunnerShootingMoveController : MonoBehaviour
         gunPos;
     [SerializeField]
     private bool
-        isTrigger = true;//射撃できるか
+          isReload = false,//射撃できるか
+    isTrigger = true;//射撃できるか
     [SerializeField]
     private int
         gunNumberMax = 2;//銃の種類
-    public int
+    [SerializeField]
+    private int
+
         gunNumber = 0;//今何銃を使ってる
+    [SerializeField]
+    private int  [] cartridgeClip;
+
+
     private void Start()
     {
         isTrigger = true;
+     
     }
+   
     public void GunsMoveStart()
     {
-        if (isTrigger)
+        if (isTrigger && !isReload && cartridgeClip[gunNumber] > 0)//射撃許可　装填中ではない　弾あり
         {
+            cartridgeClip[gunNumber] -= 1;
             isTrigger = false;
             //一回に置いてなん発を打ちましたか。
             for (int Moves = 0; Moves < data.GetComponent<GunnerData>().bulletNums[gunNumber]; Moves++)
@@ -32,17 +42,21 @@ public class GunnerShootingMoveController : MonoBehaviour
                 GunsMove();
                 Invoke("GunTriggerMove", data.GetComponent<GunnerData>().bulletLimit[gunNumber]);
             }
+        }//弾がない
+        else if (cartridgeClip[gunNumber] >= 0) {
+            Reload();
         }
     }
+    //射撃出来るか
     private void GunTriggerMove()
     {
-        if (isTrigger == false)
-        {
-            isTrigger = true;
-        }
-
+        isTrigger = true;
     }
-
+    private void GunReloadMove()
+    {
+        isReload = false;
+    }
+    //射撃する
     private void GunsMove()
     {
         //　いまＰＬＡＹＥＲが持っている銃
@@ -63,8 +77,8 @@ public class GunnerShootingMoveController : MonoBehaviour
         //BulleBOXの子ともGameObjectであり
         bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
         //銃弾の速度
-        bullet.GetComponent<BulletMove>().MySeppt= data.GetComponent<GunnerData>().bulletSeppts[gunNumber];
-       // 銃弾の存在時間
+        bullet.GetComponent<BulletMove>().MySeppt = data.GetComponent<GunnerData>().bulletSeppts[gunNumber];
+        // 銃弾の存在時間
         bullet.GetComponent<BulletMove>().MyLifespan = data.GetComponent<GunnerData>().bulletLifespans[gunNumber];
         //銃弾のダメージ
         bullet.GetComponent<BulletMove>().MyDamage = data.GetComponent<GunnerData>().bulletDamages[gunNumber];
@@ -73,13 +87,41 @@ public class GunnerShootingMoveController : MonoBehaviour
 
         //残弾量計算*/
     }
+    //リロード/装填する
+    public void Reload()
+    {//装填すべきか
+        if (cartridgeClip[gunNumber] < data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber] && isTrigger)
+        {
+            isReload = true;//装填中
+            cartridgeClip[gunNumber] = data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber];//装填する
+            Invoke("GunReloadMove", data.GetComponent<GunnerData>().ReloadLimit[gunNumber]);//装填時間
+        }
+        else if (!isTrigger)
+        {
+            Debug.Log("射撃反発中");
+        }
+        else
+        {
+            Debug.Log(data.GetComponent<GunnerData>().bullets[gunNumber].name + "いっぱいです。今のcartridgeClipは" + cartridgeClip[gunNumber] + "発");
+        }
 
+    }
+     void ReloadStart() {
+        cartridgeClip[0] = data.GetComponent<GunnerData>().cartridgeClipMax[0];//装填する
+        cartridgeClip[1] = data.GetComponent<GunnerData>().cartridgeClipMax[1];//装填する
+
+
+    }
+    //武器の切り替え
     public void GunsChange()
     {
-        Debug.Log("GunsChange");
-        gunNumber++;
-        gunNumber = gunNumber % gunNumberMax;
-        Debug.Log(gunNumber + "=" + gunNumber + "/" + gunNumberMax);
+        if (isTrigger && !isReload) {
+            Debug.Log("GunsChange");
+            gunNumber++;
+            gunNumber = gunNumber % gunNumberMax;
+            Debug.Log(gunNumber + "=" + gunNumber + "/" + gunNumberMax);
+        }
+       
     }
 
 }

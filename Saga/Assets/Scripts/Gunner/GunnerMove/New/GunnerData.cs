@@ -15,6 +15,8 @@ public class GunnerData : MonoBehaviour
     public int[] bulletNums = new int[arrayMax];//一回の射撃につき何発を撃つか
     public float[] gunRecoils = new float[arrayMax];//反発
     public int[] bulletNumer = new int[arrayMax];//一つの銃に置いてなん発を打ちましたか。
+    public int[] cartridgeClipMax = new int[arrayMax];//弾倉
+    public float[] ReloadLimit = new float[arrayMax];//弾倉
 
     //GunnerBatteryInstallationMove
 
