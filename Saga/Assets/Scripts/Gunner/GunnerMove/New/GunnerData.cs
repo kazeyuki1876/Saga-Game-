@@ -16,7 +16,7 @@ public class GunnerData : MonoBehaviour
     public float[] gunRecoils = new float[arrayMax];//反発
     public int[] bulletNumer = new int[arrayMax];//一つの銃に置いてなん発を打ちましたか。
     public int[] cartridgeClipMax = new int[arrayMax];//弾倉
-    public float[] ReloadLimit = new float[arrayMax];//弾倉
+    public float[] ReloadLimit = new float[arrayMax];///装填時間
 
     //GunnerBatteryInstallationMove
 
@@ -26,7 +26,8 @@ public class GunnerData : MonoBehaviour
     public GameObject[] instantiateInstallationBattery = new GameObject[arrayMax];//設置しようGameObject
     public GameObject[] InstallationBattery = new GameObject[arrayMax];//設置しするGameObject
     public int[] InstallationBatteryNumer = new int[arrayMax];//設置しするGameObject
-
+    public int[] BatteryHP = new int[arrayMax];//設置しするGameObject
+    public int[] BatterybulletLimit = new int[arrayMax];//設置しするGameObject
 
     int GunnerDataStartNum;
     private void Start()

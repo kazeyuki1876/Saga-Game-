@@ -5,7 +5,7 @@ using UnityEngine;
 public class MachineBatteryScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float MyHP;
+ 
     public float MyLifespan;
     public float MyDamage;
     public float MyShootingSpeed;
@@ -132,4 +132,10 @@ public class MachineBatteryScript : MonoBehaviour
         
         //残弾量計算
     }
+
+
+    //atk 
+    // HP
+    //die
+
 }

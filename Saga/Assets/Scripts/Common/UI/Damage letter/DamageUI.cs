@@ -7,7 +7,7 @@ public class DamageUI : MonoBehaviour
 {
     private Text damageText;
     //　フェードアウトするスピード
-    private float fadeOutSpeed = 1f;
+    private float fadeOutSpeed = 2f;
     //　移動値
     [SerializeField]
     private float moveSpeed = 0.1f;

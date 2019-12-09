@@ -151,12 +151,19 @@ public class GunnerMoveController : MonoBehaviour
         //建物の切り替え
         if (Input.GetKey("joystick button 4") && Input.GetKeyDown("joystick button 3"))
         {
+               this.GetComponent<GunnerBatteryInstallationMove>().MachineBatteryNumChange();
         }
         //機械の設置　三角
         else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown("joystick button 3"))  
         {
             this.GetComponent<GunnerBatteryInstallationMove>().instantiateBatteryInstallationMoveStart();
-        }  //狙えるR3
+        }
+        if (Input.GetKeyDown("joystick button 1"))
+        {
+            this.GetComponent<GunnerBatteryInstallationMove>().MachineBatteryCancel();
+        }
+
+        //狙えるR3
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick button 11"))
         {
             if (isShootingSupport)
@@ -171,7 +178,15 @@ public class GunnerMoveController : MonoBehaviour
         //武器の切り替え R1+□（■しかく）
         if (Input.GetKey("joystick button 4") && Input.GetKeyDown("joystick button 0")) {
             this.GetComponent<GunnerShootingMoveController>().GunsChange();
+        } //リロード　□
+        else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 0"))
+        {
+            Debug.Log("V");
+            this.GetComponent<GunnerShootingMoveController>().Reload();
         }
+
+
+
         if (Input.GetKeyDown(KeyCode.V) )
         {
             Debug.Log("V");
@@ -180,12 +195,7 @@ public class GunnerMoveController : MonoBehaviour
         //スキル切り替え
      
         //スキル使い
-        //リロード　□
-        if (Input.GetKeyDown(KeyCode.B) ||  Input.GetKeyDown("joystick button 0"))
-        {
-            Debug.Log("V");
-            this.GetComponent<GunnerShootingMoveController>().Reload();
-        }
+       
         Spot();
 
 

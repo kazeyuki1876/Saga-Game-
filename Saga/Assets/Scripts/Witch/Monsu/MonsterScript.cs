@@ -7,7 +7,7 @@ public class MonsterScript : MonoBehaviour
     public float MyHP;//HP
                       // public GameObject Player;
     public Transform StartTarget;
-    public int MonsterHP = 0; 
+    public int MonsterHP = 0;
     public Transform Target;//モンスターの目標
     public float MySeppt = 10;//モンスターの速度
     public float MyDamage = 10;
@@ -16,7 +16,7 @@ public class MonsterScript : MonoBehaviour
     public bool IsATK = true;
     public GameObject MagicStone;
 
-     bool isMove=true;
+    bool isMove = true;
     TakeDamage takeDamage;//
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
@@ -28,11 +28,12 @@ public class MonsterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Target == null&& isMove)
+        if (Target == null && isMove)
         {
             Target = StartTarget;
         }
-        if (IsATK) {
+        if (IsATK)
+        {
             transform.LookAt(Target);//目標をみる
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
@@ -49,8 +50,9 @@ public class MonsterScript : MonoBehaviour
     {
         if (MyHP <= 0)
         {
-            for (int i = 0;i< MonsterMagicStone; i++) {
-                MagicStone = Instantiate(MagicStone, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y,transform.position.z+Random.Range(-2, 2)), transform.rotation);
+            for (int i = 0; i < MonsterMagicStone; i++)
+            {
+                MagicStone = Instantiate(MagicStone, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y, transform.position.z + Random.Range(-2, 2)), transform.rotation);
                 MagicStone.transform.parent = GameObject.Find("MagicStoneBOX").transform;//MagicStoneBOXの子ともGameObjectであり
             }
 
@@ -72,13 +74,12 @@ public class MonsterScript : MonoBehaviour
             col.gameObject.GetComponent<GunnaerHealth>().MyHp = col.gameObject.GetComponent<GunnaerHealth>().MyHp - MyDamage;
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-        
+
 
 
             Invoke("ATKok", 1.0f);
         }
-
-        if (col.gameObject.name == "Castle" && IsATK)
+        else if (col.gameObject.name == "Castle" && IsATK)
         {
             IsATK = false;
             isMove = false;
@@ -89,16 +90,14 @@ public class MonsterScript : MonoBehaviour
             col.gameObject.GetComponent<CastleScript>().IsOVER();
 
             Invoke("ATKok", 1.0f);
-        }
-
-        if (col.gameObject.name == "testbaru" && IsATK)
+        } else if (col.gameObject.name == "Machine" && IsATK)
         {
             IsATK = false;
             isMove = false;
-            col.gameObject.GetComponent<ststberuhontai>().MyHp = col.gameObject.GetComponent<ststberuhontai>().MyHp - (int)MyDamage;
+            col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage;
             col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
-            col.gameObject.GetComponent<ststberuhontai>().IsDIe();
+            col.gameObject.GetComponent<MachineBatteryHealth>().IsDIe();
 
             Invoke("ATKok", 1.0f);
         }
@@ -107,11 +106,12 @@ public class MonsterScript : MonoBehaviour
     void OnCollisionExet(Collision col) //当进入碰撞器
     {
 
-        if (col.gameObject.name == "testbaru" & col.gameObject.name == "Castle" && col.gameObject.name == "testbaru") {
+        if (col.gameObject.name == "testbaru" & col.gameObject.name == "Castle" && col.gameObject.name == "testbaru")
+        {
             isMove = true;
         }
     }
-        void ATKok()
+    void ATKok()
     {
         IsATK = true;
     }
