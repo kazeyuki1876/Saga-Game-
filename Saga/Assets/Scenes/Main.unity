@@ -144,7 +144,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 7755664565542621122, guid: 68a4e289bb3180741b931af2f10f42ff, type: 3}
   - {fileID: 3045462806711292591, guid: 65f30584ac042f7479b8085e736ccabb, type: 3}
-  - {fileID: 0}
+  - {fileID: 4709901737373374496, guid: 6c916f081184e2c4b8f19bc2b78f35e3, type: 3}
   bulletSeppts:
   - 30
   - 45
@@ -169,13 +169,15 @@ MonoBehaviour:
   instantiateInstallationBattery:
   - {fileID: 1378914037558643208, guid: c8db79249f41a92408cf39e60aa41f99, type: 3}
   - {fileID: 7714368608549526078, guid: 4a67c467177e4b040bdd612515a6a3f3, type: 3}
+  - {fileID: 4709901737373374496, guid: 6c916f081184e2c4b8f19bc2b78f35e3, type: 3}
   InstallationBattery:
   - {fileID: 1920126413221467628, guid: 635b640b639cc364fbb39b6df19f1f22, type: 3}
   - {fileID: 7594253587826341573, guid: 3bcf0c554da875d46a66c7f89877c3b2, type: 3}
+  - {fileID: 2416628523430384961, guid: 09ec672da3ba7a146b1cf98111054d2f, type: 3}
   InstallationBatteryNumer: 0000000000000000
-  BatteryHP: c800000090010000
-  BatterybulletLimit: 0000000000000000
-  BatterybulletCost: 0400000005000000
+  BatteryHP: c800000090010000e8030000
+  BatterybulletLimit: 000000000000000000000000
+  BatterybulletCost: 040000000500000005000000
 --- !u!4 &27360857
 Transform:
   m_ObjectHideFlags: 0
@@ -2480,7 +2482,7 @@ MonoBehaviour:
   machineBatteryZ: 0
   machineBatteryXplusplus: 3
   machineBatteryNum: 0
-  machineBatteryNumMax: 2
+  machineBatteryNumMax: 3
   y: 5.8
 --- !u!54 &1459283150
 Rigidbody:
@@ -2496,7 +2498,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &1459283151
 BoxCollider:
@@ -2524,7 +2526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyHp: 100
-  MyMagicStone: 0
+  MyMagicStone: 100
   PlayerHp: {fileID: 1315714644}
   PlayerMagicStone: {fileID: 107142616}
 --- !u!114 &1459283153
