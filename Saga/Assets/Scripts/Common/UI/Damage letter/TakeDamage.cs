@@ -38,16 +38,16 @@ public class TakeDamage : MonoBehaviour
         // DamageText.text
         obj.transform.SetParent(col2.transform);
     }
-    public void Damage(GameObject gameObject)
+    public void Damage(Transform transform)
     {
         //　DamageUIをインスタンス化。登場位置は接触したコライダの中心からカメラの方向に少し寄せた位置
-        var obj = Instantiate<GameObject>(damageUI, gameObject.gameObject.GetComponent<SpriteRenderer>().bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
+        var obj = Instantiate<GameObject>(damageUI, transform.GetComponent<SpriteRenderer>().bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
         obj.GetComponent<DamageUI>().DamageNum = DamageNum;
         DamageNum = 0;
         obj.GetComponent<DamageUI>().comment = comment;
         comment = null;
         // obj.GetComponent<DamageUI>().DamageNum = DamageNum;
         // DamageText.text
-        obj.transform.SetParent(gameObject.transform);
+        obj.transform.SetParent(transform.transform);
     }
 }

@@ -52,7 +52,9 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         }
         else if (instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true && this.GetComponent<GunnaerHealth>().MyMagicStone < data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum])
         {
-            BatterybulletCostLack();
+            MachineBatteryCancel();
+            BatterybulletCostLack(transform);
+          
         }
     }
     private void instantiateBatteryInstallationMove()
@@ -100,13 +102,13 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     public void MachineBatteryCancel() {
         Destroy(instantiateInstallationBattery.gameObject);  // instantiateInstallationBatteryを崩壊
     }
-    public void BatterybulletCostLack(GameObject gameObject)
+    public void BatterybulletCostLack(Transform transform)
     {
         //  void OnTriggerEnter(Collider col)
         Debug.Log("魔石足りないよ");
 
-        gameObject = this.gameObject;
+    //  gameObject = this.gameObject;
         gameObject.GetComponent<TakeDamage>().comment = "魔石足りないよ";
-     gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(gameObject);//ダメージ文字UI
+     gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
     }
 }

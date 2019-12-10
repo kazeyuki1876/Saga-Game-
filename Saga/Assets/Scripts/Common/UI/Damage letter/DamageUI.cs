@@ -20,8 +20,12 @@ public class DamageUI : MonoBehaviour
            damageText = GetComponentInChildren<Text>();
         if (DamageNum != 0) {
             damageText.text = "" + DamageNum;
+            fadeOutSpeed = 2f;
+
         } else {
             damageText.text = "" + comment;
+            fadeOutSpeed = 0.5f;
+            moveSpeed = 1.0f;
         }
       
      
