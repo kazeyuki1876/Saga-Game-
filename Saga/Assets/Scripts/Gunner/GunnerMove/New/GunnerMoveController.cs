@@ -145,7 +145,7 @@ public class GunnerMoveController : MonoBehaviour
         //射撃R２
         if (Input.GetKey(KeyCode.Z) || Input.GetKey("joystick button 7"))//
         {
-            Debug.Log("  if (Input.GetKey(KeyCode.Z))");
+           // Debug.Log("  if (Input.GetKey(KeyCode.Z))");
             this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();
         }
         //建物の切り替え
@@ -181,7 +181,7 @@ public class GunnerMoveController : MonoBehaviour
         } //リロード　□
         else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick button 0"))
         {
-            Debug.Log("V");
+         //   Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().Reload();
         }
 
@@ -189,7 +189,7 @@ public class GunnerMoveController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.V) )
         {
-            Debug.Log("V");
+           // Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().GunsChange();
         }
         //スキル切り替え

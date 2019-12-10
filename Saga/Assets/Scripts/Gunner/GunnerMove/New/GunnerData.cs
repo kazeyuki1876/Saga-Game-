@@ -28,6 +28,7 @@ public class GunnerData : MonoBehaviour
     public int[] InstallationBatteryNumer = new int[arrayMax];//設置しするGameObject
     public int[] BatteryHP = new int[arrayMax];//設置しするGameObject
     public int[] BatterybulletLimit = new int[arrayMax];//設置しするGameObject
+    public int[] BatterybulletCost = new int[arrayMax];//設置しするには必要なコスト
 
     int GunnerDataStartNum;
     private void Start()

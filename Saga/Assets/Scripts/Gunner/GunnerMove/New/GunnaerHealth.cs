@@ -9,7 +9,7 @@ public class GunnaerHealth : MonoBehaviour
 {
     public float MyHp = 100;
     //魔石数				
-    [SerializeField] private int MyMagicStone = 0;
+  public int MyMagicStone = 0;
 
     public Text PlayerHp, PlayerMagicStone;
     // Start is called before the first frame update				
@@ -21,8 +21,8 @@ public class GunnaerHealth : MonoBehaviour
     // Update is called once per frame				
     void Update()
     {
-        PlayerHp.text = "PlayerHP" + MyHp;
-        PlayerMagicStone.text = "PlayerMagicStone" + MyMagicStone;
+        PlayerHp.text = "生命" + MyHp;
+        PlayerMagicStone.text = "魔石" + MyMagicStone;
     }
     void OnTriggerEnter(Collider MagicStone)
     {

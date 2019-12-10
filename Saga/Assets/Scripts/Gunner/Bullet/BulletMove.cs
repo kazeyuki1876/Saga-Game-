@@ -43,6 +43,7 @@ public class BulletMove : MonoBehaviour
 
            
             col.GetComponent<MonsterScript>().MyHP= col.GetComponent<MonsterScript>().MyHP - MyDamage; //着弾されたもののHP判定
+
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
          

@@ -98,11 +98,11 @@ public class GunnerShootingMoveController : MonoBehaviour
         }
         else if (!isTrigger)
         {
-            Debug.Log("射撃反発中");
+           // Debug.Log("射撃反発中");
         }
         else
         {
-            Debug.Log(data.GetComponent<GunnerData>().bullets[gunNumber].name + "いっぱいです。今のcartridgeClipは" + cartridgeClip[gunNumber] + "発");
+           // Debug.Log(data.GetComponent<GunnerData>().bullets[gunNumber].name + "いっぱいです。今のcartridgeClipは" + cartridgeClip[gunNumber] + "発");
         }
 
     }

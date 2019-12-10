@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunnerBatteryInstallationMove : MonoBehaviour
 {
+    TakeDamage takeDamage;//
     [SerializeField]
     private GameObject
          data, //データの
@@ -20,6 +21,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         machineBatteryNumMax = 2;
     public float y;
 
+
     private void Update()
     {
         if (instantiateInstallationBattery != null)
@@ -29,14 +31,18 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
 
         }
     }
+
+
     public void instantiateBatteryInstallationMoveStart()
     {
         if (instantiateInstallationBattery == null)
         {
             instantiateInstallationBattery = Instantiate(data.GetComponent<GunnerData>().instantiateInstallationBattery[machineBatteryNum], new Vector3((float)machineBatteryX + machineBatteryXplusplus, 1.1f, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
         }
-        else if (instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true) {
-
+        else if (instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true && this.GetComponent<GunnaerHealth>().MyMagicStone >= data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum])
+        {
+            this.GetComponent<GunnaerHealth>().MyMagicStone -= data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum];
+            //BatterybulletCost
             installationBattery = Instantiate(data.GetComponent<GunnerData>().InstallationBattery[machineBatteryNum], new Vector3((float)machineBatteryX + machineBatteryXplusplus, y, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
             MachineBatteryCancel();
             installationBattery.transform.parent = GameObject.Find("InstallationBatteryBox").transform;//InstallationBatteryBoxの子ともGameObjectであり
@@ -44,8 +50,11 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
             data.GetComponent<GunnerData>().InstallationBatteryNumer[machineBatteryNum] += 1;
             installationBattery.name = data.GetComponent<GunnerData>().InstallationBattery[machineBatteryNum].name + data.GetComponent<GunnerData>().InstallationBatteryNumer[machineBatteryNum];
         }
+        else if (instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true && this.GetComponent<GunnaerHealth>().MyMagicStone < data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum])
+        {
+            BatterybulletCostLack();
+        }
     }
-
     private void instantiateBatteryInstallationMove()
     {
         // Debug.Log("instantiateBatteryInstallationMove");
@@ -90,5 +99,14 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     }
     public void MachineBatteryCancel() {
         Destroy(instantiateInstallationBattery.gameObject);  // instantiateInstallationBatteryを崩壊
+    }
+    public void BatterybulletCostLack(GameObject gameObject)
+    {
+        //  void OnTriggerEnter(Collider col)
+        Debug.Log("魔石足りないよ");
+
+        gameObject = this.gameObject;
+        gameObject.GetComponent<TakeDamage>().comment = "魔石足りないよ";
+     gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(gameObject);//ダメージ文字UI
     }
 }

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class newpp : MonoBehaviour
 {
+    public bool Botantest;
     private void Update()
     {
+        if (Botantest) { 
         if (Input.GetKeyDown("joystick button 0"))
         {
             Debug.Log("button0");
@@ -51,6 +53,7 @@ public class newpp : MonoBehaviour
         if ((hori != 0) || (vert != 0))
         {
       //      Debug.Log("stick:" + hori + "," + vert);
+        }
         }
     }
 

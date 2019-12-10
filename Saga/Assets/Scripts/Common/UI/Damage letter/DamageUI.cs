@@ -12,12 +12,19 @@ public class DamageUI : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 0.1f;
     public  int DamageNum;
+    public string comment;
+
     void Start()
     {
         
            damageText = GetComponentInChildren<Text>();
-
-        damageText.text = ""+ DamageNum;
+        if (DamageNum != 0) {
+            damageText.text = "" + DamageNum;
+        } else {
+            damageText.text = "" + comment;
+        }
+      
+     
         transform.rotation = Camera.main.transform.rotation;
         transform.position = new Vector3(transform.position.x+Random.Range(-1,1), transform.position.y, transform.position.z);
         transform.SetParent(GameObject.Find("DamageBOX").transform);//Handの子ともGameObjectであり
