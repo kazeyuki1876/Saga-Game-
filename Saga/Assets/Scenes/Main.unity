@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43720153, g: 0.48494345, b: 0.5652123, a: 1}
+  m_IndirectSpecularColor: {r: 0.4372013, g: 0.48494285, b: 0.5652116, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -178,6 +178,18 @@ MonoBehaviour:
   BatteryHP: c800000090010000e8030000
   BatterybulletLimit: 000000000000000000000000
   BatterybulletCost: 040000000500000005000000
+  batteryBulletSeppts:
+  - 0
+  - 0
+  batteryBulletLifespans:
+  - 25
+  - 0
+  batteryBulletDamages:
+  - 20
+  - 0
+  batteryBulletLimit:
+  - 2
+  - 0
 --- !u!4 &27360857
 Transform:
   m_ObjectHideFlags: 0
@@ -365,8 +377,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &86417838
-MeshCollider:
+--- !u!65 &86417838
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -375,10 +387,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300002, guid: 84ad66ad8150bbb4d9a6f97de8e25b43, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.051547594, y: 0.119291134, z: 0.051547594}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &86417839
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1262,7 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173edfafc0443f34d97613f658a0267d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Botantest: 0
+  Botantest: 1
 --- !u!1 &660333795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,7 +2494,7 @@ MonoBehaviour:
   machineBatteryXplusplus: 3
   machineBatteryNum: 0
   machineBatteryNumMax: 3
-  y: 5.8
+  y: 10
 --- !u!54 &1459283150
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3166,6 +3177,7 @@ MonoBehaviour:
   - 
   MonsterMagicStone: 010000000100000004000000050000000700000000000000
   MonsterHP: 7800000096000000f00a0000f0000000960000000000000000000000000000000000000000000000
+  isWitchPlayerMove: 1
   Monsters: 0500000003000000020000000200000001000000060000000700000008000000090000000a000000
   MonsterSpeeds: 02000000050000000300000008000000080000000000000000000000000000000000000000000000
   InAdvanceInstallation: {fileID: 9114570813808438482, guid: c5884fe032b19fe4a80b82c3704d7c23,

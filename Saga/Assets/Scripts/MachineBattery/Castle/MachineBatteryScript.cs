@@ -9,6 +9,7 @@ public class MachineBatteryScript : MonoBehaviour
     public float MyLifespan;
     public float MyDamage;
     public float MyShootingSpeed;
+    public float MyBatteryBulletLifespans;
     public GameObject Bullet;
     public GameObject Bullets;
     public bool IsShooting = true;
@@ -16,6 +17,13 @@ public class MachineBatteryScript : MonoBehaviour
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間
 
+    public void Start()
+    {
+        MyDamage = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletDamages[GetComponent<MachineBatteryHealth>().MyNum - 1];
+        MyLifespan = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletLimit[GetComponent<MachineBatteryHealth>().MyNum - 1];
+        MyShootingSpeed = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletSeppts[GetComponent<MachineBatteryHealth>().MyNum - 1];
+        MyBatteryBulletLifespans = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletLifespans[GetComponent<MachineBatteryHealth>().MyNum - 1];
+    }
     //------------- 
     public GameObject Cate; //回ろ
     GameObject serchTag(GameObject nowObj, string tagName)
@@ -124,12 +132,17 @@ public class MachineBatteryScript : MonoBehaviour
 
         //銃によっての弾
         // string BulletName = Bullets[0].name;
-        Bullet = Instantiate(Bullets, this.transform.position, this.transform.rotation);//弾丸を作り　位置と向きを与える
+        Bullet = Instantiate(Bullets, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z), this.transform.rotation);//弾丸を作り　位置と向きを与える
         Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
-        Bullet.GetComponent<BulletMove>().MySeppt = 150;
-        Bullet.GetComponent<BulletMove>().MyLifespan = 2;
-        Bullet.GetComponent<BulletMove>().MyDamage = 1;
-        
+        Bullet.GetComponent<BulletMove>().MySeppt = 30;
+        Bullet.GetComponent<BulletMove>().MyLifespan = MyLifespan;
+        Bullet.GetComponent<BulletMove>().MyDamage = MyDamage;
+        /*
+         
+       public float MyLifespan;
+    public float MyDamage;
+    public float MyShootingSpeed;
+    public float MyBatteryBulletLifespans;*/
         //残弾量計算
     }
 

@@ -21,7 +21,7 @@ public class GunnerData : MonoBehaviour
     //GunnerBatteryInstallationMove
 
 
-
+    
     //public GameObject[] instantiateBatteryGameObject;//設置しようGameObjectの
     public GameObject[] instantiateInstallationBattery = new GameObject[arrayMax];//設置しようGameObject
     public GameObject[] InstallationBattery = new GameObject[arrayMax];//設置しするGameObject
@@ -29,6 +29,10 @@ public class GunnerData : MonoBehaviour
     public int[] BatteryHP = new int[arrayMax];//設置しするGameObject
     public int[] BatterybulletLimit = new int[arrayMax];//設置しするGameObject
     public int[] BatterybulletCost = new int[arrayMax];//設置しするには必要なコスト
+    public float[] batteryBulletSeppts = new float[arrayMax];//銃弾の速度
+    public float[] batteryBulletLifespans = new float[arrayMax];//銃弾の存在時間
+    public float[] batteryBulletDamages = new float[arrayMax];//銃弾のダメージ
+    public float[] batteryBulletLimit = new float[arrayMax];//銃弾の射撃速度
 
     int GunnerDataStartNum;
     private void Start()

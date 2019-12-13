@@ -18,6 +18,7 @@ public class MonsterScript : MonoBehaviour
 
     bool isMove = true;
     TakeDamage takeDamage;//
+    public float rigidTime=0;
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
         Target = StartTarget;
@@ -28,18 +29,25 @@ public class MonsterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Target == null && isMove)
+        if (rigidTime > 0)
         {
-            Target = StartTarget;
+            rigidTime -= Time.deltaTime;
         }
-        if (IsATK)
-        {
-            transform.LookAt(Target);//目標をみる
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
-                                                                                        // transform.rotation(0，0，0);//見ている方向に進む
+        else {
+            if (Target == null && isMove)
+            {
+                Target = StartTarget;
+            }
+            if (IsATK)
+            {
+                transform.LookAt(Target);//目標をみる
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
+                                                                                            // transform.rotation(0，0，0);//見ている方向に進む
 
+            }
         }
+        
 
         /*  if (transform.position.y > 4.7f)
           {
@@ -90,13 +98,13 @@ public class MonsterScript : MonoBehaviour
             col.gameObject.GetComponent<CastleScript>().IsOVER();
 
             Invoke("ATKok", 1.0f);
-        } else if (col.gameObject.name == "Machine" && IsATK)
+        } else if (col.gameObject.tag == "Machine" && IsATK)
         {
             IsATK = false;
             isMove = false;
             col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage;
-            col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+            col.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+            col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.gameObject.GetComponent<MachineBatteryHealth>().IsDIe();
 
             Invoke("ATKok", 1.0f);

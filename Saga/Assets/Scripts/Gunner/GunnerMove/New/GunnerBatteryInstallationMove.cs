@@ -71,7 +71,11 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
             for (int MachineX = (int)transform.position.x; MachineX % 3 != 0; MachineX++)
             {
                 //  Debug.Log(MachineX);
-                machineBatteryX = MachineX;
+                if (MachineX % 3 == 0)
+                {
+                    machineBatteryX = MachineX;
+                }
+             
             }
         }
         if ((int)transform.position.z % 3 == 0)
@@ -82,12 +86,16 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         {
             for (int MachineZ = (int)transform.position.z; MachineZ % 3 != 0; MachineZ++)
             {
-                //    Debug.Log(MachineZ);
-                machineBatteryZ = MachineZ;
+                if (MachineZ % 3 == 0)
+                {
+                    machineBatteryZ = MachineZ;
+                    //    Debug.Log(MachineZ);
+
+                }
             }
         }
-
-        instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, y, (float)machineBatteryZ);
+        Debug.Log("X"+machineBatteryX + "Z"+ machineBatteryZ);
+        instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, 5, (float)machineBatteryZ);
 
     }
     public void MachineBatteryNumChange()

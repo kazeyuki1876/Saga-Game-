@@ -45,22 +45,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &1040796660768307891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2505514904879290626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4381d7fb32016e34896b05e9f41b272f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyHp: 0
-  MyNum: 0
 --- !u!65 &4532312221427455122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74,6 +60,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.041005462, y: 0.12, z: 0.04918652}
   m_Center: {x: 0.0000000018626451, y: 0.07679263, z: 0.004090517}
+--- !u!114 &1040796660768307891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2505514904879290626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4381d7fb32016e34896b05e9f41b272f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyHp: 0
+  MyNum: 1
 --- !u!114 &5817353918765135231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
   damageUI: {fileID: 1933311803687809520, guid: 04a76ce659d18214ba5e33a71ad2b89e,
     type: 3}
   DamageNum: 0
+  comment: 
 --- !u!1001 &1920126414145590476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,17 +165,22 @@ PrefabInstance:
     - target: {fileID: 4062467088776220098, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4062467088776220098, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4062467088776220098, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482156560025537861, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
+        type: 3}
+      propertyPath: MyShootingSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1065065819, guid: 13ebd03cafed3bd4388b96c501e6b8b4, type: 3}
       propertyPath: m_Enabled

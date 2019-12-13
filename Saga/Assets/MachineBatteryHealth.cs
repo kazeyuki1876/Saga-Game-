@@ -5,12 +5,12 @@ using UnityEngine;
 public class MachineBatteryHealth : MonoBehaviour
 {
 public int MyHp;
-    [SerializeField]
-    private int MyNum=0;
+ //   [SerializeField]
+    public int MyNum=0;
     private void Start()
     {
 
-        MyHp = GameObject.Find("DataController").GetComponent<GunnerData>().BatteryHP[MyNum];
+        MyHp = GameObject.Find("DataController").GetComponent<GunnerData>().BatteryHP[MyNum-1];
     }
     public void IsDIe()
     {

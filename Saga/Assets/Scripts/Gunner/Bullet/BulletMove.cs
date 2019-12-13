@@ -12,7 +12,7 @@ public class BulletMove : MonoBehaviour
     public float MyLifespan = 1;
     //ダメージ
     public float MyDamage = 1;
-
+    public float RigidTime = 0.2f;
     TakeDamage takeDamage;//
 
     void Start()
@@ -41,7 +41,12 @@ public class BulletMove : MonoBehaviour
         if (col.gameObject.tag == "Monster")
         {
 
-           
+
+            if (col.GetComponent<MonsterScript>().rigidTime< RigidTime) {
+                col.GetComponent<MonsterScript>().rigidTime = RigidTime;
+
+            }
+                //RigidTime
             col.GetComponent<MonsterScript>().MyHP= col.GetComponent<MonsterScript>().MyHP - MyDamage; //着弾されたもののHP判定
 
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;

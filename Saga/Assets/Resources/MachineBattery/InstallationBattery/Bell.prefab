@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2141139654220638793}
   - component: {fileID: 650477334622481176}
   - component: {fileID: 6614864380544123394}
+  - component: {fileID: 4638906625105975238}
   m_Layer: 0
   m_Name: Bell
   m_TagString: Machine
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2416628523430384961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.58, y: 5.7000003, z: -9.88}
-  m_LocalScale: {x: 1, y: 1, z: 3}
+  m_LocalScale: {x: 0.9, y: 1.5, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -123,3 +124,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &4638906625105975238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416628523430384961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdeb65b614bfed64aae68c2ad5a5784b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageUI: {fileID: 1933311803687809520, guid: 04a76ce659d18214ba5e33a71ad2b89e,
+    type: 3}
+  DamageNum: 0
+  comment: 

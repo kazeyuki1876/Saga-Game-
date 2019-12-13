@@ -22,7 +22,7 @@ public class WitchUIScript : MonoBehaviour
     //手札チャージ
     public int HandNumSheet = 0;
     public bool isHandMax;//
-
+    
     //　カード生成（せいせい）
     public GameObject[] NewCard = new GameObject[2];//魔法とモンスターに分かれ
     public GameObject CardParent;
@@ -31,6 +31,7 @@ public class WitchUIScript : MonoBehaviour
     public string[] CardComment;
     public int[] MonsterMagicStone;
     public int[] MonsterHP;
+    public bool isWitchPlayerMove = true;
     int CardX = 1660;
     int[] CardY = new int[5] { 939, 789, 639, 489, 339 };
     public int[] Monsters = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -75,6 +76,7 @@ public class WitchUIScript : MonoBehaviour
         }
         WitchPlayerMove();
         MagicCharge();
+
     }
 
     void MagicCharge() {
@@ -140,25 +142,21 @@ public class WitchUIScript : MonoBehaviour
     void WitchPlayerMove() {
         if (NewInAdvanceInstallation == null)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+         float Y=  Input.GetAxis("Horizontal3Player_2");
+            //Debug.Log(Y);
+
+
+            //---------`上下
+            if (Y!=0&& isWitchPlayerMove)
             {
-                SelecImeji = SelecImeji + 1;
+                isWitchPlayerMove = false;
+                  SelecImeji = SelecImeji + -(int) Y;
+                
                 if (SelecImeji >= 5)
                 {
                     SelecImeji = 0;
                 }
-                if (Hand[SelecImeji] == null)
-                {
-                    SelecImeji = 0;
-                    Debug.Log(Hand[SelecImeji]);
-                }
-
-
-            }
-            else if (Input.GetKeyDown(KeyCode.W))
-            {
-                SelecImeji = SelecImeji - 1;//SelecImeji--
-                if (SelecImeji < 0)
+                else   if (SelecImeji < 0)
                 {
 
                     for (int HandNum = 4; HandNum > -1; HandNum--)
@@ -173,26 +171,27 @@ public class WitchUIScript : MonoBehaviour
                         }
                     }
                 }
-                if (SelecImeji < 0)
+                if (SelecImeji < 0|| Hand[SelecImeji] == null)
                 {
                     SelecImeji = 0;
                 }
-                if (Hand[SelecImeji] == null)
-                {
-                    SelecImeji = 0;
-                    Debug.Log(Hand[SelecImeji]);
-                }
-
+                /* if (Hand[SelecImeji] == null)
+                 {
+                     SelecImeji = 0;
+                     Debug.Log(Hand[SelecImeji]);
+                 }*/
+                Invoke("WitchPlayerMoveOFF", 0.1f);
             }//Hand[HandNumSheet]!=null
-
-            if (Input.GetKeyDown(KeyCode.D))
+            //------------------------
+           // Input.GetKeyDown("joystick 1 button 10")
+            if (Input.GetKeyDown("joystick 2 button 2"))
             {//カードを使用
              //  Debug.Log("カードを使用" + Hand[HandNumSheet]);
                 if (Hand[SelecImeji] != null&& MyMagic > Hand[SelecImeji].GetComponent<CardScript>().MyCost)
                 {
 
                     // InAdvanceInstallation = Hand[SelecImeji].GetComponent<CardScript>().Monsu;
-                    NewInAdvanceInstallation = Instantiate(InAdvanceInstallation, new Vector3(15,8, -2), transform.rotation);
+                    NewInAdvanceInstallation = Instantiate(InAdvanceInstallation, new Vector3(15,5, -2), transform.rotation);
 
                     //  Instantiate(Monsu, new Vector3(70, 8, 5), transform.rotation);
                     /*if()
@@ -203,6 +202,9 @@ public class WitchUIScript : MonoBehaviour
             }
         }
         else {
+            float Z = Input.GetAxis("Horizontal3Player_2");
+            NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z + Z* InAdvanceInstallationSpeed * Time.deltaTime);
+            /*
             if (Input.GetKey(KeyCode.W))
             {
                 NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z + InAdvanceInstallationSpeed * Time.deltaTime);
@@ -210,8 +212,8 @@ public class WitchUIScript : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
             {
                 NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z - InAdvanceInstallationSpeed * Time.deltaTime);
-            }
-            if (Input.GetKeyDown(KeyCode.D)&& !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster) {//召喚する居場所に他のモンスターがないこと
+            }*/
+            if (Input.GetKeyDown("joystick 2 button 2") && !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster) {//召喚する居場所に他のモンスターがないこと
                 MyMagic = MyMagic - Hand[SelecImeji].GetComponent<CardScript>().MyCost;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartX = NewInAdvanceInstallation.transform.position.x;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartY = NewInAdvanceInstallation.transform.position.y;
@@ -240,10 +242,14 @@ public class WitchUIScript : MonoBehaviour
         }
        
     }//PlayerMove
+    private void WitchPlayerMoveOFF() {
+        isWitchPlayerMove = true;
+    }
     void HandsArray()//カード配列のコントロール
     {
         if (IsHandsArray)
         {
+
             Debug.Log("HandsArray");
             for (int HandNum = 0; HandNum < 4; HandNum++)
             {
