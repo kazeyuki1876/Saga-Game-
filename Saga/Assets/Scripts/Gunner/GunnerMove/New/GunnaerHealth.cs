@@ -7,18 +7,25 @@ using UnityEngine.UI;
 
 public class GunnaerHealth : MonoBehaviour
 {
-    public float myHpMax = 100;
-    public float MyHp = 100;
+    public float
+        myHpMax = 100,
+        MyHp = 100,
+        MyMagicStone = 20,
+        MyMagicStoneMax = 100;
+
+  
     [SerializeField]
     private float fillAmountSpeed = 0.5f;
     //魔石数				
-    public int MyMagicStone = 0;
+  
 
     public Text PlayerHp, PlayerMagicStone;
     [SerializeField]
     private Image
         GannerHpGaugeRed,
-        GannerHpGaugeGreen;
+        GannerHpGaugeGreen,
+        GannerMagicStoneGauge;
+
 
 
 
@@ -35,6 +42,7 @@ public class GunnaerHealth : MonoBehaviour
         PlayerHp.text = "生命" + MyHp;
         PlayerMagicStone.text = "魔石" + MyMagicStone;
         GannerHpGaugeMove();
+        GannerMagicStoneGaugeMove();
     }
     void OnTriggerEnter(Collider MagicStone)
     {
@@ -49,8 +57,6 @@ public class GunnaerHealth : MonoBehaviour
         }
     }
     void GannerHpGaugeMove(){
-      
-        //-
         GannerHpGaugeGreen.fillAmount = MyHp / myHpMax;
         if (GannerHpGaugeRed.fillAmount > GannerHpGaugeGreen.fillAmount)
         {
@@ -60,7 +66,15 @@ public class GunnaerHealth : MonoBehaviour
         {
             GannerHpGaugeRed.fillAmount = GannerHpGaugeGreen.fillAmount;
         }
+    }
+    void GannerMagicStoneGaugeMove() {
 
+        if (GannerMagicStoneGauge.fillAmount != MyMagicStone / MyMagicStoneMax) {
+            Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
+            float GannerMagicStoneGaugeSpeed = GannerMagicStoneGauge.fillAmount - MyMagicStone / MyMagicStoneMax;
+            GannerMagicStoneGauge.fillAmount = GannerMagicStoneGauge.fillAmount - GannerMagicStoneGaugeSpeed * fillAmountSpeed * Time.deltaTime;
+
+        }
 
     }
 }
