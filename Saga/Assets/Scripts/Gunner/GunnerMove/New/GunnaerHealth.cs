@@ -56,6 +56,7 @@ public class GunnaerHealth : MonoBehaviour
             MyMagicStone++;
         }
     }
+    //HPゲージ
     void GannerHpGaugeMove(){
         GannerHpGaugeGreen.fillAmount = MyHp / myHpMax;
         if (GannerHpGaugeRed.fillAmount > GannerHpGaugeGreen.fillAmount)
@@ -67,13 +68,13 @@ public class GunnaerHealth : MonoBehaviour
             GannerHpGaugeRed.fillAmount = GannerHpGaugeGreen.fillAmount;
         }
     }
+    //魔石ゲージ
     void GannerMagicStoneGaugeMove() {
 
         if (GannerMagicStoneGauge.fillAmount != MyMagicStone / MyMagicStoneMax) {
-            Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
+          //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
             float GannerMagicStoneGaugeSpeed = GannerMagicStoneGauge.fillAmount - MyMagicStone / MyMagicStoneMax;
             GannerMagicStoneGauge.fillAmount = GannerMagicStoneGauge.fillAmount - GannerMagicStoneGaugeSpeed * fillAmountSpeed * Time.deltaTime;
-
         }
 
     }
