@@ -77,18 +77,23 @@ public class CardScript : MonoBehaviour
     }
     public float SpeedTime =2;
     public void CardMove() {
+        if (transform.position != new Vector3(MyX, MyY,0)) {
 
-        SpeedTime -= Time.deltaTime;
-        if (SpeedTime <= 0) { SpeedTime = 0.0f;
-            transform.position = new Vector3(MyX, MyY);
+            SpeedTime -= Time.deltaTime;
+            if (SpeedTime <= 0|| transform.position.y > MyY)
+            {
+                SpeedTime = 0.0f;
+                transform.position = new Vector3(MyX, MyY,0);
+            }
+            Speed = (MyY - transform.position.y) / SpeedTime;
+            if (transform.position.y < MyY)
+            {
+
+                transform.position = new Vector3(MyX, transform.position.y + Speed * Time.deltaTime,0);
+
+            }
         }
-        Speed = (MyY - transform.position.y)/SpeedTime;
-        if (transform.position.y < MyY)
-        {
-
-            transform.position = new Vector3(MyX, transform.position.y + Speed * Time.deltaTime);
-
-        }
+       
 
 
         // transform.position = new Vector3(MyX, MyY);

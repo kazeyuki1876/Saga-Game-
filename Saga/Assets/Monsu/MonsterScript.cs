@@ -59,8 +59,8 @@ public class MonsterScript : MonoBehaviour
         if (MyHP <= 0)
         {
             for (int i = 0; i < MonsterMagicStone; i++)
-            {
-                MagicStone = Instantiate(MagicStone, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y, transform.position.z + Random.Range(-2, 2)), transform.rotation);
+            { 
+                MagicStone = Instantiate(MagicStone, new Vector3(transform.position.x + Random.Range(-2.0f, 2.0f), transform.position.y, transform.position.z + Random.Range(-1.0f, 1.0f)), transform.rotation);
                 MagicStone.transform.parent = GameObject.Find("MagicStoneBOX").transform;//MagicStoneBOXの子ともGameObjectであり
             }
 

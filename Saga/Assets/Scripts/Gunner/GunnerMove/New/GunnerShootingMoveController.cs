@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GunnerShootingMoveController : MonoBehaviour
 {
+    public GameObject data;   //データの
     [SerializeField]
     private GameObject
-        data, //データの
+      
         bullet,//弾
         gunPos;
     [SerializeField]
@@ -16,12 +17,11 @@ public class GunnerShootingMoveController : MonoBehaviour
     [SerializeField]
     private int
         gunNumberMax = 2;//銃の種類
-    [SerializeField]
-    private int
-
-        gunNumber = 0;//今何銃を使ってる
-    [SerializeField]
-    private int  [] cartridgeClip;
+  
+    public int
+        gunNumber = 0;
+    [SerializeField]//今何銃を使ってる
+    public int  [] cartridgeClip;
 
 
     private void Start()
@@ -44,7 +44,7 @@ public class GunnerShootingMoveController : MonoBehaviour
             }
         }//弾がない
         else if (cartridgeClip[gunNumber] >= 0) {
-            Reload();
+            ReloadMoveStart();
         }
     }
     //射撃出来るか
@@ -52,10 +52,7 @@ public class GunnerShootingMoveController : MonoBehaviour
     {
         isTrigger = true;
     }
-    private void GunReloadMove()
-    {
-        isReload = false;
-    }
+  
     //射撃する
     private void GunsMove()
     {
@@ -88,13 +85,13 @@ public class GunnerShootingMoveController : MonoBehaviour
         //残弾量計算*/
     }
     //リロード/装填する
-    public void Reload()
+    public void ReloadMoveStart()
     {//装填すべきか
-        if (cartridgeClip[gunNumber] < data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber] && isTrigger)
+        if (cartridgeClip[gunNumber] < data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber] && isTrigger&&!isReload)
         {
             isReload = true;//装填中
-            cartridgeClip[gunNumber] = data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber];//装填する
             Invoke("GunReloadMove", data.GetComponent<GunnerData>().ReloadLimit[gunNumber]);//装填時間
+            GunsReloadComment(transform);
         }
         else if (!isTrigger)
         {
@@ -102,7 +99,7 @@ public class GunnerShootingMoveController : MonoBehaviour
         }
         else
         {
-           // Debug.Log(data.GetComponent<GunnerData>().bullets[gunNumber].name + "いっぱいです。今のcartridgeClipは" + cartridgeClip[gunNumber] + "発");
+          //  Debug.Log(data.GetComponent<GunnerData>().bullets[gunNumber].name + "いっぱいです。今のcartridgeClipは" + cartridgeClip[gunNumber] + "発");
         }
 
     }
@@ -123,5 +120,24 @@ public class GunnerShootingMoveController : MonoBehaviour
         }
        
     }
+    public void GunsReloadComment(Transform transform)
+    {
+        //  void OnTriggerEnter(Collider col)
+        Debug.Log("リロード");
+
+        //  gameObject = this.gameObject;
+        gameObject.GetComponent<TakeDamage>().comment = data.GetComponent<GunnerData>().bullets[gunNumber].name+ "リロード中";
+        gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
+
+       
+      
+
+    }
+    void GunReloadMove() {
+
+        isReload = false;
+        cartridgeClip[gunNumber] = data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber];//装填する
+    }
+
 
 }

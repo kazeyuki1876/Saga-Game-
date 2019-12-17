@@ -49,7 +49,14 @@ public class GunnerMoveController : MonoBehaviour
     void FoundationMove()
     {//移動HorizontaPlayer_1
         float x = Input.GetAxis("HorizontaPlayer_1");
+        if (x < 0.5 && x > -0.5) {
+            x = 0;
+        }
         float y = Input.GetAxis("VerticalPlayer_1");
+         if (y < 0.5 && y > -0.5)
+        {
+            y = 0;
+        }
         transform.position += new Vector3(x * seppt, 0, y * -seppt);
         if (Input.GetKeyDown("joystick 1 button 10"))
         {
@@ -185,7 +192,7 @@ public class GunnerMoveController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick 1 button 0"))
         {
          //   Debug.Log("V");
-            this.GetComponent<GunnerShootingMoveController>().Reload();
+            this.GetComponent<GunnerShootingMoveController>().ReloadMoveStart();
         }
 
 

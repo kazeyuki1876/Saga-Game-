@@ -30,7 +30,8 @@ public class DamageUI : MonoBehaviour
       
      
         transform.rotation = Camera.main.transform.rotation;
-        transform.position = new Vector3(transform.position.x+Random.Range(-1,1), transform.position.y, transform.position.z);
+      
+        transform.position = new Vector3(transform.position.x + Random.Range(-1.0f, 1.0f), transform.position.y, transform.position.z+ Random.Range(0.0f, 2.0f));
         transform.SetParent(GameObject.Find("DamageBOX").transform);//Handの子ともGameObjectであり
     }
 

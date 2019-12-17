@@ -62,8 +62,12 @@ public class WitchUIScript : MonoBehaviour
     {
         InvokeRepeating("Load", 0,0.5f);
     }
-    void Load(){
-        HandCharge();
+    void Load()
+    {
+        if (Hand[4] != null) {
+            HandCharge();
+        }
+      
       //  Debug.Log(Time.time + ":呼び出された");
     }
 
