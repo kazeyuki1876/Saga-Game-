@@ -12,8 +12,9 @@ public class GunnerShootingMoveController : MonoBehaviour
         gunPos;
     [SerializeField]
     private bool
-          isReload = false,//射撃できるか
+       
     isTrigger = true;//射撃できるか
+    public bool isReload = false;
     [SerializeField]
     private int
         gunNumberMax = 2;//銃の種類

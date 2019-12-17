@@ -3306,7 +3306,9 @@ MonoBehaviour:
   mainEquipmentImejiSprite:
   - {fileID: 21300000, guid: 2ebe737b730bf9c44b42a1a280741553, type: 3}
   - {fileID: 21300000, guid: a3145edc9ed34b74090646d09194dc83, type: 3}
-  mainEquipmentImeji: {fileID: 1966994570}
+  mainEquipmentImeji:
+  - {fileID: 1966994570}
+  - {fileID: 250320619}
   mainEquipmentText: {fileID: 145146576}
 --- !u!1 &1460555107
 GameObject:
