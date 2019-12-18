@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,8 @@ using UnityEngine.UI;
 public class SkillScriot : MonoBehaviour
 {
     public int skillNum;
-
+    public string ATK1 = "ATK";
+  
     // class `は対象にみる
     public class SkillStart
     {  //skill imaje
@@ -84,6 +86,14 @@ public class SkillScriot : MonoBehaviour
         }
 
     }
+    class Skills
+    {//一つの変数でスキルを使う　難しいな　動く変数化のＣＬＡＳＳ命が欲しい
+
+        
+    }
+    Skills[] GunnerSkills = new Skills[3];
+   
+    //  new [3]class{ SkillStart,SkillStart,SkillStart };
 
     public SkillStart rifleGrenade = new SkillStart();
     public ATKSkill ATK = new ATKSkill();
@@ -107,13 +117,20 @@ public class SkillScriot : MonoBehaviour
         firstAidSprayBox.skillOutTimeMax = 10;
         firstAidSprayBox.skillimaje = firstAidSprayBoxImeji;
 
-      
+        //   GunnerSkills[0] = new ATKSkill();
+        // GunnerSkills[1] = new RecoverySkill();
+
+     //   GunnerSkills = ATKSkill();
     }
     public void Update()
-    {
 
+    {
+      //  typeof(ATK1).SkillMove();
         if (Input.GetKeyDown("j"))
         {
+
+      
+            
             if (skillNum < 1)
             {
                 ATK.SkillMove();
@@ -131,7 +148,7 @@ public class SkillScriot : MonoBehaviour
             }
                 // rifleGrenade.SkillMoveStart();
 
-
+            
 
         }
         rifleGrenade.SkillCollTimeMove();
