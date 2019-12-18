@@ -35,6 +35,8 @@ public class GunnerData : MonoBehaviour
     public float[] batteryBulletLimit = new float[arrayMax];//銃弾の射撃速度
 
     int GunnerDataStartNum;
+    //skill
+    public float [] GunnerSkillOutTime = new float[arrayMax];
     private void Start()
     {
 
