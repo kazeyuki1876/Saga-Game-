@@ -73,11 +73,19 @@ public class SkillScriot : MonoBehaviour
     }
     public class RecoverySkill : SkillStart
     {
+        //回復
+        public GameObject my;
         public void SkillMove()
         {
+           
             if (isSkillStart)
             {
-                Debug.Log("ATK");
+                ;
+                Debug.Log("RecoverySkill");
+                if (my.GetComponent<GunnaerHealth>() != null) {
+                    my.GetComponent<GunnaerHealth>().MyHp += 50;
+                }
+              
             }
             else
             {
@@ -116,11 +124,12 @@ public class SkillScriot : MonoBehaviour
         firstAidSprayBox.skillName = "RecoverySkill";
         firstAidSprayBox.skillOutTimeMax = 10;
         firstAidSprayBox.skillimaje = firstAidSprayBoxImeji;
+        firstAidSprayBox.my = this.gameObject;
 
         //   GunnerSkills[0] = new ATKSkill();
         // GunnerSkills[1] = new RecoverySkill();
 
-     //   GunnerSkills = ATKSkill();
+        //   GunnerSkills = ATKSkill();
     }
     public void Update()
 
