@@ -43,6 +43,13 @@ public class GunnaerHealth : MonoBehaviour
         PlayerMagicStone.text = "魔石" + MyMagicStone;
         GannerHpGaugeMove();
         GannerMagicStoneGaugeMove();
+        if (MyHp > myHpMax) {
+            MyHp = myHpMax;
+        }
+        if (MyMagicStone > MyMagicStoneMax)
+        {
+            MyMagicStone = MyMagicStoneMax;
+         }
     }
     void OnTriggerEnter(Collider MagicStone)
     {
@@ -58,7 +65,12 @@ public class GunnaerHealth : MonoBehaviour
     }
     //HPゲージ
     void GannerHpGaugeMove(){
-        GannerHpGaugeGreen.fillAmount = MyHp / myHpMax;
+
+       // GannerHpGaugeGreen.fillAmount = MyHp / myHpMax;
+
+        float GannerHpGaugeGreenSpeed = GannerHpGaugeGreen.fillAmount - MyHp / myHpMax;
+        GannerHpGaugeGreen.fillAmount = GannerHpGaugeGreen.fillAmount - GannerHpGaugeGreenSpeed * fillAmountSpeed * Time.deltaTime;
+
         if (GannerHpGaugeRed.fillAmount > GannerHpGaugeGreen.fillAmount)
         {
             GannerHpGaugeRed.fillAmount = GannerHpGaugeRed.fillAmount - (GannerHpGaugeRed.fillAmount - GannerHpGaugeGreen.fillAmount) * fillAmountSpeed * Time.deltaTime;
@@ -77,6 +89,13 @@ public class GunnaerHealth : MonoBehaviour
             GannerMagicStoneGauge.fillAmount = GannerMagicStoneGauge.fillAmount - GannerMagicStoneGaugeSpeed * fillAmountSpeed * Time.deltaTime;
         }
 
+    }
+    public void Isdie() {
+        if (MyHp < 0) {
+            Debug.Log("Gunnaer is die");
+            GameObject.Find("OverTime").GetComponent<OutTime>().GameEnd();
+        }
+     
     }
 }
 

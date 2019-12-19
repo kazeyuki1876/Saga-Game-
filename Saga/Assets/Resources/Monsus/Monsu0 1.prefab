@@ -128,11 +128,12 @@ MonoBehaviour:
   MonsterHP: 0
   Target: {fileID: 0}
   MySeppt: 10
-  MyDamage: 10
+  MyDamage: 20
   MonsterMagicStone: 0
   IsATK: 1
   MagicStone: {fileID: 741804544046519146, guid: 1de08452c7b3648458349ea1b97cdf94,
     type: 3}
+  rigidTime: 0
 --- !u!114 &6832611419400807761
 MonoBehaviour:
   m_ObjectHideFlags: 0

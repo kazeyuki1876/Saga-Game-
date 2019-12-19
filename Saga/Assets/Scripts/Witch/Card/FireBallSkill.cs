@@ -30,20 +30,20 @@ public class FireBallSkill : MonoBehaviour
         }
     }
    public void FireBallSkillChargeMove() {
-        fireBallAmount += Time.deltaTime*4.0f;
+        fireBallAmount += Time.deltaTime*6.0f;
         if (fireBallAmount > fireBallAmountMax) {
             fireBallAmount = fireBallAmountMax;
         }
-        fireBallScale = 1 + fireBallAmount / 4.0f;
-        fireBallSpeed = 10 + fireBallAmount * 5.0f;
-        fireBallDamage = 20 + fireBallAmount * 5.0f;
+        fireBallScale = 1 + fireBallAmount / 8.0f;
+      
         transform.localScale = new Vector3(fireBallScale, fireBallScale, fireBallScale);
     }
     public void FireBallMoveStart() {
-       
+        fireBallSpeed = 10 + fireBallAmount * 3.0f;
+        fireBallDamage = 5 + fireBallAmount * 2.0f;
         isFireBallMove = true;
-        Invoke("FireBallBommEnd", 0.5f +fireBallAmount/0.75f);
-        Debug.Log("A2");
+        Invoke("FireBallBommEnd", fireBallAmount * 0.2f);
+//Debug.Log("A2");
     }
 
 
@@ -65,15 +65,15 @@ public class FireBallSkill : MonoBehaviour
             col.gameObject.GetComponent<GunnaerHealth>().MyHp -= (int)fireBallDamage/2;
             col.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)fireBallDamage/2;
-          //  col.gameObject.GetComponent<GunnaerHealth>().IsDIe();
+            col.gameObject.GetComponent<GunnaerHealth>().Isdie();
             FireBallBommEnd();
         }
     }
    public void FireBallBommEnd() {
 
-        GameObject NewfireBallBoom = Instantiate(fireBallBoom, new Vector3(transform.position.x- fireBallAmount/2, transform.position.y+1, transform.position.z), this.transform.rotation);
+        GameObject NewfireBallBoom = Instantiate(fireBallBoom, new Vector3(transform.position.x- fireBallAmount/4, transform.position.y+1, transform.position.z), this.transform.rotation);
 
-        NewfireBallBoom.GetComponent<FireBallSkillBoom>().MyDamage= (int)fireBallAmount * 10;
+        NewfireBallBoom.GetComponent<FireBallSkillBoom>().MyDamage= (int)fireBallAmount * 3;
       
 
         NewfireBallBoom.GetComponent<FireBallSkillBoom>().BoomMoveTimeMax = fireBallAmount * 0.3f;

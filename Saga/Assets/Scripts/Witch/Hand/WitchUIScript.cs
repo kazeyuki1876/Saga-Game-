@@ -33,7 +33,7 @@ public class WitchUIScript : MonoBehaviour
     public int[] MonsterHP;
     public bool isWitchPlayerMove = true;
     int CardX = 1660;
-    int[] CardY = new int[5] { 939, 789, 639, 489, 339 };
+    int[] CardY = new int[5] { 939, 789, 639, 489, 338 };
     public int[] Monsters = new int[10] { 5, 4, 3, 2, 1, 3, 7, 8, 9, 10 };
     public int[] MonsterSpeeds = new int[10] { 10, 15, 20, 25, 30, 6, 7, 8, 9, 10 };
     public GameObject InAdvanceInstallation;
@@ -284,7 +284,7 @@ public class WitchUIScript : MonoBehaviour
         if (Input.GetKeyDown("joystick 2 button 7")&& newFireBallGameObject == null&& NewInAdvanceInstallation == null&& MyMagic>=2)
         {
             MyMagic -= 2;
-            newFireBallGameObject = Instantiate(fireBallGameObject, new Vector3(15, 5, -2), new Quaternion(0, 0, -90, 1));
+            newFireBallGameObject = Instantiate(fireBallGameObject, new Vector3(15, 5, -2), new Quaternion(0, 0, 0, 1));
         }
         if (Input.GetKey("joystick 2 button 7") && newFireBallGameObject != null && NewInAdvanceInstallation == null)
         {

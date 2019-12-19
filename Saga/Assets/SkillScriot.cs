@@ -20,7 +20,7 @@ public class SkillScriot : MonoBehaviour
         //このスキルの名前
         public string skillName;
         //クールタイム
-        private float skillOutTime = 0;
+        public float skillOutTime = 0;
         //クールタイムMAX 
         public float skillOutTimeMax = 10;
         //このスキルは使えるかmove
@@ -81,17 +81,31 @@ public class SkillScriot : MonoBehaviour
     public class RecoverySkill : SkillStart
     {
         //回復
-       
+
+
+        public void SkillMoveStart()
+        {
+            //もし　使える
+            if (isSkillStart && my.GetComponent<GunnaerHealth>().MyHp < my.GetComponent<GunnaerHealth>().myHpMax)
+            {
+                isSkillStart = false;
+                //スキルを放出　
+                Debug.Log("スキル" + this.skillName + "を使+いました");
+                // タイムに入る
+                skillOutTime = skillOutTimeMax;
+                Debug.Log("スキルのクールは" + skillOutTimeMax + "クールの処理に入る");
+            }
+        }
         public void SkillMove()
         {
 
             if (isSkillStart)
             {
-                
+                Debug.Log(my.GetComponent<GunnaerHealth>().MyHp +" and"+ my.GetComponent<GunnaerHealth>().myHpMax);
                
                 if (my.GetComponent<GunnaerHealth>() != null)
                 {
-                    my.GetComponent<GunnaerHealth>().MyHp += 50;
+                    my.GetComponent<GunnaerHealth>().MyHp += my.GetComponent<GunnaerHealth>().myHpMax*0.6f;
                 }
 
             }
@@ -119,7 +133,8 @@ public class SkillScriot : MonoBehaviour
         rifleGrenadeImeje,
         firstAidSprayBoxImeji,
         rocketGameObject;
-        
+    [SerializeField]
+    private GameObject[] ImejeBottom;
   
     public void Start()
     {
@@ -127,7 +142,7 @@ public class SkillScriot : MonoBehaviour
 
         //    rifleGrenade.skillimaje = rifleGrenadeImeje;
         rifleGrenade.skillName = "ATKrifleGrenade";
-        rifleGrenade.skillOutTimeMax = 10;
+        rifleGrenade.skillOutTimeMax = 5;
         rifleGrenade.skillimaje = rifleGrenadeImeje;
         rifleGrenade.my = this.gameObject;
         rifleGrenade.grenade = rocketGameObject;
@@ -144,7 +159,7 @@ public class SkillScriot : MonoBehaviour
     public void Update()
 
     {
-
+        
         SkillCoolTimeMove();
     }
     private void SkillCoolTimeMove() {
@@ -170,9 +185,13 @@ public class SkillScriot : MonoBehaviour
  
     //スキル変わる
     public void SkillChangeMove() {
+        ImejeBottom[skillNum].GetComponent<Image>().color = new Vector4(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 0.0f / 255.0f);
         skillNum++;
+     
         skillNum = skillNum % skillChangeNumMax;
-        Debug.Log(skillNum);
+        ImejeBottom[skillNum].GetComponent<Image>().color = new Vector4(255.0f / 255.0f,0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
+        //Debug.Log(skillNum);
+
     }
 
 }

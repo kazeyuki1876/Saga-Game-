@@ -7,7 +7,7 @@ public class FireBallSkillBoom : MonoBehaviour
     public float MyLifespan = 2;
     //ダメージ
     public float MyDamage = 20;
-    
+
     public float BoomMoveTimeMax = 2.0f;
     public float BoomMoveTime = 0;
 
@@ -19,7 +19,7 @@ public class FireBallSkillBoom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
+        transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -62,10 +62,11 @@ public class FireBallSkillBoom : MonoBehaviour
         }
         else if (col.gameObject.tag == "Player" && isBoomMoveTiming)
         {
-            col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage / 2;
+
+            col.gameObject.GetComponent<GunnaerHealth>().MyHp -= (int)MyDamage / 2;
             col.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage / 2;
-            col.gameObject.GetComponent<MachineBatteryHealth>().IsDIe();
+            col.gameObject.GetComponent<GunnaerHealth>().Isdie();
 
         }
     }

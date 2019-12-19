@@ -21,7 +21,11 @@ public class CastleScript : MonoBehaviour
         CastleHP.text = "CastleHP" + MyHp;
     }
     public void IsOVER() {
-        if (MyHp <= 0) { SceneManager.LoadScene("OVER"); }
-       
+        if (MyHp <= 0) {
+            GameObject.Find("OverTime").GetComponent<OutTime>().GameEnd();
+        }
+     
+
+
     }
 }

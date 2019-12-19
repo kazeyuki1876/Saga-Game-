@@ -86,11 +86,16 @@ public class CardScript : MonoBehaviour
                 transform.position = new Vector3(MyX, MyY,0);
             }
             Speed = (MyY - transform.position.y) / SpeedTime;
-            if (transform.position.y < MyY)
+            if ((int)transform.position.y < MyY&& Speed<10000.0f)
             {
 
-                transform.position = new Vector3(MyX, transform.position.y + Speed * Time.deltaTime,0);
+                transform.position = new Vector3(MyX, transform.position.y + Speed * Time.deltaTime, 0);
 
+            }
+            else {
+
+                transform.position = new Vector3(MyX, MyY, 0);
+                SpeedTime = 0.0f;
             }
         }
        
