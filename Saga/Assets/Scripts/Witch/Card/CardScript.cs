@@ -24,8 +24,8 @@ public class CardScript : MonoBehaviour
     public float MonsterStartX;
     public float MonsterStartY;
     public float MonsterStartZ;
-    float []PosX= new float[10] {0,13, 13, 26, 26, 26, 39, 39, 39, 39 };
-    float[] PosZ = new float[10]{ 0, -7,7,-14,0,14,-21,-7,7,21};
+    float []PosX= new float[10] {0,3, 3, 6, 6, 6, 9, 9, 9, 9 };
+    float[] PosZ = new float[10]{ 0, -2,2,-4,0,4,-6,-2,2,6};
     public int Moves;
     public int MonsterSpeed;
     public int MonsterMagicStone;
