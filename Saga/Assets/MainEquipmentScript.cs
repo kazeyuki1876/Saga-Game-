@@ -21,6 +21,14 @@ public class MainEquipmentScript : MonoBehaviour
        mainEquipmentText;
     [SerializeField]
     private float Reloadtime;
+    //-----------------機械
+
+    [SerializeField]
+    private Sprite
+        [] mainBatterySprite = new Sprite[3];
+    [SerializeField]
+    private GameObject mainBatteryImaje;
+
 
     private void Update()
     {
@@ -31,6 +39,9 @@ public class MainEquipmentScript : MonoBehaviour
     }
     private void RemainingBullet()
     {
+        if (mainBatteryImaje.GetComponent<Image>().sprite != mainBatterySprite[GetComponent<GunnerBatteryInstallationMove>().machineBatteryNum]) {
+            mainBatteryImaje.GetComponent<Image>().sprite = mainBatterySprite[GetComponent<GunnerBatteryInstallationMove>().machineBatteryNum];
+        }
         //使てる武器
         if (mainEquipmentImeji[0].GetComponent<Image>().sprite != mainEquipmentImejiSprite[GetComponent<GunnerShootingMoveController>().gunNumber])
         {

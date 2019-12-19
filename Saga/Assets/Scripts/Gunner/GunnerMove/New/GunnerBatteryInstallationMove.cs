@@ -17,9 +17,12 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         machineBatteryX = 0,
         machineBatteryZ = 0,
     machineBatteryXplusplus = 3,
-    machineBatteryNum = 0,
+   
         machineBatteryNumMax = 2;
-    public float y;
+    public float
+        y;
+    public int
+         machineBatteryNum = 0;
 
 
     private void Update()

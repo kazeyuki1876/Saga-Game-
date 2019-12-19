@@ -197,6 +197,18 @@ public class GunnerMoveController : MonoBehaviour
 
 
 
+        //スキル変更　とスキル使用
+        if (Input.GetKey("joystick 1 button 4") && Input.GetKeyDown("joystick 1 button 2"))
+        {
+            this.GetComponent<SkillScriot>().SkillChangeMove();
+        } //リロード　□
+        else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick 1 button 2"))
+        {
+            //   Debug.Log("V");
+            this.GetComponent<SkillScriot>().SkillMoveStart();
+        }
+       
+
         if (Input.GetKeyDown(KeyCode.V) )
         {
            // Debug.Log("V");

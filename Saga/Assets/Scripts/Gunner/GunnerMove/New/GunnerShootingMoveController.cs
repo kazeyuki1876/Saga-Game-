@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GunnerShootingMoveController : MonoBehaviour
 {
-    public GameObject data;   //データの
+    public GameObject
+        gunPos,
+        data;   //データの
     [SerializeField]
     private GameObject
-      
-        bullet,//弾
-        gunPos;
+                bullet;//弾
     [SerializeField]
     private bool
        
