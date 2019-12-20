@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43720153, g: 0.48494345, b: 0.5652123, a: 1}
+  m_IndirectSpecularColor: {r: 0.4372013, g: 0.48494285, b: 0.5652116, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -186,6 +186,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16764516}
   m_CullTransparentMesh: 0
+--- !u!1001 &17239606
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1459283148}
+    m_Modifications:
+    - target: {fileID: 100004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_Name
+      value: Gunner
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5bd4d09cc293954a948216dd8d8b5f8, type: 3}
 --- !u!1 &27360855
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +318,7 @@ MonoBehaviour:
   - {fileID: 7594253587826341573, guid: 3bcf0c554da875d46a66c7f89877c3b2, type: 3}
   - {fileID: 2416628523430384961, guid: 09ec672da3ba7a146b1cf98111054d2f, type: 3}
   InstallationBatteryNumer: 000000000000000000000000
-  BatteryHP: 2c01000090010000e8030000
+  BatteryHP: 9600000090010000f4010000
   BatterybulletLimit: 000000000000000000000000
   BatterybulletCost: 050000000a00000002000000
   batteryBulletSeppts:
@@ -509,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826dd14d76ebdae429e5a1d65cac6fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyHp: 1000
+  MyHp: 3000
   CastleHP: {fileID: 1145479573}
 --- !u!54 &86417843
 Rigidbody:
@@ -2922,6 +2991,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.352
       objectReference: {fileID: 0}
+    - target: {fileID: 1255934117955546113, guid: 80aaa4a965038df4baf870128609ae17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1255934117955546293, guid: 80aaa4a965038df4baf870128609ae17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1255934117955546615, guid: 80aaa4a965038df4baf870128609ae17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80aaa4a965038df4baf870128609ae17, type: 3}
 --- !u!1 &1459283144 stripped
@@ -3212,7 +3296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1463253378
 Transform:
   m_ObjectHideFlags: 0
@@ -3853,8 +3937,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   MyMagic: 0
-  MyMagicMAX: 20
-  MagicRecoverySpeed: 2
+  MyMagicMAX: 40
+  MagicRecoverySpeed: 2.5
   MyMagicUI: {fileID: 1684211968}
   HandNumSheet: 0
   isHandMax: 0
@@ -3886,7 +3970,7 @@ MonoBehaviour:
   - 
   - 
   MonsterMagicStone: 010000000200000003000000040000000800000000000000
-  MonsterHP: 64000000960000002c010000f4010000881300000000000000000000000000000000000000000000
+  MonsterHP: 6400000096000000c80000002c010000e80300000000000000000000000000000000000000000000
   isWitchPlayerMove: 1
   Monsters: 0500000004000000030000000200000001000000030000000700000008000000090000000a000000
   MonsterSpeeds: 01000000030000000200000005000000040000000000000000000000000000000000000000000000

@@ -82,8 +82,8 @@ public class SkillScriot : MonoBehaviour
     {
         //回復
 
-
-        public void SkillMoveStart()
+/*
+      new public void SkillMoveStart()
         {
             //もし　使える
             if (isSkillStart && my.GetComponent<GunnaerHealth>().MyHp < my.GetComponent<GunnaerHealth>().myHpMax)
@@ -95,7 +95,7 @@ public class SkillScriot : MonoBehaviour
                 skillOutTime = skillOutTimeMax;
                 Debug.Log("スキルのクールは" + skillOutTimeMax + "クールの処理に入る");
             }
-        }
+        }*/
         public void SkillMove()
         {
 

@@ -82,7 +82,7 @@ public class MonsterScript : MonoBehaviour
             col.gameObject.GetComponent<GunnaerHealth>().MyHp = col.gameObject.GetComponent<GunnaerHealth>().MyHp - MyDamage;
             col.transform.root.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.transform.root.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-
+            col.gameObject.GetComponent<GunnaerHealth>().Isdie();
 
 
             Invoke("ATKok", 1.0f);
