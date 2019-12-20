@@ -113,9 +113,39 @@ public class WitchUIScript : MonoBehaviour
 
     void CardInstantiate()
     {//Instantiate
-        int CardID = Random.Range(0, 6);
+        int CardID = 0;
+        int A = Random.Range(0, 20);
+        if (A < 2) {
+            CardID = 5;
+        }
+        else if (A < 4)
+        {
+            CardID = 4;
+        }
+        else if (A < 8)
+        {
+            CardID = 3;
+        }
+        else if (A < 12)
+        {
+            CardID = 2;
+        }
+        else if (A < 16)
+        {
+            CardID = 1;
+        }
+        else if (A < 20)
+        {
+            CardID = 0;
+        }
+    
+       
 
-        Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX, 0, 0.0f), transform.rotation);//Start Pos
+
+
+
+
+            Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX, 0, 0.0f), transform.rotation);//Start Pos
         Hand[HandNumSheet].GetComponent<CardScript>().MyX = CardX;//Card PosX
         Hand[HandNumSheet].GetComponent<CardScript>().MyY = CardY[HandNumSheet];//PosY
         Hand[HandNumSheet].transform.SetParent(CardParent.transform);//Handの子ともGameObjectであり
