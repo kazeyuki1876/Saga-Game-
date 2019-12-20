@@ -25,6 +25,12 @@ public class OutTime : MonoBehaviour
         if (GameTime <= 0) {
             GameEnd();
         }
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
   public  void GameEnd() {
         if (GameTime >= 0) {
