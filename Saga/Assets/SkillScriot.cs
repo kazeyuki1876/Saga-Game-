@@ -116,14 +116,11 @@ public class SkillScriot : MonoBehaviour
         }
 
     }
-    class Skills
-    {//一つの変数でスキルを使う　難しいな　動く変数化のＣＬＡＳＳ命が欲しい
 
-
-    }
-    Skills[] GunnerSkills = new Skills[3];
+    static List<SkillStart> GunnerSkill = new List<SkillStart>();
 
     //  new [3]class{ SkillStart,SkillStart,SkillStart };
+
 
 
     public ATKSkill rifleGrenade = new ATKSkill();
@@ -138,6 +135,9 @@ public class SkillScriot : MonoBehaviour
   
     public void Start()
     {
+
+        GunnerSkill.Add((SkillStart)(new ATKSkill()));
+
 
 
         //    rifleGrenade.skillimaje = rifleGrenadeImeje;
@@ -193,6 +193,10 @@ public class SkillScriot : MonoBehaviour
         //Debug.Log(skillNum);
 
     }
+
+
+
+    
 
 }
 

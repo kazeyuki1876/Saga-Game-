@@ -27,6 +27,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
 
     private void Update()
     {
+        instantiateBatteryInstallationPosMove();
         if (instantiateInstallationBattery != null)
         {
             instantiateBatteryInstallationMove();
@@ -60,8 +61,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
           
         }
     }
-    private void instantiateBatteryInstallationMove()
-    {
+    private void instantiateBatteryInstallationPosMove() {
         // Debug.Log("instantiateBatteryInstallationMove");
         //---------------kikai
 
@@ -71,14 +71,14 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         }
         else
         {
-            for (int MachineX = (int)transform.position.x; MachineX % 3 != 0; MachineX++)
+            for (int MachineX = (int)transform.position.x; MachineX % 2 != 0; MachineX++)
             {
                 //  Debug.Log(MachineX);
                 if (MachineX % 3 == 0)
                 {
                     machineBatteryX = MachineX;
                 }
-             
+
             }
         }
         if ((int)transform.position.z % 3 == 0)
@@ -87,7 +87,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         }
         else
         {
-            for (int MachineZ = (int)transform.position.z; MachineZ % 3 != 0; MachineZ++)
+            for (int MachineZ = (int)transform.position.z; MachineZ % 2 != 0; MachineZ++)
             {
                 if (MachineZ % 3 == 0)
                 {
@@ -97,6 +97,10 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
                 }
             }
         }
+    }
+    private void instantiateBatteryInstallationMove()
+    {
+       
         Debug.Log("X"+machineBatteryX + "Z"+ machineBatteryZ);
         instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, 5, (float)machineBatteryZ);
 
