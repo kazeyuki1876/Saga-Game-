@@ -125,7 +125,7 @@ public class GunnerMoveController : MonoBehaviour
             {
                 Vector3 newDir = new Vector3(x, 0, y).normalized;
                 transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
-                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
+                //gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
             }
 
         }

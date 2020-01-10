@@ -17,7 +17,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         machineBatteryX = 0,
         machineBatteryZ = 0,
     machineBatteryXplusplus = 3,
-   
+   machineBatteryMaxX = -3,
         machineBatteryNumMax = 2;
     public float
         y;
@@ -58,13 +58,19 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         {
             MachineBatteryCancel();
             BatterybulletCostLack(transform);
-          
+
         }
+
+
     }
     private void instantiateBatteryInstallationPosMove() {
         // Debug.Log("instantiateBatteryInstallationMove");
         //---------------kikai
-
+        if (machineBatteryX > machineBatteryMaxX&& instantiateInstallationBattery != null)
+        {
+            MachineBatteryCancel();
+            BatterybulletPosLack(transform);
+        }
         if ((int)transform.position.x % 3 == 0)
         {
             machineBatteryX = (int)transform.position.x;
@@ -97,6 +103,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
                 }
             }
         }
+
     }
     private void instantiateBatteryInstallationMove()
     {
@@ -120,10 +127,20 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     public void BatterybulletCostLack(Transform transform)
     {
         //  void OnTriggerEnter(Collider col)
-        Debug.Log("魔石足りないよ");
+        Debug.Log("魔石不足");
 
     //  gameObject = this.gameObject;
-        gameObject.GetComponent<TakeDamage>().comment = "魔石足りないよ";
+        gameObject.GetComponent<TakeDamage>().comment = "魔石不足";
      gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
     }
+    public void BatterybulletPosLack(Transform transform)
+    {
+        //  void OnTriggerEnter(Collider col)
+        Debug.Log("設置不可のエリアです");
+
+        //  gameObject = this.gameObject;
+        gameObject.GetComponent<TakeDamage>().comment = "設置不可のエリアです";
+        gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
+    }
+    //machineBatteryMaxX
 }
