@@ -19,11 +19,20 @@ public class MonsterScript : MonoBehaviour
     bool isMove = true;
     TakeDamage takeDamage;//
     public float rigidTime=0;
+
+
+    //-----
+    
+    float moveX = 0f;
+    float moveZ = 0f;
+    Rigidbody rb;
+
+    //---
     void Start()
     {// Target = GameObject.Find("Player").transform.LookAt(Target);
         Target = StartTarget;
 
-
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -42,17 +51,15 @@ public class MonsterScript : MonoBehaviour
             {
                 transform.LookAt(Target);//目標をみる
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                Debug.Log(transform.eulerAngles);
                 transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
-                                                                                            // transform.rotation(0，0，0);//見ている方向に進む
+            //     transform.rotation(0，0，0);//見ている方向に進む
 
             }
         }
         
-
-        /*  if (transform.position.y > 4.7f)
-          {
-              transform.position = new Vector3(transform.position.x, 4.6f, transform.position.z);
-          }*/
+          transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+      
     }
     public void Isdie()
     {

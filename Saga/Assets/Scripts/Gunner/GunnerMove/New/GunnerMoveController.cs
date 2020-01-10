@@ -7,7 +7,11 @@ public class GunnerMoveController : MonoBehaviour
     /// <summary>
     /// このスクリプトはキー入力だけと動きだけ
     /// </summary>
-    [SerializeField] private float seppt = 5;
+    [SerializeField] private float speed = 5;
+    float moveX = 0f;
+    float moveZ = 0f;
+    Rigidbody rb;
+
     //周り速度
     [SerializeField] private float aroundSeppt = 5;
     [SerializeField]
@@ -42,31 +46,50 @@ public class GunnerMoveController : MonoBehaviour
         //return GameObject.Find(nearObjName);
         return targetObj;
     }//-----------//----------狙えサポート
+
+
+    private void Start()
+    {
+        // 力を加える
+        rb = GetComponent<Rigidbody>();
+
+
+    }
+   
     private void Update()
     {
         GunnerMOVE();//キー入力  //  FoundationMove();
     }
+    void FixedUpdate()
+    {
+        rb.velocity = new Vector3(moveX, 0, moveZ);
+    }
     void FoundationMove()
-    {//移動HorizontaPlayer_1
+    {
+     
+        //移動HorizontaPlayer_1
+      
+        //ちゃんと押しているかどうか
         float x = Input.GetAxis("HorizontaPlayer_1");
-        if (x < 0.5 && x > -0.5) {
+        if (x < 0.5 && x > -0.5)
+        {
             x = 0;
         }
         float y = Input.GetAxis("VerticalPlayer_1");
-         if (y < 0.5 && y > -0.5)
+        if (y < 0.5 && y > -0.5)
         {
             y = 0;
         }
-        transform.position += new Vector3(x * seppt, 0, y * -seppt);
-        if (Input.GetKeyDown("joystick 1 button 10"))
-        {
-            //Debug.Log(" joystick button 10" );
-            gameObject.transform.position += Vector3.up * seppt;
-        }
+            moveX = x * speed;
+            moveZ = y * -speed;
+         Vector3 direction = new Vector3(moveX, 0, moveZ);
+  
+    
+ 
         //---顔むき　L2押し
         if (Input.GetKey("joystick 1 button 6"))
         {
-            
+
             float KeyVertical = Input.GetAxis("Vertical2Player_1");
 
             float KeyHorizontal = Input.GetAxis("Horizontal2Player_1");
@@ -75,9 +98,9 @@ public class GunnerMoveController : MonoBehaviour
             if (Input.GetKeyDown("joystick 1 button 11"))
             {
                 Debug.Log("joystick");
-                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
             }
-        }  //---顔むき　isShootingSupport 射撃サポート
+        }//---顔むき　isShootingSupport 射撃サポート
         else if (isShootingSupport)
         {
             //isShootingSupport 射撃サポート
@@ -102,7 +125,7 @@ public class GunnerMoveController : MonoBehaviour
             {
                 Vector3 newDir = new Vector3(x, 0, y).normalized;
                 transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
-                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+                gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
             }
 
         }
@@ -110,8 +133,11 @@ public class GunnerMoveController : MonoBehaviour
         {
             Vector3 newDir = new Vector3(x, 0, -y).normalized;
             transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
-            gameObject.transform.Translate(Vector3.forward * Time.deltaTime * seppt, Space.Self);
+          //  gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
         }
+        // 
+        
+        
     }
     /*   private void ShootingSupport()
        {//isShootingSupport 射撃サポート
@@ -146,8 +172,8 @@ public class GunnerMoveController : MonoBehaviour
                //transform.Translate(Vector3.forward * 0.01f);
 
 
-       }
-     */
+       }*/
+
     private void GunnerMOVE()
     {
         FoundationMove();
@@ -155,16 +181,16 @@ public class GunnerMoveController : MonoBehaviour
         //射撃R２
         if (Input.GetKey(KeyCode.Z) || Input.GetKey("joystick 1 button 7"))//
         {
-           // Debug.Log("  if (Input.GetKey(KeyCode.Z))");
+            // Debug.Log("  if (Input.GetKey(KeyCode.Z))");
             this.GetComponent<GunnerShootingMoveController>().GunsMoveStart();
         }
         //建物の切り替え
         if (Input.GetKey("joystick 1 button 4") && Input.GetKeyDown("joystick 1 button 3"))
         {
-               this.GetComponent<GunnerBatteryInstallationMove>().MachineBatteryNumChange();
+            this.GetComponent<GunnerBatteryInstallationMove>().MachineBatteryNumChange();
         }
         //機械の設置　三角
-        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown("joystick 1 button 3"))  
+        else if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown("joystick 1 button 3"))
         {
             this.GetComponent<GunnerBatteryInstallationMove>().instantiateBatteryInstallationMoveStart();
         }
@@ -186,12 +212,13 @@ public class GunnerMoveController : MonoBehaviour
             }
         }
         //武器の切り替え R1+□（■しかく）
-        if (Input.GetKey("joystick 1 button 4") && Input.GetKeyDown("joystick 1 button 0")) {
+        if (Input.GetKey("joystick 1 button 4") && Input.GetKeyDown("joystick 1 button 0"))
+        {
             this.GetComponent<GunnerShootingMoveController>().GunsChange();
         } //リロード　□
         else if (Input.GetKeyDown(KeyCode.B) || Input.GetKeyDown("joystick 1 button 0"))
         {
-         //   Debug.Log("V");
+            //   Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().ReloadMoveStart();
         }
 
@@ -207,17 +234,17 @@ public class GunnerMoveController : MonoBehaviour
             //   Debug.Log("V");
             this.GetComponent<SkillScriot>().SkillMoveStart();
         }
-       
 
-        if (Input.GetKeyDown(KeyCode.V) )
+
+        if (Input.GetKeyDown(KeyCode.V))
         {
-           // Debug.Log("V");
+            // Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().GunsChange();
         }
         //スキル切り替え
-     
+
         //スキル使い
-       
+
         Spot();
 
 
@@ -244,6 +271,7 @@ public class GunnerMoveController : MonoBehaviour
     }
 
     /*
+
 
     //--転移
             float x = Input.GetAxis("Horizontal");

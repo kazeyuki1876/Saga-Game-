@@ -248,7 +248,9 @@ public class WitchUIScript : MonoBehaviour
             {
                 NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z - InAdvanceInstallationSpeed * Time.deltaTime);
             }*/
-            if (Input.GetKeyDown("joystick 2 button 2") && !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster) {//召喚する居場所に他のモンスターがないこと
+            if (Input.GetKeyDown("joystick 2 button 2")
+               // && !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster
+                ) {//召喚する居場所に他のモンスターがないこと
                 MyMagic = MyMagic - Hand[SelecImeji].GetComponent<CardScript>().MyCost;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartX = NewInAdvanceInstallation.transform.position.x;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartY = NewInAdvanceInstallation.transform.position.y;
