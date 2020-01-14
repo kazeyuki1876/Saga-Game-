@@ -13,6 +13,7 @@ public class MachineBatteryScript : MonoBehaviour
     public GameObject Bullet;
     public GameObject Bullets;
     public bool IsShooting = true;
+    public float repositionTime1, repositionTime2;
     //--------------------
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間
@@ -105,8 +106,8 @@ public class MachineBatteryScript : MonoBehaviour
             isMOve = false;
             A = 0;
             GunsMOVE();
-            Invoke("IsMoveON", 0.5f);
-            Invoke("ShootingON",1.1f);
+            Invoke("IsMoveON", repositionTime1);
+            Invoke("ShootingON", repositionTime2);
 
         }
 

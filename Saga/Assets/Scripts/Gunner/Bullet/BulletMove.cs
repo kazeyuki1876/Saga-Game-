@@ -64,22 +64,31 @@ public class BulletMove : MonoBehaviour
        // Debug.Log(other.gameObject.name);
         if (col.gameObject.tag == "Monster")
         {
-
+            /*
             //動き止まる
             if (col.GetComponent<MonsterScript>().rigidTime< RigidTime) {
                 col.GetComponent<MonsterScript>().rigidTime = RigidTime;
 
             }
             //撃退
-           
             //RigidTime
             col.GetComponent<MonsterScript>().MyHP= col.GetComponent<MonsterScript>().MyHP - MyDamage; //着弾されたもののHP判定
+            */
 
+
+            if (col.GetComponent<newmon>().rigidTime < RigidTime)
+            {
+                col.GetComponent<newmon>().rigidTime = RigidTime;
+
+            }
+            //撃退
+            //RigidTime
+            col.GetComponent<newmon>().myHp = col.GetComponent<newmon>().myHp - MyDamage; //着弾されたもののHP判定
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
          
            
-            col.GetComponent<MonsterScript>().Isdie();//
+            col.GetComponent<newmon>().Isdie();//
             Repulsion NewRepulsion = new Repulsion();
             NewRepulsion.targetGameObject= col.gameObject;//撃退されるGameObject
             NewRepulsion.formGameObject=this.gameObject;//撃退するGameObject

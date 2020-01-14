@@ -5,7 +5,6 @@ using UnityEngine;
 public class MonsterScript : MonoBehaviour
 {
     public float MyHP;//HP
-                      // public GameObject Player;
     public Transform StartTarget;
     public int MonsterHP = 0;
     public Transform Target;//モンスターの目標
@@ -114,7 +113,7 @@ public class MonsterScript : MonoBehaviour
             col.gameObject.GetComponent<CastleScript>().IsOVER();
 
             Invoke("ATKok", 1.0f);
-        } else if (col.gameObject.tag == "Machine" && IsATK)
+        }else if (col.gameObject.tag == "Machine" && IsATK)
         {
             IsATK = false;
             isMove = false;
