@@ -23,7 +23,7 @@ public class IsGameObject : MonoBehaviour
     }
     private void OnTriggerStay(Collider collisionInfo) //振られてる
     {
-        if (collisionInfo.gameObject.tag == "Monster" || collisionInfo.gameObject.tag == "Machine")
+        if ( collisionInfo.gameObject.tag == "Machine")
         {
             GetComponent<Renderer>().material.color = Color.red;
             Debug.Log(collisionInfo.name);
@@ -32,7 +32,7 @@ public class IsGameObject : MonoBehaviour
     }
     private void OnTriggerExit(Collider collisionInfo) //離れる
     {
-        if (collisionInfo.gameObject.tag == "Monster" || collisionInfo.gameObject.tag == "Machine")
+        if ( collisionInfo.gameObject.tag == "Machine")
         {
             isGoj = true;
             GetComponent<Renderer>().material.color = Color.cyan;

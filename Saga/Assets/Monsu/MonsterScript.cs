@@ -36,6 +36,14 @@ public class MonsterScript : MonoBehaviour
     }
 
     // Update is called once per frame
+    void FixedUpdate()
+    {
+        //以下の記述では一定速度で前に進む
+        rb.MovePosition(transform.position + transform.forward * Time.deltaTime*MySeppt);
+
+        //以下の記述ではteleportPointにワープ
+        //rb.MovePosition(teleportPoint);
+    }
     void Update()
     {
         if (rigidTime > 0)
@@ -51,9 +59,10 @@ public class MonsterScript : MonoBehaviour
             {
                 transform.LookAt(Target);//目標をみる
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-                Debug.Log(transform.eulerAngles);
-                transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
-            //     transform.rotation(0，0，0);//見ている方向に進む
+              //  Debug.Log(transform.eulerAngles);
+                // transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//見ている方向に進む
+                //GetComponent<Rigidbody>().velocity = transform. * MySeppt;
+                //     transform.rotation(0，0，0);//見ている方向に進む
 
             }
         }

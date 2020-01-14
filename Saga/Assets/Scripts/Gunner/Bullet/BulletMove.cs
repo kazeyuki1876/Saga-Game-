@@ -6,6 +6,30 @@ using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
+   public class Repulsion
+    {
+        public GameObject targetGameObject;//撃退されるGameObject
+        public GameObject formGameObject;//撃退するGameObject
+        public float repulsionSpeed;//撃退速度
+        public float repulsionMagnification=1.0f;//撃退倍率
+       public void RepulsionMove() {
+            Transform Target = targetGameObject.transform;//当たったもののPOｓ
+            Rigidbody rb = targetGameObject.GetComponent<Rigidbody>(); ;//当たったもののRigidbody
+            //  GetComponent<Rigidbody>().velocity = transform.up * MySeppt;
+            //transform.LookAt(Target);//撃退方向
+            formGameObject.transform.eulerAngles = new Vector3(0, formGameObject.transform.eulerAngles.y, 0);//水平方向に撃退する
+            rb.AddForce(formGameObject.transform.position + formGameObject.transform.forward * repulsionMagnification * repulsionSpeed);//弾の方向に撃退する
+        }
+        /*
+             targetGameObject;//撃退されるGameObject
+             formGameObject;//撃退するGameObject
+             repulsionSpeed;//撃退速度
+             repulsionMagnification=10.0f;//撃退倍率
+         */
+    }
+
+    
+   
     //この弾の速度
     public float MySeppt = 10.0f;
     //存在時間lifespan
@@ -41,12 +65,14 @@ public class BulletMove : MonoBehaviour
         if (col.gameObject.tag == "Monster")
         {
 
-
+            //動き止まる
             if (col.GetComponent<MonsterScript>().rigidTime< RigidTime) {
                 col.GetComponent<MonsterScript>().rigidTime = RigidTime;
 
             }
-                //RigidTime
+            //撃退
+           
+            //RigidTime
             col.GetComponent<MonsterScript>().MyHP= col.GetComponent<MonsterScript>().MyHP - MyDamage; //着弾されたもののHP判定
 
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
@@ -54,7 +80,22 @@ public class BulletMove : MonoBehaviour
          
            
             col.GetComponent<MonsterScript>().Isdie();//
-             Destroy(this.gameObject);  // 銃弾を崩壊
+            Repulsion NewRepulsion = new Repulsion();
+            NewRepulsion.targetGameObject= col.gameObject;//撃退されるGameObject
+            NewRepulsion.formGameObject=this.gameObject;//撃退するGameObject
+            NewRepulsion.repulsionSpeed =MySeppt;//撃退速度
+            NewRepulsion.repulsionMagnification = 2.0f;//撃退倍率
+            NewRepulsion.RepulsionMove();
+
+            /*
+            Transform Target = col.gameObject.transform;//当たったもののPOｓ
+            Rigidbody rb = col.GetComponent<Rigidbody>(); ;//当たったもののRigidbody
+            //  GetComponent<Rigidbody>().velocity = transform.up * MySeppt;
+            //transform.LookAt(Target);//撃退方向
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);//水平方向に撃退する
+            rb.AddForce(transform.position + transform.forward * 10*MySeppt);//弾の方向に撃退する
+            */
+            Destroy(this.gameObject);  // 銃弾を崩壊
 
             // takeDamage.Damage(other);
 

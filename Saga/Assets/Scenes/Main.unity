@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4372013, g: 0.48494285, b: 0.5652116, a: 1}
+  m_IndirectSpecularColor: {r: 0.43720153, g: 0.48494345, b: 0.5652123, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -269,6 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 27360857}
   - component: {fileID: 27360856}
+  - component: {fileID: 27360858}
   m_Layer: 0
   m_Name: DataController
   m_TagString: Untagged
@@ -354,6 +355,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &27360858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 27360855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5eb4921472145649853beeaa1b2fea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetGameObject: {fileID: 0}
+  formGameObject: {fileID: 0}
+  repulsionSpeed: 0
+  repulsionMagnification: 1
 --- !u!1 &51073808
 GameObject:
   m_ObjectHideFlags: 0
@@ -4842,7 +4859,7 @@ PrefabInstance:
     - target: {fileID: 3777526251057682967, guid: 174d13f9009e2474e9a249970f20ae94,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1328926
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3777526251057682967, guid: 174d13f9009e2474e9a249970f20ae94,
         type: 3}
@@ -4852,7 +4869,7 @@ PrefabInstance:
     - target: {fileID: 3777526251057682967, guid: 174d13f9009e2474e9a249970f20ae94,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.626705
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3777526251057682967, guid: 174d13f9009e2474e9a249970f20ae94,
         type: 3}
@@ -4904,6 +4921,11 @@ PrefabInstance:
       propertyPath: MyHP
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 8900353768886562197, guid: 174d13f9009e2474e9a249970f20ae94,
+        type: 3}
+      propertyPath: StartTarget
+      value: 
+      objectReference: {fileID: 1459283148}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 174d13f9009e2474e9a249970f20ae94, type: 3}
 --- !u!1 &1883842646

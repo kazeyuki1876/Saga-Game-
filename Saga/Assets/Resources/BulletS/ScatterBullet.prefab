@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7202131859222610775}
   - component: {fileID: 1541917731364378142}
   m_Layer: 0
-  m_Name: Bullet2
+  m_Name: ScatterBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3045462806711292591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 6.76, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,6 +111,7 @@ MonoBehaviour:
   MySeppt: 10
   MyLifespan: 1
   MyDamage: 1
+  RigidTime: 0.2
 --- !u!65 &1541917731364378142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -122,5 +123,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

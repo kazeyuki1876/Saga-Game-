@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class GunnerBatteryInstallationMove : MonoBehaviour
 {
+
+    //設置できる数
+    //クルータイム
+    //高い場から落ちる
+    //ぶつかるものにダメージ
+    //撃退
     TakeDamage takeDamage;//
     [SerializeField]
     private GameObject
