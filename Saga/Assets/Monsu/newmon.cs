@@ -21,16 +21,15 @@ public class newmon : MonoBehaviour
     //スタンタイム
     public float rigidTime = 0;
     //動けるか
-    bool isMove = true;
+    private bool isMove = true;
     //攻撃できるか
-    public bool isATK = true;
+    private bool isATK = true;
     //モンスターのRigidbody
     Rigidbody rb;
     //ダメージUI
     TakeDamage takeDamage;//
     void Start() {
         target = startTarget;
-
         rb = GetComponent<Rigidbody>();
     }
     //以下の記述では一定速度と顔向き方向に進む
