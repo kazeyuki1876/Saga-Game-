@@ -9,6 +9,7 @@ TagManager:
   - Machine
   - MagicStone
   - Gunner
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -92,7 +92,7 @@ public class BulletMove : MonoBehaviour
             Repulsion NewRepulsion = new Repulsion();
             NewRepulsion.targetGameObject= col.gameObject;//撃退されるGameObject
             NewRepulsion.formGameObject=this.gameObject;//撃退するGameObject
-            NewRepulsion.repulsionSpeed =MySeppt;//撃退速度
+            NewRepulsion.repulsionSpeed =MySeppt*5;//撃退速度
             NewRepulsion.repulsionMagnification = 2.0f;//撃退倍率
             NewRepulsion.RepulsionMove();
 

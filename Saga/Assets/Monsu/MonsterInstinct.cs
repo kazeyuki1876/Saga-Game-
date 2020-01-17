@@ -10,14 +10,9 @@ public class MonsterInstinct : MonoBehaviour
     public float mySpeed;
     //攻撃力
     public float myDamage;
-
-   
-   private GameObject player;
-   private float r0 = 5.0f;//半径
-   private float r = 2.0f;//半径方（距离差值）
-  
-
-    
+    public GameObject player;
+    public GameObject castle;
+    private float r0 = 5.0f;//半径  r0*r0 //索敵範囲
 
     //最終目標
     public Transform startTarget;
@@ -32,55 +27,58 @@ public class MonsterInstinct : MonoBehaviour
     //動けるか
     public bool isMove = true;
     //攻撃できるか
-    public bool isAttack  = true;
+    public bool isAttack = true;
     //モンスターのRigidbody
     Rigidbody rb;
     //ダメージUI
     TakeDamage takeDamage;//
     //地面にいるか
     private bool isGround;
-    void Start() {
-        r = r0 * r0;//索敵範囲
+    public void Start()
+    {
+
         target = startTarget;
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Gunner");
-       // isMove = true;
-        //isAttack = true;
+        castle = GameObject.Find("Castle");
+       
+
     }
     //以下の記述では一定速度と顔向き方向に進む
     void FixedUpdate()
     {
-        if (rigidTime <= 0 && isMove&& isGround)
+        if (rigidTime <= 0 && isMove && isGround)
         {
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * mySpeed);
         }
     }
     void Update()
     {
-        if ((gameObject.transform.position.x -player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= r)
-        {
-            startTarget= player.transform;
-            target = player.transform;
-        }
-     
+       TargetControl();
+
         //もしスタン
         if (rigidTime > 0)
         {
             rigidTime -= Time.deltaTime;
+            if (rigidTime < 0) {
+                rigidTime = 0;
+            }
         }
         // スタンではない
         else
         {
             //ターゲットがないの処理
-            if (target == null && isMove)
+            if (target != null && isMove)
             {
-                target = startTarget;
+             
+                transform.LookAt(target);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
-            //目標をみる
-            transform.LookAt(target);
         }
+            //目標をみる
+         
         //水平で動く
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+       
     }
 
     void OnCollisionStay(Collision col) //当进入碰撞器
@@ -112,7 +110,8 @@ public class MonsterInstinct : MonoBehaviour
 
     }
 
-    void OnCollisionExit(Collision col) {
+    void OnCollisionExit(Collision col)
+    {
         if (col.gameObject.tag == "Ground")
         {
             isGround = false;
@@ -133,18 +132,43 @@ public class MonsterInstinct : MonoBehaviour
         }
 
     }
-    void AttackMove(Collision collision) {
+    void AttackMove(Collision collision)
+    {
         isAttack = false;
         isMove = false;
-        collision.transform.root.GetComponent<TakeDamage>().Damage(collision);//ダメージ文字UI
-        collision.transform.root.GetComponent<TakeDamage>().DamageNum = (int)myDamage;
+        collision.transform.gameObject.GetComponent<TakeDamage>().Damage(collision);//ダメージ文字UI
+        collision.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)myDamage;
         Invoke("AttackPreparation", 1.0f);
     }
-    void AttackPreparation() {
+    void AttackPreparation()
+    {
         isAttack = true;
         isMove = true;
     }
 
+    void TargetControl()
+    {
+        //城に辿り付けない
+        if (target != castle.transform)
+        {  //城に近き
+            if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
+            {
+              
+                target = castle.transform;
+            }//playerに近き
+            else if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= r0 * r0)
+            {
+              
+                target = player.transform;
+            }//誰でも近きない
+            if (target == null)
+            {
+                transform.eulerAngles = new Vector3(0, -90, 0);
+            }
+        }
+        //
+        
 
+    }
 
 }
