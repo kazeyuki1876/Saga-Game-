@@ -17,7 +17,31 @@ public class MachineBatteryScript : MonoBehaviour
     //--------------------
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間
+    /*
+     public GameObject Player;//玩家/需要检测的目标
+    public float r0 = 2.0f;//半径
+    public float r = 2.0f;//半径方（距离差值）
+    private float x0 = 0.0f;//园的零点X
+    private float y0 = 0.0f;//园的零点Y
+    private   float x = 0;//检测的目标x x=gameObject.transform.position.x
+    private   float y = 0;//检测的目标y Y=gameObject.transform.position.y
+    void Start()
+    {
+        r = r0 * r0;//初始化//半径方（距离差值）
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if ((gameObject.transform.position.x - x0) * (gameObject.transform.position.x - x0) + (gameObject.transform.position.y - y0) * (gameObject.transform.position.y - y0) <= r) {
+            Debug.Log("玩家在圆圈内");
+        }
+        else
+        {
+            Debug.Log("玩家不在圆圈内");
+        }
+    }
 
+         */
     public void Start()
     {
         MyDamage = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletDamages[GetComponent<MachineBatteryHealth>().MyNum - 1];

@@ -76,19 +76,19 @@ public class BulletMove : MonoBehaviour
             */
 
 
-            if (col.GetComponent<newmon>().rigidTime < RigidTime)
+            if (col.GetComponent<MonsterInstinct>().rigidTime < RigidTime)
             {
-                col.GetComponent<newmon>().rigidTime = RigidTime;
+                col.GetComponent<MonsterInstinct>().rigidTime = RigidTime;
 
             }
             //撃退
             //RigidTime
-            col.GetComponent<newmon>().myHp = col.GetComponent<newmon>().myHp - MyDamage; //着弾されたもののHP判定
+            col.GetComponent<MonsterInstinct>().myHp = col.GetComponent<MonsterInstinct>().myHp - MyDamage; //着弾されたもののHP判定
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
          
            
-            col.GetComponent<newmon>().Isdie();//
+            col.GetComponent<MonsterInstinct>().Isdie();//
             Repulsion NewRepulsion = new Repulsion();
             NewRepulsion.targetGameObject= col.gameObject;//撃退されるGameObject
             NewRepulsion.formGameObject=this.gameObject;//撃退するGameObject

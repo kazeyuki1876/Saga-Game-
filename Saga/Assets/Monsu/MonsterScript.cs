@@ -12,7 +12,7 @@ public class MonsterScript : MonoBehaviour
     public float MyDamage = 10;
     public int MonsterMagicStone = 0;
     // Start is called before the first frame update
-    public bool IsATK = true;
+    public bool isAttack = true;
     public GameObject MagicStone;
 
     bool isMove = true;
@@ -54,7 +54,7 @@ public class MonsterScript : MonoBehaviour
             {
                 Target = StartTarget;
             }
-            if (IsATK)
+            if (isAttack)
             {
                 transform.LookAt(Target);//目標をみる
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -88,9 +88,9 @@ public class MonsterScript : MonoBehaviour
 
         //  Debug.Log("collisionInfo");
         //  Debug.Log(collisionInfo.gameObject.name);
-        if (col.gameObject.tag == "Player" && IsATK)
+        if (col.gameObject.tag == "Player" && isAttack)
         {
-            IsATK = false;
+            isAttack = false;
             isMove = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
 
@@ -102,9 +102,9 @@ public class MonsterScript : MonoBehaviour
 
             Invoke("ATKok", 1.0f);
         }
-        else if (col.gameObject.name == "Castle" && IsATK)
+        else if (col.gameObject.name == "Castle" && isAttack)
         {
-            IsATK = false;
+            isAttack = false;
             isMove = false;
             //  Debug.Log("碰撞_Enter_碰撞到的物体的名字是：" + collisionInfo.gameObject.name);
             col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)MyDamage;
@@ -113,9 +113,9 @@ public class MonsterScript : MonoBehaviour
             col.gameObject.GetComponent<CastleScript>().IsOVER();
 
             Invoke("ATKok", 1.0f);
-        }else if (col.gameObject.tag == "Machine" && IsATK)
+        }else if (col.gameObject.tag == "Machine" && isAttack)
         {
-            IsATK = false;
+            isAttack = false;
             isMove = false;
             col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage;
             col.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
@@ -134,8 +134,8 @@ public class MonsterScript : MonoBehaviour
             isMove = true;
         }
     }
-    void ATKok()
+    void AttackPreparation()
     {
-        IsATK = true;
+        isAttack = true;
     }
 }
