@@ -426,7 +426,7 @@ ModelImporter:
     - serializedVersion: 16
       name: WAIT02
       takeName: Take 001
-      firstFrame: 1
+      firstFrame: -1
       lastFrame: 250
       wrapMode: 0
       orientationOffsetY: 0

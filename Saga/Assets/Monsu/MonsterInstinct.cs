@@ -10,10 +10,9 @@ public class MonsterInstinct : MonoBehaviour
     public float mySpeed;
     //攻撃力
     public float myDamage;
-    public GameObject player;
-    public GameObject castle;
+    private GameObject player;
+    private GameObject castle;
     private float r0 = 5.0f;//半径  r0*r0 //索敵範囲
-
     //最終目標
     public Transform startTarget;
     //もし何か会ったらそのもの目標にする
@@ -26,12 +25,12 @@ public class MonsterInstinct : MonoBehaviour
     public float rigidTime = 0;
     //動けるか
     public bool isMove = true;
-    //攻撃できるか
-    public bool isAttack = true;
+  
     //モンスターのRigidbody
     Rigidbody rb;
     //ダメージUI
     TakeDamage takeDamage;//
+
     //地面にいるか
     private bool isGround;
     public void Start()
@@ -70,46 +69,20 @@ public class MonsterInstinct : MonoBehaviour
             //ターゲットがないの処理
             if (target != null && isMove)
             {
-             
+                //目標をみる
                 transform.LookAt(target);
+                //水平で動く
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
         }
-            //目標をみる
-         
-        //水平で動く
-       
     }
-
     void OnCollisionStay(Collision col) //当进入碰撞器
     {
-        if (col.gameObject.tag == "Player" && isAttack)
-        {
-            AttackMove(col);
-            col.gameObject.GetComponent<GunnaerHealth>().MyHp = col.gameObject.GetComponent<GunnaerHealth>().MyHp - myDamage;
-            col.gameObject.GetComponent<GunnaerHealth>().Isdie();
-        }
-        else if (col.gameObject.name == "Castle" && isAttack)
-        {
-
-            col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)myDamage;
-            col.gameObject.GetComponent<CastleScript>().IsOVER();
-            AttackMove(col);
-        }
-        else if (col.gameObject.tag == "Machine" && isAttack)
-        {
-
-            col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)myDamage;
-            col.gameObject.GetComponent<MachineBatteryHealth>().IsDIe();
-            AttackMove(col);
-        }
         if (col.gameObject.tag == "Ground")
         {
             isGround = true;
         }
-
     }
-
     void OnCollisionExit(Collision col)
     {
         if (col.gameObject.tag == "Ground")
@@ -132,20 +105,6 @@ public class MonsterInstinct : MonoBehaviour
         }
 
     }
-    void AttackMove(Collision collision)
-    {
-        isAttack = false;
-        isMove = false;
-        collision.transform.gameObject.GetComponent<TakeDamage>().Damage(collision);//ダメージ文字UI
-        collision.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)myDamage;
-        Invoke("AttackPreparation", 1.0f);
-    }
-    void AttackPreparation()
-    {
-        isAttack = true;
-        isMove = true;
-    }
-
     void TargetControl()
     {
         //城に辿り付けない
@@ -166,9 +125,5 @@ public class MonsterInstinct : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, -90, 0);
             }
         }
-        //
-        
-
     }
-
 }

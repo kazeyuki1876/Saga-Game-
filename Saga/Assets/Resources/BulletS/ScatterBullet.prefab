@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573d1f82f38057847b75bbdaa506f0f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Monster
   MySeppt: 10
   MyLifespan: 1
   MyDamage: 1

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BulletMove : MonoBehaviour
 {
+    public string targetTag;
    public class Repulsion
     {
         public GameObject targetGameObject;//撃退されるGameObject
@@ -62,7 +63,7 @@ public class BulletMove : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
        // Debug.Log(other.gameObject.name);
-        if (col.gameObject.tag == "Monster")
+        if (col.gameObject.tag == targetTag)
         {
             /*
             //動き止まる

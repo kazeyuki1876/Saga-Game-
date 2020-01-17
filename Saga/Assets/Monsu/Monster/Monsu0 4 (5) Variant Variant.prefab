@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3116395843653045808}
   - component: {fileID: 7269126373339486624}
   - component: {fileID: 1798935512364550001}
+  - component: {fileID: 2835821630450522855}
   m_Layer: 0
   m_Name: Monsu0 4 (5) Variant Variant
   m_TagString: Monster
@@ -148,4 +149,19 @@ MonoBehaviour:
   myMagicStoneNum: 0
   rigidTime: 0
   isMove: 1
-  isAttack: 1
+--- !u!114 &2835821630450522855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612316767522947856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17394e952bf45b488f594c1c67ab5e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isApproachAttack: 1
+  isProcessAttack: 1
+  flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
+    type: 3}
