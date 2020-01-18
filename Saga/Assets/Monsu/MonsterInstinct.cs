@@ -17,15 +17,20 @@ public class MonsterInstinct : MonoBehaviour
     public Transform startTarget;
     //もし何か会ったらそのもの目標にする
     public Transform target;
+    //遠距離攻撃target
+    public Transform processAttackTarget;
+    public GameObject processAttackTargetGameObject;
     //落ちる魔石
     public GameObject magicStoneGameObject;
     //落ちる魔石no数
     public int myMagicStoneNum;
     //スタンタイム
     public float rigidTime = 0;
+    ////(1-7);スタン恢復速度　8は免疫
+    public float rigidResistance = 1;
     //動けるか
     public bool isMove = true;
-  
+
     //モンスターのRigidbody
     Rigidbody rb;
     //ダメージUI
@@ -33,19 +38,46 @@ public class MonsterInstinct : MonoBehaviour
 
     //地面にいるか
     private bool isGround;
+
+    //----------狙えサポート aim
+    private GameObject nearObj;         //最も近いオブジェクト
+    private float searchTime = 0;    //経過時間       
+    GameObject serchTag(GameObject nowObj, string tagName)
+    {
+        float tmpDis = 0;           //距離用一時変数
+        float nearDis = 0;          //最も近いオブジェクトの距離
+        //string nearObjName = "";    //オブジェクト名称
+        GameObject targetObj = null; //オブジェクト
+        //タグ指定されたオブジェクトを配列で取得する
+        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
+        {
+            //自身と取得したオブジェクトの距離を取得
+            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
+            //一時変数に距離を格納
+            if (nearDis == 0 || nearDis > tmpDis)
+            {
+                nearDis = tmpDis;
+                //nearObjName = obs.name;
+                targetObj = obs;
+            }
+        }
+        //最も近かったオブジェクトを返す
+        //return GameObject.Find(nearObjName);
+        return targetObj;
+    }//-----------//----------狙えサポート
+
+
     public void Start()
     {
-
         target = startTarget;
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("Gunner");
         castle = GameObject.Find("Castle");
-       
-
     }
     //以下の記述では一定速度と顔向き方向に進む
     void FixedUpdate()
-    {
+    {//進む
         if (rigidTime <= 0 && isMove && isGround)
         {
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * mySpeed);
@@ -53,14 +85,18 @@ public class MonsterInstinct : MonoBehaviour
     }
     void Update()
     {
-       TargetControl();
-
+        ProcessAttackTargetControl();
+        TargetControl();
+      
         //もしスタン
-        if (rigidTime > 0)
+        if (rigidTime > 0 && rigidResistance < 8)
         {
-            rigidTime -= Time.deltaTime;
-            if (rigidTime < 0) {
+            rigidTime -= Time.deltaTime * rigidResistance;
+            isMove = false;
+            if (rigidTime <= 0)
+            {
                 rigidTime = 0;
+                isMove = true;
             }
         }
         // スタンではない
@@ -72,6 +108,7 @@ public class MonsterInstinct : MonoBehaviour
                 //目標をみる
                 transform.LookAt(target);
                 //水平で動く
+
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
         }
@@ -112,18 +149,54 @@ public class MonsterInstinct : MonoBehaviour
         {  //城に近き
             if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
             {
-              
+
                 target = castle.transform;
             }//playerに近き
-            else if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= r0 * r0)
+            else if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= r0 * r0 * 3)
             {
-              
+
                 target = player.transform;
+            }
+            //もしPlayer が離れよう
+
+            if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= r0 * r0 * 6)
+            {
+                Debug.Log(target.name + "が離れよう");
+                target = null;
             }//誰でも近きない
             if (target == null)
             {
                 transform.eulerAngles = new Vector3(0, -90, 0);
             }
+
+        }
+    }
+    void ProcessAttackTargetControl()
+    {
+        if (target != null)
+        {
+            processAttackTarget = target;
+        }
+        else if (processAttackTargetGameObject != null  && (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) >= r0 * r0 * 4) {
+            processAttackTarget = processAttackTargetGameObject.transform;
+        }
+        else if(target == null& processAttackTarget == null)
+        {
+            Debug.Log("ProcessAttackConControl");
+            //経過時間を取得
+            searchTime += Time.deltaTime;
+            if (searchTime >= 0.3f)
+            {
+                //最も近かったオブジェクトを取得
+                nearObj = serchTag(gameObject, "Machine");
+                //経過時間を初期化
+                processAttackTargetGameObject = nearObj;
+                searchTime = 0;
+                
+
+            }
+            //もし　 射撃サポート　狙える　対象の位置の方向を向く
+           
         }
     }
 }

@@ -114,7 +114,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     private void instantiateBatteryInstallationMove()
     {
        
-        Debug.Log("X"+machineBatteryX + "Z"+ machineBatteryZ);
+      //  Debug.Log("X"+machineBatteryX + "Z"+ machineBatteryZ);
         instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, 5, (float)machineBatteryZ);
 
     }

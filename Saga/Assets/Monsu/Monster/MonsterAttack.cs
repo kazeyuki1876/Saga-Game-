@@ -11,7 +11,6 @@ public class MonsterAttack : MonoBehaviour
     // //遠距離攻撃できるか
     [SerializeField]
     private bool isProcessAttack = true;
-
     //遠距離攻撃の弾
     [SerializeField]
     private GameObject flyingTools;
@@ -24,13 +23,43 @@ public class MonsterAttack : MonoBehaviour
     //再攻撃の待つ時間
     [SerializeField]
     private float flyingToolsAttackTime = 1;
+   /* //----------狙えサポート aim
+    // public bool isShootingSupport;　//今の狙えてるあるか
+    private GameObject nearObj;      //最も近いオブジェクト
+    private float searchTime = 0;    //経過時間       
+    GameObject serchTag(GameObject nowObj, string tagName)
+    {
+        float tmpDis = 0;           //距離用一時変数
+        float nearDis = 0;          //最も近いオブジェクトの距離
+        //string nearObjName = "";    //オブジェクト名称
+        GameObject targetObj = null; //オブジェクト
+        //タグ指定されたオブジェクトを配列で取得する
+        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
+        {
+            //自身と取得したオブジェクトの距離を取得
+            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+
+            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
+            //一時変数に距離を格納
+            if (nearDis == 0 || nearDis > tmpDis)
+            {
+                nearDis = tmpDis;
+                //nearObjName = obs.name;
+                targetObj = obs;
+            }
+
+        }
+        //最も近かったオブジェクトを返す
+        //return GameObject.Find(nearObjName);
+        return targetObj;
+    }//-----------//----------狙えサポート*/
     private void Start()
     {//初期化準備もし必要でしたら
     }
     /// <summary>
     //接近攻撃
     /// <param name="col"></param>
-    void OnCollisionStay(Collision col) //当进入碰撞器
+    private void OnCollisionStay(Collision col) //
     {
         if (col.gameObject.tag == "Player" && isApproachAttack)
         {
@@ -53,7 +82,7 @@ public class MonsterAttack : MonoBehaviour
 
         }
     }
-    void AttackMove(Collision collision)
+    private void AttackMove(Collision collision)
     {
         isApproachAttack = false;
         GetComponent<MonsterInstinct>().isMove = false;
@@ -61,7 +90,7 @@ public class MonsterAttack : MonoBehaviour
         collision.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage;
         Invoke("AttackPreparation", 1.0f);
     }
-    void AttackPreparation()
+    private void AttackPreparation()
     {
         isApproachAttack = true;
         GetComponent<MonsterInstinct>().isMove = true;
@@ -74,38 +103,57 @@ public class MonsterAttack : MonoBehaviour
         ProcessAttackConControl();
     }
     //遠距離攻撃
-    void ProcessAttackConControl()
+
+    //遠距離攻撃ターゲット
+
+    //
+
+    private void ProcessAttackConControl()
     {
-        if (GetComponent<MonsterInstinct>().target != null && GetComponent<MonsterInstinct>().isMove)
+
+        if ( GetComponent<MonsterInstinct>().processAttackTarget != null && GetComponent<MonsterInstinct>().isMove && isProcessAttack && (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) + (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) < GetComponent<MonsterInstinct>().r0 * GetComponent<MonsterInstinct>().r0 * 6)
         {
-            if (isProcessAttack && (transform.position.x - GetComponent<MonsterInstinct>().target.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().target.transform.position.x) + (transform.position.z - GetComponent<MonsterInstinct>().target.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().target.transform.position.z) < GetComponent<MonsterInstinct>().r0 * GetComponent<MonsterInstinct>().r0 * 1.5)
+            if (flyingToolsNum < flyingToolsNumMax)
             {
-                if (flyingToolsNum < flyingToolsNumMax)
-                {
-                    flyingToolsNum++;
-                }
-                else
-                {
-                    isProcessAttack = false;
-                    Invoke("ProcessAttackPreparation", flyingToolsAttackTime);
-                }
+                flyingToolsNum++;
+                transform.LookAt(GetComponent<MonsterInstinct>().processAttackTarget.transform);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
                 GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
                 newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-10, 10), 0);
                 newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
+            
+               // Debug.Log("ProcessAttackConControl");
             }
-            //抑圧されたの処理
-        }
+            else
+            {
+                GetComponent<MonsterInstinct>().processAttackTarget = null;
+                isProcessAttack = false;
+                Invoke("ProcessAttackPreparation", flyingToolsAttackTime);
+              
+            }
+            //遠距離ターゲットに向き
+               }
+        //抑圧されたの処理
         else if (!GetComponent<MonsterInstinct>().isMove)
         {
-            isProcessAttack = false;
-            Invoke("ProcessAttackPreparation", flyingToolsNum / flyingToolsNumMax * flyingToolsAttackTime);
+           
         }
     }
-    void ProcessAttackPreparation()
+    private void ProcessAttackPreparation()
     {
         isProcessAttack = true;
         flyingToolsNum = 0;
         //GetComponent<MonsterInstinct>().isMove = true;
     }
     //--------スキル？技？
+    //加速
+
+    //突撃
+
+    //散形弾
+    
+    //ジャブ特性
+
+    //
 }

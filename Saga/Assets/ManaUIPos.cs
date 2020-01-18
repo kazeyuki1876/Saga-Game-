@@ -17,7 +17,7 @@ public class ManaUIPos : MonoBehaviour
         StartMagic = WitchUI.GetComponent<WitchUIScript>().MyMagicMAX;
         for (int i = 0; i <5 ; i++) {
             float MagicNum = StartMagic* (1 - 0.2f * i);
-            Debug.Log(MagicNum);
+     //       Debug.Log(MagicNum);
             MagicUI[i].text = " "+MagicNum;
            
         }
