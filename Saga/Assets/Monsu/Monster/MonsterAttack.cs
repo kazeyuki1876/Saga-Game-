@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
 {
-  
+
     // //接近攻撃できるか
-    public bool isApproachAttack = true;
+    [SerializeField]
+    private bool isApproachAttack = true;
     // //遠距離攻撃できるか
-    public bool isProcessAttack = true;
+    [SerializeField]
+    private bool isProcessAttack = true;
+
     //遠距離攻撃の弾
-    public GameObject flyingTools;
+    [SerializeField]
+    private GameObject flyingTools;
+    //弾の数
+    [SerializeField]
+    private int flyingToolsNum = 0;
+    //弾の数MAX
+    [SerializeField]
+    private int flyingToolsNumMax = 5;
+    //再攻撃の待つ時間
+    [SerializeField]
+    private float flyingToolsAttackTime = 1;
+    private void Start()
+    {//初期化準備もし必要でしたら
+    }
     /// <summary>
     //接近攻撃
     /// <param name="col"></param>
@@ -58,15 +74,38 @@ public class MonsterAttack : MonoBehaviour
         ProcessAttackConControl();
     }
     //遠距離攻撃
-    void ProcessAttackConControl() {
-        if (GetComponent<MonsterInstinct>().target != null) { 
-        if(isProcessAttack&&(transform.position.x - GetComponent<MonsterInstinct>().target.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().target.transform.position.x)+ (transform.position.z - GetComponent<MonsterInstinct>().target.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().target.transform.position.z) < 8*8)
+    void ProcessAttackConControl()
+    {
+        if (GetComponent<MonsterInstinct>().target != null && GetComponent<MonsterInstinct>().isMove)
         {
-            GameObject newFlyingTools = Instantiate(flyingTools, transform.position,transform.rotation);
-            newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-10,10), 0);
-            newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
+            if (isProcessAttack && (transform.position.x - GetComponent<MonsterInstinct>().target.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().target.transform.position.x) + (transform.position.z - GetComponent<MonsterInstinct>().target.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().target.transform.position.z) < GetComponent<MonsterInstinct>().r0 * GetComponent<MonsterInstinct>().r0 * 1.5)
+            {
+                if (flyingToolsNum < flyingToolsNumMax)
+                {
+                    flyingToolsNum++;
+                }
+                else
+                {
+                    isProcessAttack = false;
+                    Invoke("ProcessAttackPreparation", flyingToolsAttackTime);
+                }
+                GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
+                newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-10, 10), 0);
+                newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
+            }
+            //抑圧されたの処理
         }
+        else if (!GetComponent<MonsterInstinct>().isMove)
+        {
+            isProcessAttack = false;
+            Invoke("ProcessAttackPreparation", flyingToolsNum / flyingToolsNumMax * flyingToolsAttackTime);
         }
     }
-         
+    void ProcessAttackPreparation()
+    {
+        isProcessAttack = true;
+        flyingToolsNum = 0;
+        //GetComponent<MonsterInstinct>().isMove = true;
+    }
+    //--------スキル？技？
 }
