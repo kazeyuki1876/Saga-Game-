@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class GunnaerHealth : MonoBehaviour
 {
+    [SerializeField]
     public float
         myHpMax = 100,
         MyHp = 100,
         MyMagicStone = 20,
-        MyMagicStoneMax = 100;
-
+        MyMagicStoneMax = 50;
   
     [SerializeField]
     private float fillAmountSpeed = 0.5f;
@@ -55,11 +55,12 @@ public class GunnaerHealth : MonoBehaviour
     {
 
         // 魔石拾い				
-        if (MagicStone.gameObject.tag == "MagicStone")
+        if (MagicStone.gameObject.tag == "MagicStone" && MyMagicStone<MyMagicStoneMax)
         {
             Debug.Log("MagicStone");
             //  MyMagicStone = MyMagicStone + MagicStone.GetComponent<MagicStoneScript>().MagicStone;				
-            Destroy(MagicStone.gameObject);  // MyMagicStoneを崩壊				
+            MagicStone.GetComponent<MagicStoneScript>().DestroyFather();
+              // MyMagicStoneを崩壊				
             MyMagicStone++;
         }
     }
