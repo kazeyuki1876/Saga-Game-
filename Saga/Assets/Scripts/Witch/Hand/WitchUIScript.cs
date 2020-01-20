@@ -32,7 +32,7 @@ public class WitchUIScript : MonoBehaviour
     public int[] MonsterMagicStone;
     public int[] MonsterHP;
     public bool isWitchPlayerMove = true;
-    int CardX = 1660;
+    int CardX = 1770;//CardX
     int[] CardY = new int[5] { 939, 789, 639, 489, 338 };
     public int[] Monsters = new int[10] { 5, 4, 3, 2, 1, 3, 7, 8, 9, 10 };
     public int[] MonsterSpeeds = new int[10] { 10, 15, 20, 25, 30, 6, 7, 8, 9, 10 };
