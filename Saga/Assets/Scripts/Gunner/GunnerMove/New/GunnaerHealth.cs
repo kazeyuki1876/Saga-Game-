@@ -39,8 +39,8 @@ public class GunnaerHealth : MonoBehaviour
     // Update is called once per frame				
     void Update()
     {
-        PlayerHp.text = "生命" + MyHp;
-        PlayerMagicStone.text = "魔石" + MyMagicStone;
+        PlayerHp.text = "HP" + MyHp + "/" + myHpMax;
+        PlayerMagicStone.text = "MP" + MyMagicStone+ "/"+ MyMagicStoneMax;
         GannerHpGaugeMove();
         GannerMagicStoneGaugeMove();
         if (MyHp > myHpMax) {

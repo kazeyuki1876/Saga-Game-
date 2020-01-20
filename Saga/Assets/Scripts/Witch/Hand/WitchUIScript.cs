@@ -14,6 +14,7 @@ public class WitchUIScript : MonoBehaviour
     //手札
 
     public GameObject[] Hand = new GameObject[5];//手札最大枚数
+    public Text myMagicText;
     public float MyMagic = 100;
     public float MyMagicMAX = 100;
     public float MagicRecoverySpeed;
@@ -92,6 +93,7 @@ public class WitchUIScript : MonoBehaviour
 
         }
         MyMagicUI.GetComponent<Image>().fillAmount = MyMagic / MyMagicMAX;
+        myMagicText.text = "MP" + (int)MyMagic + "/" + MyMagicMAX;
     }//魔力回復
     void HandCharge()
     {//(手札Tefuda)をチャージ
