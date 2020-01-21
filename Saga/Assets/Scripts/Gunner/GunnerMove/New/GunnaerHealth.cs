@@ -12,37 +12,47 @@ public class GunnaerHealth : MonoBehaviour
         myHpMax = 100,
         MyHp = 100,
         MyMagicStone = 20,
-        MyMagicStoneMax = 50;
-  
+        MyMagicStoneMax = 50,
+        castleHp=3000,
+        castleHpMax=3000;
+
     [SerializeField]
     private float fillAmountSpeed = 0.5f;
     //魔石数				
   
 
-    public Text PlayerHp, PlayerMagicStone;
+    public Text PlayerHp, PlayerMagicStone, castleHpText;
     [SerializeField]
     private Image
         GannerHpGaugeRed,
         GannerHpGaugeGreen,
-        GannerMagicStoneGauge;
+        GannerMagicStoneGauge,
+        castleHpGauge;
+
+    [SerializeField]
+    private GameObject castle;
 
 
-
-
-    // Start is called before the first frame update				
-    void Start()
+   // Start is called before the first frame update				
+   void Start()
     {
         MyHp = myHpMax;
-        //HP=MAXHP				
+        castleHp = castleHpMax;
+        castle.GetComponent<CastleScript>().MyHp = (int)castleHp;
+       
+       
     }
 
     // Update is called once per frame				
     void Update()
     {
+
         PlayerHp.text = "HP" + MyHp + "/" + myHpMax;
         PlayerMagicStone.text = "MP" + MyMagicStone+ "/"+ MyMagicStoneMax;
+        castleHpText.text = "    CASTLEHP" + castleHp + "/" + castleHpMax;
         GannerHpGaugeMove();
         GannerMagicStoneGaugeMove();
+        CastleHPGaugeMove();
         if (MyHp > myHpMax) {
             MyHp = myHpMax;
         }
@@ -97,6 +107,19 @@ public class GunnaerHealth : MonoBehaviour
             GameObject.Find("OverTime").GetComponent<OutTime>().GameEnd();
         }
      
+    }
+    void CastleHPGaugeMove()
+    {
+        
+        castleHp = castle.GetComponent<CastleScript>().MyHp;
+
+        if (castleHpGauge.fillAmount != castleHp / castleHpMax)
+        {
+            //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
+            float castleHpGaugeSpeed = castleHpGauge.fillAmount - castleHp / castleHpMax;
+            castleHpGauge.fillAmount = castleHpGauge.fillAmount - castleHpGaugeSpeed * fillAmountSpeed * Time.deltaTime;
+        }
+
     }
 }
 

@@ -18,7 +18,7 @@ public class CastleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CastleHP.text = "CastleHP" + MyHp;
+       //astleHP.text = "CastleHP" + MyHp;
     }
     public void IsOVER() {
         if (MyHp <= 0) {
