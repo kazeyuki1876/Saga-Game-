@@ -182,7 +182,7 @@ public class MonsterInstinct : MonoBehaviour
         }
         else if(target == null& processAttackTarget == null)
         {
-            Debug.Log("ProcessAttackConControl");
+          //  Debug.Log("ProcessAttackConControl");
             //経過時間を取得
             searchTime += Time.deltaTime;
             if (searchTime >= 0.3f)

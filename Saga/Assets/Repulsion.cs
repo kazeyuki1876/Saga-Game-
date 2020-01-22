@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Repulsion : MonoBehaviour
 {
-
     public GameObject targetGameObject;//撃退されるGameObject
     public GameObject formGameObject;//撃退するGameObject
     public float repulsionSpeed;//撃退速度
@@ -18,8 +17,6 @@ public class Repulsion : MonoBehaviour
         formGameObject.transform.LookAt(Target);//撃退方向
         formGameObject.transform.eulerAngles = new Vector3(0, formGameObject.transform.eulerAngles.y, 0);//水平方向に撃退する
         rb.AddForce(formGameObject.transform.position + formGameObject.transform.forward * repulsionMagnification * repulsionSpeed);//弾の方向に撃退する
-
-
     }
     /*
     public class RepulsionVoid

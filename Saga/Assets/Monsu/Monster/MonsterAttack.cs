@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
 {
-
-    // //接近攻撃できるか
-    [SerializeField]
+    //      
+    
+      // //接近攻撃できるか
+      [SerializeField]
     private bool isApproachAttack = true;
     // //遠距離攻撃できるか
     [SerializeField]
@@ -64,7 +65,9 @@ public class MonsterAttack : MonoBehaviour
         if (col.gameObject.tag == "Player" && isApproachAttack)
         {
             AttackMove(col);
+            //もし何かを当たったらダメージを与える
             col.gameObject.GetComponent<GunnaerHealth>().MyHp = col.gameObject.GetComponent<GunnaerHealth>().MyHp - (int)GetComponent<MonsterInstinct>().myDamage;
+            //このオブジェクトのHP＜0か
             col.gameObject.GetComponent<GunnaerHealth>().Isdie();
         }
         else if (col.gameObject.name == "Castle" && isApproachAttack)
@@ -84,12 +87,17 @@ public class MonsterAttack : MonoBehaviour
     }
     private void AttackMove(Collision collision)
     {
+        //攻撃不可
         isApproachAttack = false;
+        //転移不可
         GetComponent<MonsterInstinct>().isMove = false;
+        ///ダメージ文字関係
         collision.transform.gameObject.GetComponent<TakeDamage>().Damage(collision);//ダメージ文字UI
         collision.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage;
+        //攻撃可になる、転移可
         Invoke("AttackPreparation", 1.0f);
     }
+    //攻撃可になる、転移可
     private void AttackPreparation()
     {
         isApproachAttack = true;
@@ -97,20 +105,16 @@ public class MonsterAttack : MonoBehaviour
     }
     /// 
     /// </summary>
-
+    //遠距離攻撃------------------
     private void Update()
-    {
+    {//
         ProcessAttackConControl();
     }
-    //遠距離攻撃
+    
 
-    //遠距離攻撃ターゲット
-
-    //
-
+    //遠距離攻撃のターゲット
     private void ProcessAttackConControl()
     {
-
         if ( GetComponent<MonsterInstinct>().processAttackTarget != null && GetComponent<MonsterInstinct>().isMove && isProcessAttack && (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) + (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) < GetComponent<MonsterInstinct>().r0 * GetComponent<MonsterInstinct>().r0 * 6)
         {
             if (flyingToolsNum < flyingToolsNumMax)
