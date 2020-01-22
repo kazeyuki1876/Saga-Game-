@@ -30,6 +30,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     public int
          batteryQuantityMax = 50,
           batteryQuantity = 0,
+       
          machineBatteryNum = 0;
 
     private void Update()

@@ -80,6 +80,10 @@ public class GunnerShootingMoveController : MonoBehaviour
         bullet.GetComponent<BulletMove>().MyLifespan = data.GetComponent<GunnerData>().bulletLifespans[gunNumber];
         //銃弾のダメージ
         bullet.GetComponent<BulletMove>().MyDamage = data.GetComponent<GunnerData>().bulletDamages[gunNumber];
+
+        //貫通数
+        bullet.GetComponent<BulletMove>().myPenetrationVolume = data.GetComponent<GunnerData>().bulletPenetrationvolume[gunNumber];
+
         // bullet[GunsNum]++;//この銃弾いくらを打ちましたか；
         bullet.name = data.GetComponent<GunnerData>().bullets[gunNumber].name + data.GetComponent<GunnerData>().bulletNumer[gunNumber];//名前を付ける　何銃の何発
 

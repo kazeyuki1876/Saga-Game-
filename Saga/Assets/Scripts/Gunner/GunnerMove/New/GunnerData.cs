@@ -17,7 +17,8 @@ public class GunnerData : MonoBehaviour
     public int[] bulletNumer = new int[arrayMax];//一つの銃に置いてなん発を打ちましたか。
     public int[] cartridgeClipMax = new int[arrayMax];//弾倉
     public float[] ReloadLimit = new float[arrayMax];///装填時間
-
+    public int[] bulletPenetrationvolume = new int[arrayMax];///貫通
+ 
     //GunnerBatteryInstallationMove
 
 
@@ -34,7 +35,7 @@ public class GunnerData : MonoBehaviour
     public float[] batteryBulletLifespans = new float[arrayMax];//銃弾の存在時間
     public float[] batteryBulletDamages = new float[arrayMax];//銃弾のダメージ
     public float[] batteryBulletLimit = new float[arrayMax];//銃弾の射撃速度
-
+    public int[] batterybulletPenetrationvolume = new int[arrayMax];///貫通
     int GunnerDataStartNum;
     //skill
     public float [] GunnerSkillOutTime = new float[arrayMax];

@@ -66,8 +66,6 @@ public class MonsterInstinct : MonoBehaviour
         //return GameObject.Find(nearObjName);
         return targetObj;
     }//-----------//----------狙えサポート
-
-
     public void Start()
     {
         target = startTarget;
@@ -145,21 +143,23 @@ public class MonsterInstinct : MonoBehaviour
     void TargetControl()
     {
         //城に辿り付けない
-        if (target != castle.transform)
-        {  //城に近き
-            if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
-            {
-
-                target = castle.transform;
-            }//playerに近き
-            else if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= r0 * r0 * 3)
+      //  if (target != castle.transform)
+        
+         //playerに近き
+            if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= (r0+1) * (r0 + 1))
             {
 
                 target = player.transform;
+                //城に近き
+            } else if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
+            {
+
+
+                target = castle.transform;
             }
             //もしPlayer が離れよう
 
-            if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= r0 * r0 * 6)
+            if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= (r0 *5) * (r0 *5))
             {
                 Debug.Log(target.name + "が離れよう");
                 target = null;
@@ -169,7 +169,7 @@ public class MonsterInstinct : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, -90, 0);
             }
 
-        }
+        
     }
     void ProcessAttackTargetControl()
     {
@@ -177,7 +177,7 @@ public class MonsterInstinct : MonoBehaviour
         {
             processAttackTarget = target;
         }
-        else if (processAttackTargetGameObject != null  && (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) >= r0 * r0 * 4) {
+        else if (processAttackTargetGameObject != null  && (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) >= (r0 * 4) * (r0 * 4)) {
             processAttackTarget = processAttackTargetGameObject.transform;
         }
         else if(target == null& processAttackTarget == null)
@@ -192,8 +192,6 @@ public class MonsterInstinct : MonoBehaviour
                 //経過時間を初期化
                 processAttackTargetGameObject = nearObj;
                 searchTime = 0;
-                
-
             }
             //もし　 射撃サポート　狙える　対象の位置の方向を向く
            

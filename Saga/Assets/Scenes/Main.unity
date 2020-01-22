@@ -331,11 +331,11 @@ MonoBehaviour:
   - {fileID: 3045462806711292591, guid: 65f30584ac042f7479b8085e736ccabb, type: 3}
   - {fileID: 4709901737373374496, guid: 6c916f081184e2c4b8f19bc2b78f35e3, type: 3}
   bulletSeppts:
-  - 30
-  - 45
+  - 50
+  - 75
   bulletLifespans:
-  - 2
-  - 0.25
+  - 1.5
+  - 0.15
   bulletDamages:
   - 15
   - 30
@@ -351,6 +351,7 @@ MonoBehaviour:
   ReloadLimit:
   - 2
   - 4
+  bulletPenetrationvolume: 0400000002000000
   instantiateInstallationBattery:
   - {fileID: 1378914037558643208, guid: c8db79249f41a92408cf39e60aa41f99, type: 3}
   - {fileID: 7714368608549526078, guid: 4a67c467177e4b040bdd612515a6a3f3, type: 3}
@@ -375,6 +376,7 @@ MonoBehaviour:
   batteryBulletLimit:
   - 2
   - 0
+  batterybulletPenetrationvolume: 0000000000000000
   GunnerSkillOutTime:
   - 0
   - 0
@@ -5390,8 +5392,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49, y: -5}
-  m_SizeDelta: {x: 300, y: 50}
+  m_AnchoredPosition: {x: 52, y: -5}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315714644
 MonoBehaviour:
@@ -6163,7 +6165,7 @@ MonoBehaviour:
   MyMagicStone: 9000
   MyMagicStoneMax: 50
   castleHp: 3000
-  castleHpMax: 3000
+  castleHpMax: 900000
   fillAmountSpeed: 1
   PlayerHp: {fileID: 1315714644}
   PlayerMagicStone: {fileID: 107142616}
@@ -7390,7 +7392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1657648155
 Transform:
   m_ObjectHideFlags: 0

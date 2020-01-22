@@ -98,10 +98,13 @@ public class SkillScriot : MonoBehaviour
             if (isSkillStart)
             {
                 Debug.Log(my.GetComponent<GunnaerHealth>().MyHp +" and"+ my.GetComponent<GunnaerHealth>().myHpMax);
-               
-                if (my.GetComponent<GunnaerHealth>() != null)
+
+                if (my.GetComponent<GunnaerHealth>() != null && my.GetComponent<GunnaerHealth>().MyHp <(int)my.GetComponent<GunnaerHealth>().myHpMax)
                 {
-                    my.GetComponent<GunnaerHealth>().MyHp += my.GetComponent<GunnaerHealth>().myHpMax*0.6f;
+                    my.GetComponent<GunnaerHealth>().MyHp += my.GetComponent<GunnaerHealth>().myHpMax * 0.6f;
+                    if (my.GetComponent<GunnaerHealth>().MyHp > my.GetComponent<GunnaerHealth>().myHpMax) {
+                        my.GetComponent<GunnaerHealth>().MyHp =(int) my.GetComponent<GunnaerHealth>().myHpMax;
+                    }
                 }
 
             }
@@ -169,28 +172,20 @@ public class SkillScriot : MonoBehaviour
             rifleGrenade.SkillMove();
             rifleGrenade.SkillMoveStart();
         }
-        else if (skillNum < 2)
+        else if (skillNum < 2&& GetComponent<GunnaerHealth>().MyHp < (int)GetComponent<GunnaerHealth>().myHpMax)
         {
             firstAidSprayBox.SkillMove();
             firstAidSprayBox.SkillMoveStart();
         }
     }
- 
     //スキル変わる
     public void SkillChangeMove() {
         ImejeBottom[skillNum].GetComponent<Image>().color = new Vector4(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f, 0.0f / 255.0f);
         skillNum++;
-     
         skillNum = skillNum % skillChangeNumMax;
         ImejeBottom[skillNum].GetComponent<Image>().color = new Vector4(255.0f / 255.0f,0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f);
         //Debug.Log(skillNum);
-
     }
-
-
-
-    
-
 }
 
  
