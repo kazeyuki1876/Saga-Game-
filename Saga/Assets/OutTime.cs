@@ -48,6 +48,7 @@ public class OutTime : MonoBehaviour
     private float fillAmountSpeed = 5;
     private float[]color0 =  new float[] { 13, 255, 1 };
     private float[] colorEnd = new float[] { 255, 1, 9 };
+    public float[] testcolor = new float[] { 0, 0, 0, 0, 0, 0 };
 
     void CastleHPGaugeMove()
     {
@@ -63,13 +64,19 @@ public class OutTime : MonoBehaviour
                 if (color0[i] != colorEnd[i])
                 {
                     float color0fillAmountSpeed = color0[i]/255.0f - color0[i] / colorEnd[i];
-                    color0[i] = color0[i] - color0fillAmountSpeed *5 * Time.deltaTime;
+                    color0[i] = color0[i] + color0fillAmountSpeed *5 * Time.deltaTime;
                 }
 
 
             }
-           
-          
+
+            testcolor[0] = color0[0];
+            testcolor[1] = color0[1];
+            testcolor[2] = color0[2];
+            testcolor[3] = colorEnd[0];
+                testcolor[4] = colorEnd[1];
+            testcolor[5] = colorEnd[2];
+
             //13 255 0) 
             //255 0 9
 
