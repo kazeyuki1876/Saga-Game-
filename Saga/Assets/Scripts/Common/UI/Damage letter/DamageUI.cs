@@ -19,8 +19,29 @@ public class DamageUI : MonoBehaviour
         
            damageText = GetComponentInChildren<Text>();
         if (DamageNum != 0) {
-            damageText.text = "" + DamageNum;
-            fadeOutSpeed = 2f;
+            if (DamageNum < 20.0f) {
+                damageText.fontSize = 8;
+                damageText.resizeTextMinSize = damageText.fontSize-2;
+                damageText.resizeTextMaxSize = damageText.fontSize+2;
+                fadeOutSpeed = 4f;
+            }
+            else if (DamageNum < 101.0f)
+            {
+                damageText.fontSize = (int)(8+ DamageNum/10);
+                damageText.resizeTextMinSize = damageText.fontSize - 3;
+                damageText.resizeTextMaxSize = damageText.fontSize + 3;
+                fadeOutSpeed = 3f;
+            }
+            else if (DamageNum < 1000)
+            {
+                damageText.fontSize = (int)(12 + DamageNum / 50);
+                damageText.resizeTextMinSize = damageText.fontSize - 5;
+                damageText.resizeTextMaxSize = damageText.fontSize + 5;
+                fadeOutSpeed = 2f;
+            }
+            
+                damageText.text = "" + DamageNum;
+            
 
         } else {
             damageText.text = "" + comment;
@@ -44,8 +65,6 @@ public class DamageUI : MonoBehaviour
 
         if (damageText.color.a <= 0.1f)
         {
-          
-
             Destroy(gameObject);
         }
 
