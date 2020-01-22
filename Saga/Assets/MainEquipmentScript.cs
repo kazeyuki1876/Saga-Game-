@@ -69,7 +69,7 @@ public class MainEquipmentScript : MonoBehaviour
         else {
 
             Reloadtime +=  (1.0f / (float)GetComponent<GunnerShootingMoveController>().data.GetComponent<GunnerData>().ReloadLimit[GetComponent<GunnerShootingMoveController>().gunNumber]) * Time.deltaTime;
-            Debug.Log(Reloadtime);
+         //   Debug.Log(Reloadtime);
             mainEquipmentImeji[0].GetComponent<Image>().fillAmount = Reloadtime;
 
         }

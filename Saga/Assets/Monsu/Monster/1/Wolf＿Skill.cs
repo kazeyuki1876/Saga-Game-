@@ -18,6 +18,7 @@ public class Wolf＿Skill : MonoBehaviour
     {//
         SpeedUp_ParticleSystem.SetActive(false);
         //スキルの持ち主は
+        Wolf_SpeedUp.isSkillStart = true;
         Wolf_SpeedUp.my = gameObject;
         //狼の加速できる時間
         Wolf_SpeedUp.skillTime0 = skillTime0;//

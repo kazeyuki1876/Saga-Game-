@@ -118,17 +118,17 @@ public class GunnerShootingMoveController : MonoBehaviour
     public void GunsChange()
     {
         if (isTrigger && !isReload) {
-            Debug.Log("GunsChange");
+          //  Debug.Log("GunsChange");
             gunNumber++;
             gunNumber = gunNumber % gunNumberMax;
-            Debug.Log(gunNumber + "=" + gunNumber + "/" + gunNumberMax);
+          //  Debug.Log(gunNumber + "=" + gunNumber + "/" + gunNumberMax);
         }
        
     }
     public void GunsReloadComment(Transform transform)
     {
         //  void OnTriggerEnter(Collider col)
-        Debug.Log("リロード");
+       // Debug.Log("リロード");
 
         //  gameObject = this.gameObject;
         gameObject.GetComponent<TakeDamage>().comment = data.GetComponent<GunnerData>().bullets[gunNumber].name+ "リロード中";

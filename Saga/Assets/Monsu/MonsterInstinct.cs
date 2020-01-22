@@ -161,7 +161,7 @@ public class MonsterInstinct : MonoBehaviour
 
             if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= (r0 *5) * (r0 *5))
             {
-                Debug.Log(target.name + "が離れよう");
+               // Debug.Log(target.name + "が離れ");
                 target = null;
             }//誰でも近きない
             if (target == null)

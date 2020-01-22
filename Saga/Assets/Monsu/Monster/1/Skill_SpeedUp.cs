@@ -36,7 +36,7 @@ public class Skill_SpeedUp : Skill_FoundationScript
 
         if (skillTime > 0)
         {
-            Debug.Log("skillTime:"+ skillTime);
+            //Debug.Log("skillTime:"+ skillTime);
             skillTime -= Time.deltaTime;
             if (skillTime < 0)
             {
