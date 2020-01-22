@@ -14,8 +14,6 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     [SerializeField]
     private GameObject
          data, //データの
-
-
         instantiateInstallationBattery,//設置しようGameObject
         installationBattery;//設置しするGameObject
     [SerializeField]
@@ -26,10 +24,13 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
    machineBatteryMaxX = -3,
         machineBatteryNumMax = 2;
     public float
+        machineCoolTime = 0,
+        machineCoolTimeMaX = 3,
         y;
     public int
+         batteryQuantityMax = 50,
+          batteryQuantity = 0,
          machineBatteryNum = 0;
-
 
     private void Update()
     {
@@ -37,20 +38,27 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
         if (instantiateInstallationBattery != null)
         {
             instantiateBatteryInstallationMove();
-
-
         }
+ 
+
+        MachineCoolTimeMove();
     }
 
 
     public void instantiateBatteryInstallationMoveStart()
-    {
-        if (instantiateInstallationBattery == null)
+    {// 設置するものがない
+        if (machineCoolTime > 0) {
+            CoolTimeLack(transform);
+
+        } else   if (instantiateInstallationBattery == null && machineCoolTime <= 0)
         {
             instantiateInstallationBattery = Instantiate(data.GetComponent<GunnerData>().instantiateInstallationBattery[machineBatteryNum], new Vector3((float)machineBatteryX + machineBatteryXplusplus, 1.1f, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
-        }
-        else if (instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true && this.GetComponent<GunnaerHealth>().MyMagicStone >= data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum])
+        }//設置する
+        if (batteryQuantity < batteryQuantityMax && instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true && this.GetComponent<GunnaerHealth>().MyMagicStone >= data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum])
         {
+            machineCoolTime = machineCoolTimeMaX;
+            batteryQuantity++;
+
             this.GetComponent<GunnaerHealth>().MyMagicStone -= data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum];
             //BatterybulletCost
             installationBattery = Instantiate(data.GetComponent<GunnerData>().InstallationBattery[machineBatteryNum], new Vector3((float)machineBatteryX + machineBatteryXplusplus, y, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
@@ -59,7 +67,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
 
             data.GetComponent<GunnerData>().InstallationBatteryNumer[machineBatteryNum] += 1;
             installationBattery.name = data.GetComponent<GunnerData>().InstallationBattery[machineBatteryNum].name + data.GetComponent<GunnerData>().InstallationBatteryNumer[machineBatteryNum];
-        }
+        }//COST足りません
         else if (instantiateInstallationBattery != null && instantiateInstallationBattery.GetComponent<IsGameObject>().isGoj == true && this.GetComponent<GunnaerHealth>().MyMagicStone < data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum])
         {
             MachineBatteryCancel();
@@ -69,10 +77,11 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
 
 
     }
-    private void instantiateBatteryInstallationPosMove() {
+    private void instantiateBatteryInstallationPosMove()
+    {
         // Debug.Log("instantiateBatteryInstallationMove");
         //---------------kikai
-        if (machineBatteryX > machineBatteryMaxX&& instantiateInstallationBattery != null)
+        if (machineBatteryX > machineBatteryMaxX && instantiateInstallationBattery != null)
         {
             MachineBatteryCancel();
             BatterybulletPosLack(transform);
@@ -113,40 +122,61 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
     }
     private void instantiateBatteryInstallationMove()
     {
-       
-      //  Debug.Log("X"+machineBatteryX + "Z"+ machineBatteryZ);
+
+        //  Debug.Log("X"+machineBatteryX + "Z"+ machineBatteryZ);
         instantiateInstallationBattery.transform.position = new Vector3((float)machineBatteryX + machineBatteryXplusplus, 5, (float)machineBatteryZ);
 
     }
     public void MachineBatteryNumChange()
     {
-        if (instantiateInstallationBattery == null) {
+        if (instantiateInstallationBattery == null)
+        {
 
             machineBatteryNum++;
             machineBatteryNum = machineBatteryNum % machineBatteryNumMax;
 
         }
     }
-    public void MachineBatteryCancel() {
+    public void MachineBatteryCancel()
+    {
         Destroy(instantiateInstallationBattery.gameObject);  // instantiateInstallationBatteryを崩壊
     }
     public void BatterybulletCostLack(Transform transform)
     {
         //  void OnTriggerEnter(Collider col)
-        Debug.Log("魔石不足");
+      //  Debug.Log("魔石不足");
 
-    //  gameObject = this.gameObject;
-        gameObject.GetComponent<TakeDamage>().comment = "魔石不足";
-     gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
+        //  gameObject = this.gameObject;
+        gameObject.GetComponent<TakeDamage>().comment = "警告！エネルギー不足！";
+        gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
     }
     public void BatterybulletPosLack(Transform transform)
     {
+        //  gameObject = this.gameObject;
+        gameObject.GetComponent<TakeDamage>().comment = "警告！設置エリア外！";
+        gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
+    }
+
+    public void CoolTimeLack(Transform transform)
+    {
         //  void OnTriggerEnter(Collider col)
-        Debug.Log("設置不可のエリアです");
+        Debug.Log("ミサイルサイロ整備中");
 
         //  gameObject = this.gameObject;
-        gameObject.GetComponent<TakeDamage>().comment = "設置不可のエリアです";
+        gameObject.GetComponent<TakeDamage>().comment = "ミサイルサイロ整備中";
         gameObject.transform.gameObject.GetComponent<TakeDamage>().Damage(transform);//ダメージ文字UI
     }
     //machineBatteryMaxX
+
+    void MachineCoolTimeMove()
+    {
+        if (machineCoolTime > 0)
+        {
+            machineCoolTime -= Time.deltaTime;
+            if (machineCoolTime < 0)
+            {
+                machineCoolTime = 0;
+            }
+        }
+    }
 }

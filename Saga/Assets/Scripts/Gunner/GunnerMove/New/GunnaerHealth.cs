@@ -21,12 +21,14 @@ public class GunnaerHealth : MonoBehaviour
     //魔石数				
   
 
-    public Text PlayerHp, PlayerMagicStone, castleHpText;
+    public Text PlayerHp, PlayerMagicStone, batteryQuantityText, castleHpText;
     [SerializeField]
     private Image
         GannerHpGaugeRed,
         GannerHpGaugeGreen,
         GannerMagicStoneGauge,
+        batteryQuantityGauge,
+        castleHpGauge0,
         castleHpGauge;
 
     [SerializeField]
@@ -47,12 +49,14 @@ public class GunnaerHealth : MonoBehaviour
     void Update()
     {
 
-        PlayerHp.text = "HP" + MyHp + "/" + myHpMax;
-        PlayerMagicStone.text = "MP" + MyMagicStone+ "/"+ MyMagicStoneMax;
-        castleHpText.text = "    CASTLEHP" + castleHp + "/" + castleHpMax;
+        PlayerHp.text = "PLAYER HP:" + MyHp + "/" + myHpMax;
+        PlayerMagicStone.text = "ENERGY:" + MyMagicStone+ "/"+ MyMagicStoneMax;
+        castleHpText.text = "CASTLE HP:" + castleHp + "/" + castleHpMax;
+        batteryQuantityText.text = GetComponent<GunnerBatteryInstallationMove>().batteryQuantity + "/" + GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax;
         GannerHpGaugeMove();
         GannerMagicStoneGaugeMove();
         CastleHPGaugeMove();
+
         if (MyHp > myHpMax) {
             MyHp = myHpMax;
         }
@@ -117,7 +121,24 @@ public class GunnaerHealth : MonoBehaviour
         {
             //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
             float castleHpGaugeSpeed = castleHpGauge.fillAmount - castleHp / castleHpMax;
+
             castleHpGauge.fillAmount = castleHpGauge.fillAmount - castleHpGaugeSpeed * fillAmountSpeed * Time.deltaTime;
+        }
+        // 0 0 0 0.5
+        // 1 0 0 1
+        castleHpGauge0.GetComponent<Image>().color = new Vector4(1, 1 * castleHp / castleHpMax, 1 * castleHp / castleHpMax, 1 -castleHp/ castleHpMax);
+
+        //  castleHpGauge0.GetComponent<Image>().color = new Vector4(castleHpGauge0.color.r, 1 * GameTime / gameTimeMax, castleHpGauge0.color.b, 255 / 255);
+
+
+    }
+    void batteryQuantityGaugeMove()
+    {
+        if (batteryQuantityGauge.fillAmount != GetComponent<GunnerBatteryInstallationMove>().batteryQuantity /  GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax)
+        {
+            //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
+            float batteryQuantityGaugeSpeed = batteryQuantityGauge.fillAmount - GetComponent<GunnerBatteryInstallationMove>().batteryQuantity / GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax;
+            batteryQuantityGauge.fillAmount = batteryQuantityGauge.fillAmount - batteryQuantityGaugeSpeed * fillAmountSpeed * Time.deltaTime;
         }
 
     }

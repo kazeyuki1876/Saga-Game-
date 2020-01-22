@@ -46,40 +46,35 @@ public class OutTime : MonoBehaviour
 
     }
     private float fillAmountSpeed = 5;
-    private float[]color0 =  new float[] { 13, 255, 1 };
-    private float[] colorEnd = new float[] { 255, 1, 9 };
+    private float[]color0 =  new float[] { 1.0f, 1.0f, 0 };
+    private float[] colorEnd = new float[] { 1, 0, 0.1f };
     public float[] testcolor = new float[] { 0, 0, 0, 0, 0, 0 };
 
     void CastleHPGaugeMove()
     {
         GameTime -= Time.deltaTime;
-        GameTimeUi.text = "REMAINING TINME" + (int)GameTime;
-        gameTimeImage.GetComponent<Image>().color = new Vector4(color0[0] / 255.0f, color0[1] / 255.0f, color0[2] / 255.0f, 255 / 255);
-        if (gameTimeImage.fillAmount != GameTime / gameTimeMax)
+        GameTimeUi.text = "REMAINING TINME:" + (int)GameTime;
+         if (gameTimeImage.fillAmount != GameTime / gameTimeMax)
         {
             //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
             float gameTimeImageSpeed = gameTimeImage.fillAmount - GameTime / gameTimeMax;
             gameTimeImage.fillAmount = gameTimeImage.fillAmount - gameTimeImageSpeed * fillAmountSpeed * Time.deltaTime;
-            for (int i = 0; i < 2; i++) {
-                if (color0[i] != colorEnd[i])
-                {
-                    float color0fillAmountSpeed = color0[i]/255.0f - color0[i] / colorEnd[i];
-                    color0[i] = color0[i] + color0fillAmountSpeed *5 * Time.deltaTime;
-                }
-
-
-            }
-
-            testcolor[0] = color0[0];
-            testcolor[1] = color0[1];
-            testcolor[2] = color0[2];
-            testcolor[3] = colorEnd[0];
-                testcolor[4] = colorEnd[1];
-            testcolor[5] = colorEnd[2];
-
-            //13 255 0) 
-            //255 0 9
-
         }
+
+  
+            gameTimeImage.GetComponent<Image>().color = new Vector4(gameTimeImage.color.r, 1 * GameTime / gameTimeMax, gameTimeImage.color.b, 255 / 255);
+        
+
+
+        testcolor[0] = color0[0];
+        testcolor[1] = color0[1];
+        testcolor[2] = color0[2];
+        testcolor[3] = colorEnd[0];
+        testcolor[4] = colorEnd[1];
+        testcolor[5] = colorEnd[2];
+
+        //13 255 0) 
+        //255 0 9
+
     }
 }

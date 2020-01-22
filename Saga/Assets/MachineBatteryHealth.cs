@@ -7,6 +7,7 @@ public class MachineBatteryHealth : MonoBehaviour
 public int MyHp;
  //   [SerializeField]
     public int MyNum=0;
+    private bool isHp0;
     private void Start()
     {
 
@@ -14,8 +15,10 @@ public int MyHp;
     }
     public void IsDIe()
     {
-        if (MyHp <= 0)
+        if (MyHp <= 0&&!isHp0)
         {
+            isHp0 = true;
+            GameObject.Find("Gunner").GetComponent<GunnerBatteryInstallationMove>().batteryQuantity--;
             Destroy(this.gameObject, 0.1f);
         }
     }

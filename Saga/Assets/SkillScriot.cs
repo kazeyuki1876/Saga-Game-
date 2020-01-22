@@ -65,15 +65,11 @@ public class SkillScriot : MonoBehaviour
         {
             if (isSkillStart)
             {
-
                GameObject bullet = Instantiate(grenade, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.position, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.rotation);
-                ////反発
-             
-
+          
             }
             else
             {
-               
             }
         }
 
@@ -137,9 +133,6 @@ public class SkillScriot : MonoBehaviour
     {
 
         GunnerSkill.Add((SkillStart)(new ATKSkill()));
-
-
-
         //    rifleGrenade.skillimaje = rifleGrenadeImeje;
         rifleGrenade.skillName = "ATKrifleGrenade";
         rifleGrenade.skillOutTimeMax = 5;

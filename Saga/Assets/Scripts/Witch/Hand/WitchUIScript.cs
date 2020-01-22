@@ -93,7 +93,7 @@ public class WitchUIScript : MonoBehaviour
 
         }
         MyMagicUI.GetComponent<Image>().fillAmount = MyMagic / MyMagicMAX;
-        myMagicText.text = "MP" + (int)MyMagic + "/" + MyMagicMAX;
+        myMagicText.text = "MP:" + (int)MyMagic + "/" + MyMagicMAX;
     }//魔力回復
     void HandCharge()
     {//(手札Tefuda)をチャージ

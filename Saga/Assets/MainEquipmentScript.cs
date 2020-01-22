@@ -28,12 +28,14 @@ public class MainEquipmentScript : MonoBehaviour
         [] mainBatterySprite = new Sprite[3];
     [SerializeField]
     private GameObject mainBatteryImaje;
-
+    public float test;
 
     private void Update()
     {
+     
+   
 
-       // mainEquipmentImeji[0].GetComponent<Image>().fillAmount = (float)GetComponent<GunnerShootingMoveController>().cartridgeClip[GetComponent<GunnerShootingMoveController>().gunNumber] / (float)GetComponent<GunnerShootingMoveController>().data.GetComponent<GunnerData>().cartridgeClipMax[GetComponent<GunnerShootingMoveController>().gunNumber];
+        // mainEquipmentImeji[0].GetComponent<Image>().fillAmount = (float)GetComponent<GunnerShootingMoveController>().cartridgeClip[GetComponent<GunnerShootingMoveController>().gunNumber] / (float)GetComponent<GunnerShootingMoveController>().data.GetComponent<GunnerData>().cartridgeClipMax[GetComponent<GunnerShootingMoveController>().gunNumber];
         MainEquipmentFillAmount();
         RemainingBullet();
     }
@@ -42,6 +44,7 @@ public class MainEquipmentScript : MonoBehaviour
         if (mainBatteryImaje.GetComponent<Image>().sprite != mainBatterySprite[GetComponent<GunnerBatteryInstallationMove>().machineBatteryNum]) {
             mainBatteryImaje.GetComponent<Image>().sprite = mainBatterySprite[GetComponent<GunnerBatteryInstallationMove>().machineBatteryNum];
         }
+        mainBatteryImaje.GetComponent<Image>().fillAmount = (GetComponent<GunnerBatteryInstallationMove>().machineCoolTimeMaX - GetComponent<GunnerBatteryInstallationMove>().machineCoolTime) / GetComponent<GunnerBatteryInstallationMove>().machineCoolTimeMaX;
         //使てる武器
         if (mainEquipmentImeji[0].GetComponent<Image>().sprite != mainEquipmentImejiSprite[GetComponent<GunnerShootingMoveController>().gunNumber])
         {
