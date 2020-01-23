@@ -10,6 +10,8 @@ public class MonsterInstinct : MonoBehaviour
     public float mySpeed;
     //攻撃力
     public float myDamage;
+    //
+    public float myDefense;
     private GameObject player;
     private GameObject castle;
     public float r0 = 5.0f;//半径  r0*r0 //索敵範囲

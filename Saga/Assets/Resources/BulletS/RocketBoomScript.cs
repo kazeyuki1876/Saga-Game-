@@ -23,7 +23,7 @@ public class RocketBoomScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.position = new Vector3(transform.position.x, 5.0f, transform.position.z);
     }
 
     // Update is called once per frame
@@ -60,15 +60,15 @@ public class RocketBoomScript : MonoBehaviour
         {
 
 
-            if (col.GetComponent<MonsterScript>().rigidTime < RigidTime)
+            if (col.GetComponent<MonsterInstinct>().rigidTime < RigidTime)
             {
-                col.GetComponent<MonsterScript>().rigidTime = RigidTime;
+                col.GetComponent<MonsterInstinct>().rigidTime = RigidTime;
             }
             //RigidTime
-            col.GetComponent<MonsterScript>().MyHP = col.GetComponent<MonsterScript>().MyHP - MyDamage; //着弾されたもののHP判定
+            col.GetComponent<MonsterInstinct>().myHp = col.GetComponent<MonsterInstinct>().myHp - MyDamage; //着弾されたもののHP判定
             col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.GetComponent<MonsterScript>().Isdie();//
+            col.GetComponent<MonsterInstinct>().Isdie();//
          
             // takeDamage.Damage(other);
             // Debug.Log(col.gameObject.tag);

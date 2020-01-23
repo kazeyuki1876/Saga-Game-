@@ -7,14 +7,15 @@ using UnityEngine;
 public class BulletMove : MonoBehaviour
 {
     public string targetTag;
-   public class Repulsion
+    public class Repulsion
     {
         public GameObject targetGameObject;//撃退されるGameObject
         public GameObject formGameObject;//撃退するGameObject
         public float repulsionSpeed;//撃退速度
-        public float repulsionMagnification=1.0f;//撃退倍率
+        public float repulsionMagnification = 1.0f;//撃退倍率
 
-       public void RepulsionMove() {
+        public void RepulsionMove()
+        {
             Transform Target = targetGameObject.transform;//当たったもののPOｓ
             Rigidbody rb = targetGameObject.GetComponent<Rigidbody>(); ;//当たったもののRigidbody
             //  GetComponent<Rigidbody>().velocity = transform.up * MySeppt;
@@ -36,8 +37,8 @@ public class BulletMove : MonoBehaviour
     //ダメージ
     public float MyDamage = 1;
     public float RigidTime = 0.2f;
-    public float myPenetrationVolume=1;
-    float myPenetrationVolumeMax=1;
+    public float myPenetrationVolume = 1;
+    float myPenetrationVolumeMax = 1;
     TakeDamage takeDamage;//
 
     void Start()
@@ -56,13 +57,13 @@ public class BulletMove : MonoBehaviour
     //当たり判定OnCollisionEnter
     void OnCollisionEnter(Collision collisionInfo) //当进入碰撞器
     {
-        Debug.Log("collisionInfo" );
+        Debug.Log("collisionInfo");
         Debug.Log(collisionInfo.gameObject.name);
     }
     //OnTriggerEnter
     void OnTriggerEnter(Collider col)
     {
-       // Debug.Log(other.gameObject.name);
+        // Debug.Log(other.gameObject.name);
         if (col.gameObject.tag == targetTag)
         {
             /*
@@ -83,21 +84,24 @@ public class BulletMove : MonoBehaviour
 
             }
             //撃退
-            //RigidTime
-            
-            col.GetComponent<MonsterInstinct>().myHp = col.GetComponent<MonsterInstinct>().myHp - MyDamage* myPenetrationVolume/ myPenetrationVolumeMax; //着弾されたもののHP判定
-            col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)(MyDamage * myPenetrationVolume / myPenetrationVolumeMax);
-            col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-
+            //damage
+            float damage = MyDamage * myPenetrationVolume / myPenetrationVolumeMax - col.GetComponent<MonsterInstinct>().myDefense;
             myPenetrationVolume--;//已穿透一个目标
-            col.GetComponent<MonsterInstinct>().Isdie();//
-            Repulsion NewRepulsion = new Repulsion();
-            NewRepulsion.targetGameObject= col.gameObject;//撃退されるGameObject
-            NewRepulsion.formGameObject=this.gameObject;//撃退するGameObject
-            NewRepulsion.repulsionSpeed =MySeppt*5* myPenetrationVolume / myPenetrationVolumeMax;//撃退速度
-            NewRepulsion.repulsionMagnification = 2.0f;//撃退倍率
-            NewRepulsion.RepulsionMove();
-
+            if (damage < 1.0f)
+            {
+                damage = 1;
+            }
+            col.GetComponent<MonsterInstinct>().myHp -= (int)damage; //着弾されたもののHP判定
+                col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)damage;
+                col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+                col.GetComponent<MonsterInstinct>().Isdie();//
+                Repulsion NewRepulsion = new Repulsion();
+                NewRepulsion.targetGameObject = col.gameObject;//撃退されるGameObject
+                NewRepulsion.formGameObject = this.gameObject;//撃退するGameObject
+                NewRepulsion.repulsionSpeed = MySeppt * 5 * myPenetrationVolume / myPenetrationVolumeMax;//撃退速度
+                NewRepulsion.repulsionMagnification = 2.0f;//撃退倍率
+                NewRepulsion.RepulsionMove();
+          
             /*
             Transform Target = col.gameObject.transform;//当たったもののPOｓ
             Rigidbody rb = col.GetComponent<Rigidbody>(); ;//当たったもののRigidbody
@@ -106,13 +110,11 @@ public class BulletMove : MonoBehaviour
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);//水平方向に撃退する
             rb.AddForce(transform.position + transform.forward * 10*MySeppt);//弾の方向に撃退する
             */
-
-
             if (myPenetrationVolume <= 0)
             {
                 Destroy(this.gameObject);  // 銃弾を崩壊
             }
-           
+
 
             // takeDamage.Damage(other);
 

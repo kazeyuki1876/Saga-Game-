@@ -92,7 +92,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8286101120320513492
 MonoBehaviour:
@@ -137,31 +137,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8527053255837398751}
     m_Modifications:
-    - target: {fileID: 5020094273482659175, guid: f5f489923b6dfe249a4425ba6118458d,
-        type: 3}
-      propertyPath: m_Name
-      value: ef_fire03
-      objectReference: {fileID: 0}
-    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
-        type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 1.02
-      objectReference: {fileID: 0}
     - target: {fileID: 5020094273482659174, guid: f5f489923b6dfe249a4425ba6118458d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -231,6 +206,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020094273482659175, guid: f5f489923b6dfe249a4425ba6118458d,
+        type: 3}
+      propertyPath: m_Name
+      value: ef_fire03
+      objectReference: {fileID: 0}
+    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 969018574603906049, guid: f5f489923b6dfe249a4425ba6118458d,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 7218401650303848822, guid: f5f489923b6dfe249a4425ba6118458d,
         type: 3}
