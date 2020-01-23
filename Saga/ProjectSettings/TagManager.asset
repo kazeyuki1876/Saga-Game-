@@ -10,6 +10,7 @@ TagManager:
   - MagicStone
   - Gunner
   - Ground
+  - EliaBox
   layers:
   - Default
   - TransparentFX

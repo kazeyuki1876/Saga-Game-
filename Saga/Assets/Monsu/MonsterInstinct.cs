@@ -85,9 +85,6 @@ public class MonsterInstinct : MonoBehaviour
     }
     void Update()
     {
-        ProcessAttackTargetControl();
-        TargetControl();
-      
         //もしスタン
         if (rigidTime > 0 && rigidResistance < 8)
         {
@@ -100,15 +97,16 @@ public class MonsterInstinct : MonoBehaviour
             }
         }
         // スタンではない
-        else
+        else if (isMove && isGround)
         {
+            ProcessAttackTargetControl();
+            TargetControl();
             //ターゲットがないの処理
             if (target != null && isMove)
             {
                 //目標をみる
                 transform.LookAt(target);
                 //水平で動く
-
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             }
         }
@@ -144,47 +142,54 @@ public class MonsterInstinct : MonoBehaviour
     }
     void TargetControl()
     {
+
+
+
         //城に辿り付けない
-      //  if (target != castle.transform)
-        
-         //playerに近き
-            if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= (r0+1) * (r0 + 1))
-            {
+        //  if (target != castle.transform)
 
-                target = player.transform;
-                //城に近き
-            } else if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
-            {
+        if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= (r0 + 1) * (r0 + 1))
+        {
+            target = player.transform;
+
+            //城に近き
+        }
+        else if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
+        {
 
 
-                target = castle.transform;
-            }
-            //もしPlayer が離れよう
+            target = castle.transform;
+        }
+        else if (transform.position.x < -25.0f) {
+            target = castle.transform;
+        }
+        //もしPlayer が離れよう
+   
 
-            if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= (r0 *5) * (r0 *5))
-            {
-               // Debug.Log(target.name + "が離れ");
-                target = null;
-            }//誰でも近きない
-            if (target == null)
-            {
-                transform.eulerAngles = new Vector3(0, -90, 0);
-            }
-
-        
+        if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= (r0 * 5) * (r0 * 5))
+        {
+            // Debug.Log(target.name + "が離れ");
+            target = null;
+        }
+        else if (target == null)//誰でも近きない
+        {
+            transform.eulerAngles = new Vector3(0, -90, 0);
+        }
     }
+
     void ProcessAttackTargetControl()
     {
         if (target != null)
         {
             processAttackTarget = target;
         }
-        else if (processAttackTargetGameObject != null  && (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) >= (r0 * 4) * (r0 * 4)) {
+        else if (processAttackTargetGameObject != null && (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) >= (r0 * 4) * (r0 * 4))
+        {
             processAttackTarget = processAttackTargetGameObject.transform;
         }
-        else if(target == null& processAttackTarget == null)
+        else if (target == null & processAttackTarget == null)
         {
-          //  Debug.Log("ProcessAttackConControl");
+            //  Debug.Log("ProcessAttackConControl");
             //経過時間を取得
             searchTime += Time.deltaTime;
             if (searchTime >= 0.3f)
@@ -196,7 +201,7 @@ public class MonsterInstinct : MonoBehaviour
                 searchTime = 0;
             }
             //もし　 射撃サポート　狙える　対象の位置の方向を向く
-           
+
         }
     }
 }

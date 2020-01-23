@@ -7,11 +7,11 @@ public class MonsterAttack : MonoBehaviour
     //      
     
       // //接近攻撃できるか
-      [SerializeField]
-    private bool isApproachAttack = true;
+  
+    public bool isApproachAttack = true;
     // //遠距離攻撃できるか
-    [SerializeField]
-    private bool isProcessAttack = true;
+    
+    public bool isProcessAttack = true;
     //遠距離攻撃の弾
     [SerializeField]
     private GameObject flyingTools;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunnerShootingMoveController : MonoBehaviour
 {
+    public ParticleSystem[] shootingParticleSystem;
     public GameObject
         gunPos,
         data;   //データの
@@ -72,6 +73,8 @@ public class GunnerShootingMoveController : MonoBehaviour
         bullet = Instantiate(data.GetComponent<GunnerData>().bullets[gunNumber], gunPos.transform.position, gunPos.transform.rotation);
         ////反発
         bullet.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-data.GetComponent<GunnerData>().gunRecoils[gunNumber], data.GetComponent<GunnerData>().gunRecoils[gunNumber]), 0);
+        //ParticleSystem 
+        shootingParticleSystem[gunNumber].Play();
         //BulleBOXの子ともGameObjectであり
         bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
         //銃弾の速度
