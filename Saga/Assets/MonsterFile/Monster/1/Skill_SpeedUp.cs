@@ -18,7 +18,9 @@ public class Skill_SpeedUp : Skill_FoundationScript
         if (isSkillStart)
         {
             isSkillStart = false;
+
             SpeedUp_ParticleSystem.SetActive(true);
+
             skillTime = skillTime0;
             skillcoolTime = skillCoolTimeMax;
             //記録加速の倍率
