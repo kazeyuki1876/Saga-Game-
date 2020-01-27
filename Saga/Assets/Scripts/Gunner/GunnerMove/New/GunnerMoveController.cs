@@ -11,7 +11,7 @@ public class GunnerMoveController : MonoBehaviour
     float moveX = 0f;
     float moveZ = 0f;
     Rigidbody rb;
-
+    private bool isGround;
     //周り速度
     [SerializeField] private float aroundSeppt = 5;
     [SerializeField]
@@ -62,7 +62,14 @@ public class GunnerMoveController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.velocity = new Vector3(moveX, 0, moveZ);
+       
+        if (isGround)
+        {
+            rb.velocity = new Vector3(moveX, 0, moveZ);
+        }
+        else {
+            rb.velocity = new Vector3(moveX, -5, moveZ);
+        }
     }
     void FoundationMove()
     {
@@ -267,9 +274,23 @@ public class GunnerMoveController : MonoBehaviour
         {
             transform.position = new Vector3(18.90f, transform.position.y, transform.position.z);
         }
-
+       
+       
     }
-
+    void OnCollisionStay(Collision col) //当进入碰撞器
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGround = true;
+        }
+    }
+    void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGround = false;
+        }
+    }
     /*
 
 

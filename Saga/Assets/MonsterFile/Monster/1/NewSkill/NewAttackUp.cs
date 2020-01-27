@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class NewAttackUp : NewSkill_AbilityUp
 {//攻撃力
-    /// <summary>
-    /// このスクリプトはモンスターの速度をアップする発動タイミング　コントローラー
-    /// </summary>
-
+ /// <summary>
+ /// このスクリプトはモンスターの能力をアップする発動タイミング　コントローラー
+ /// </summary>
+ 　　//最初のHP
+    private float startHp;
+    
     private void Start()
     {//アップしたい能力　
         ability0 = GetComponent<MonsterInstinct>().myDamage;
@@ -15,18 +17,20 @@ public class NewAttackUp : NewSkill_AbilityUp
         abilityUp = ability0;
         //スキルははじめから使える
         isSkillStart = true;
+
+        startHp = GetComponent<MonsterInstinct>().myHp;
     }
     void Update()
     {    //スキル維持時間　カウントダウン  
         SkillMovecontrol();
         ////スキル冷却(れいきゃく)　カウントダウン  
         CountingDown();
-        //ターゲットあったら　スキル使う
-        if (GetComponent<MonsterInstinct>().target != null)
+        //HP< 　startHp*倍率
+        if (GetComponent<MonsterInstinct>().myHp< startHp*0.4f)
         {
             Skill_Start();
         }
-        //今の速度
+        //今の攻撃力
         GetComponent<MonsterInstinct>().myDamage = abilityUp;
     }
 }

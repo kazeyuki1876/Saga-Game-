@@ -13,6 +13,7 @@ public class MonsterInstinct : MonoBehaviour
     //
     public float myDefense;
     private GameObject player;
+
     private GameObject castle;
     public float r0 = 5.0f;//半径  r0*r0 //索敵範囲
     //最終目標
@@ -22,6 +23,7 @@ public class MonsterInstinct : MonoBehaviour
     //遠距離攻撃target
     public Transform processAttackTarget;
     public GameObject processAttackTargetGameObject;
+    public float processAttackTargetGameObjectPos;
     //落ちる魔石
     public GameObject magicStoneGameObject;
     //落ちる魔石no数
@@ -81,7 +83,13 @@ public class MonsterInstinct : MonoBehaviour
         if (rigidTime <= 0 && isMove && isGround)
         {
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * mySpeed);
+        }else if (!isGround)
+        {
+
+            rb.velocity = new Vector3(0, -5, 0);
         }
+
+
     }
     void Update()
     {
@@ -138,7 +146,6 @@ public class MonsterInstinct : MonoBehaviour
 
             Destroy(this.gameObject, 0.1f);
         }
-
     }
     void TargetControl()
     {
@@ -156,8 +163,6 @@ public class MonsterInstinct : MonoBehaviour
         }
         else if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
         {
-
-
             target = castle.transform;
         }
         else if (transform.position.x < -25.0f) {
@@ -185,6 +190,7 @@ public class MonsterInstinct : MonoBehaviour
         }
         else if (processAttackTargetGameObject != null && (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) >= (r0 * 4) * (r0 * 4))
         {
+            processAttackTargetGameObjectPos = (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) * (gameObject.transform.position.x - processAttackTargetGameObject.transform.position.x) + (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z) * (gameObject.transform.position.z - processAttackTargetGameObject.transform.position.z);
             processAttackTarget = processAttackTargetGameObject.transform;
         }
         else if (target == null & processAttackTarget == null)

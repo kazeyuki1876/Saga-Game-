@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewSpeedUp : NewSkill_AbilityUp
 {//速度
     /// <summary>
-    /// このスクリプトはモンスターの速度をアップする発動タイミング　コントローラー
+    /// このスクリプトはモンスターの能力をアップする発動タイミング　コントローラー
     /// </summary>
 
     private void Start()

@@ -114,8 +114,8 @@ public class MonsterAttack : MonoBehaviour
 
     //遠距離攻撃のターゲット
     private void ProcessAttackConControl()
-    {
-        if ( GetComponent<MonsterInstinct>().processAttackTarget != null && GetComponent<MonsterInstinct>().isMove && isProcessAttack && (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) + (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) < GetComponent<MonsterInstinct>().r0 * GetComponent<MonsterInstinct>().r0 * 6)
+    {//接近攻撃できる　ターゲットある　動ける　　遠距離攻撃できる　攻撃範囲内
+        if (isApproachAttack&& GetComponent<MonsterInstinct>().processAttackTarget != null && GetComponent<MonsterInstinct>().isMove && isProcessAttack && (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) * (transform.position.x - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.x) + (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) * (transform.position.z - GetComponent<MonsterInstinct>().processAttackTarget.transform.position.z) < GetComponent<MonsterInstinct>().r0 * GetComponent<MonsterInstinct>().r0 * 6)
         {
             if (flyingToolsNum < flyingToolsNumMax)
             {
