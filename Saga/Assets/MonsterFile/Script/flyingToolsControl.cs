@@ -66,11 +66,18 @@ public class flyingToolsControl : MonoBehaviour
         }
         if (col.gameObject.tag == "Machine")
         {
-            col.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage; //着弾されたもののHP判定
-            col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
-            col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.GetComponent<MachineBatteryHealth>().IsDIe();
-            Destroy(this.gameObject);  // 銃弾を崩壊
+            if (col.GetComponent<MachineBatteryHealth>() != null)
+            {
+                col.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage; //着弾されたもののHP判定
+                col.GetComponent<MachineBatteryHealth>().IsDIe();
+                col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
+                col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+
+                Destroy(this.gameObject);  // 銃弾を崩壊
+            }
+           
+
+           
         }
     }
     

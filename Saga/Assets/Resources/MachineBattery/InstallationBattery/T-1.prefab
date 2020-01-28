@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 7482156560025537861, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
         type: 3}
       propertyPath: flyingToolsNumMax
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1065065819, guid: 13ebd03cafed3bd4388b96c501e6b8b4, type: 3}
       propertyPath: m_Enabled

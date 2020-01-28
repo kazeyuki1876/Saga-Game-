@@ -135,7 +135,7 @@ MonoBehaviour:
   skillTime0: 3
   skillTime: 0
   ability0: 0
-  abilityMagnification: 3
+  abilityMagnification: 4
   abilityUp: 0
   Skill_ParticleSystem:
   - {fileID: 4564084572176877500}
@@ -162,6 +162,7 @@ MonoBehaviour:
   abilityMagnification: 2
   abilityUp: 0
   Skill_ParticleSystem:
+  - {fileID: 7835080273509645409}
   - {fileID: 7835080273509645409}
   beforeHp: 0
 --- !u!114 &8654961717769105986
@@ -195,8 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25345b08992fa2542a71341c3cba0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myHp: 2000
-  mySpeed: 5
+  myHp: 800
+  mySpeed: 4
   myDamage: 25
   myDefense: 10
   r0: 5
@@ -207,7 +208,7 @@ MonoBehaviour:
   processAttackTargetGameObjectPos: 0
   magicStoneGameObject: {fileID: 5464093427566164192, guid: 4bf18977e11ca4746b5780075eed27a4,
     type: 3}
-  myMagicStoneNum: 0
+  myMagicStoneNum: 3
   rigidTime: 0
   rigidResistance: 5
   isMove: 1

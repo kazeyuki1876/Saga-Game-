@@ -8,10 +8,10 @@ using UnityEngine.UI;
 
 public class OutTime : MonoBehaviour
 {
-    [SerializeField]
-    private float GameTime;
-    [SerializeField]
-    private float gameTimeMax = 180;
+   
+    public float GameTime;
+
+    public float gameTimeMax = 180;
     [SerializeField]
     private Text GameTimeUi;
     [SerializeField]

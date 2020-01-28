@@ -42,6 +42,7 @@ public class WitchUIScript : MonoBehaviour
     public float InAdvanceInstallationSpeed = 30;
     public Sprite[] CardImaje;
     public GameObject[] Monsus;
+    public GameObject time;
     /*　
      1　　　700
      2
@@ -61,7 +62,7 @@ public class WitchUIScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Load", 0, 2f);
+        InvokeRepeating("Load", 0, 0.5f + time.GetComponent<OutTime>().GameTime / time.GetComponent<OutTime>().gameTimeMax);
     }
     void Load()
     {

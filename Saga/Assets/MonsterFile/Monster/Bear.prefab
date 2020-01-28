@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25345b08992fa2542a71341c3cba0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myHp: 1000
+  myHp: 500
   mySpeed: 5
   myDamage: 25
   myDefense: 5
@@ -180,7 +180,7 @@ MonoBehaviour:
   processAttackTargetGameObjectPos: 0
   magicStoneGameObject: {fileID: 5464093427566164192, guid: 4bf18977e11ca4746b5780075eed27a4,
     type: 3}
-  myMagicStoneNum: 0
+  myMagicStoneNum: 2
   rigidTime: 0
   rigidResistance: 3
   isMove: 1

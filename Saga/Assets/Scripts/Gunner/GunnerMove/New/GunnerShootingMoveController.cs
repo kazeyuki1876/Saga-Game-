@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunnerShootingMoveController : MonoBehaviour
 {
-    public ParticleSystem[] shootingParticleSystem;
+    public ParticleSystem[] shootingParticleSystem; 
     public GameObject
         gunPos,
         data;   //データの

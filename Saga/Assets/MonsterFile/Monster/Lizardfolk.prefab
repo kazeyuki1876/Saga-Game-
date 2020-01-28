@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25345b08992fa2542a71341c3cba0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myHp: 2000
+  myHp: 1500
   mySpeed: 2
   myDamage: 50
   myDefense: 20
@@ -159,7 +159,7 @@ MonoBehaviour:
   processAttackTargetGameObjectPos: 0
   magicStoneGameObject: {fileID: 5464093427566164192, guid: 4bf18977e11ca4746b5780075eed27a4,
     type: 3}
-  myMagicStoneNum: 0
+  myMagicStoneNum: 7
   rigidTime: 0
   rigidResistance: 9
   isMove: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
   skillTime0: 2
   skillTime: 0
   ability0: 0
-  abilityMagnification: 0.5
+  abilityMagnification: 0.4
   abilityUp: 0
   Skill_ParticleSystem:
   - {fileID: 3311123888001899774}
@@ -205,11 +205,11 @@ MonoBehaviour:
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   israteOfFireMove: 0
-  rateOfFire: 2
+  rateOfFire: 1
   rateOfFireMin: 40
   rateOfFireMax: 200
   rateOfFireNum: 0
-  rateOfFireArcDegree: 25
+  rateOfFireArcDegree: 15
   energyReserveParticleSystem: {fileID: 8199957451708523673}
 --- !u!1001 &4564562238360668280
 PrefabInstance:
