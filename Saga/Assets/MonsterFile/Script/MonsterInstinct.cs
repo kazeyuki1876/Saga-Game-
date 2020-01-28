@@ -83,7 +83,8 @@ public class MonsterInstinct : MonoBehaviour
         if (rigidTime <= 0 && isMove && isGround)
         {
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * mySpeed);
-        }else if (!isGround)
+        }
+        else if (!isGround)
         {
 
             rb.velocity = new Vector3(0, -5, 0);
@@ -92,11 +93,19 @@ public class MonsterInstinct : MonoBehaviour
 
     }
     void Update()
-    {
-        //もしスタン
-        if (rigidTime > 0 && rigidResistance < 8)
+    {    //スタン 免疫
+        if (rigidResistance >= 8)
         {
+            rigidTime = 0;
+
+        }
+        //もしスタン
+        if (rigidTime > 0)
+        {
+            Debug.Log("//もしスタン");
+            if (rigidResistance <= 0) { rigidResistance = 1; }
             rigidTime -= Time.deltaTime * rigidResistance;
+
             isMove = false;
             if (rigidTime <= 0)
             {
@@ -154,23 +163,25 @@ public class MonsterInstinct : MonoBehaviour
 
         //城に辿り付けない
         //  if (target != castle.transform)
-
-        if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= (r0 + 1) * (r0 + 1))
+        if (target == null)
         {
-            target = player.transform;
+            if ((gameObject.transform.position.x - player.transform.position.x) * (gameObject.transform.position.x - player.transform.position.x) + (gameObject.transform.position.z - player.transform.position.z) * (gameObject.transform.position.z - player.transform.position.z) <= (r0 + 1) * (r0 + 1))
+            {
+                target = player.transform;
 
-            //城に近き
-        }
-        else if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
-        {
-            target = castle.transform;
-        }
-        else if (transform.position.x < -25.0f) {
-            target = castle.transform;
-        }
-        //もしPlayer が離れよう
-   
+                //城に近き
+            }
+            else if ((gameObject.transform.position.x - castle.transform.position.x) * (gameObject.transform.position.x - castle.transform.position.x) + (gameObject.transform.position.z - castle.transform.position.z) * (gameObject.transform.position.z - castle.transform.position.z) / 20 <= r0 * r0)
+            {
+                target = castle.transform;
+            }
+            else if (transform.position.x < -25.0f)
+            {
+                target = castle.transform;
+            }
+            //もしPlayer が離れよう
 
+        }
         if (target != null && (gameObject.transform.position.x - target.transform.position.x) * (gameObject.transform.position.x - target.transform.position.x) + (gameObject.transform.position.z - target.transform.position.z) * (gameObject.transform.position.z - target.transform.position.z) >= (r0 * 5) * (r0 * 5))
         {
             // Debug.Log(target.name + "が離れ");
@@ -203,7 +214,12 @@ public class MonsterInstinct : MonoBehaviour
                 //最も近かったオブジェクトを取得
                 nearObj = serchTag(gameObject, "Machine");
                 //経過時間を初期化
-                processAttackTargetGameObject = nearObj;
+               processAttackTargetGameObject = nearObj;
+                if (processAttackTargetGameObject != null)
+                {
+                    target = processAttackTargetGameObject.transform;
+                }
+              
                 searchTime = 0;
             }
             //もし　 射撃サポート　狙える　対象の位置の方向を向く

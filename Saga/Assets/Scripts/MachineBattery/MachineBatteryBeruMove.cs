@@ -28,7 +28,7 @@ public class MachineBatteryBeruMove : MonoBehaviour
       
         if (isMove && Monster.gameObject.tag=="Monster") {
             //Debug.Log("testberu");
-            Monster.GetComponent<MonsterScript>().Target = this.GetComponent<Transform>();
+          //  Monster.GetComponent<MonsterScript>().Target = this.GetComponent<Transform>();
         }
     }
 

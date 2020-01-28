@@ -16,6 +16,9 @@ public class NewShootFire : NewSkill_AbilityUp
     public int rateOfFire;  //1s=250;
     public int rateOfFireMin, rateOfFireMax;
     public int rateOfFireNum;
+    public int rateOfFireArcDegree;
+    public ParticleSystem energyReserveParticleSystem; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,20 +72,28 @@ public class NewShootFire : NewSkill_AbilityUp
         //target獲得
         shootFireTarget = GetComponent<MonsterInstinct>().target;
         rateOfFireNum = 0;
-    }
+        energyReserveParticleSystem.Play();
+       
+}
     public void ShootFireMove()
     {
         rateOfFireNum++;
+        
         if (rateOfFireNum % rateOfFire == 0 && rateOfFireNum > rateOfFireMin && rateOfFireNum * skillTime0 < rateOfFireMax * skillTime0)
         {
           
 
             //方向獲得
-            transform.LookAt(shootFireTarget.transform);
+            if (shootFireTarget.transform != null)
+            {
+                transform.LookAt(shootFireTarget.transform);
+            }
+         
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             //弾作り
             GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
-            newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-40, 40), 0);
+            newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-rateOfFireArcDegree, rateOfFireArcDegree), 0);
+            newFlyingTools.GetComponent<flyingToolsControl>().MyDamage = GetComponent<MonsterInstinct>().myDamage * abilityMagnification;
             newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
             Spot();
         }

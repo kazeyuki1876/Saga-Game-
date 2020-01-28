@@ -41,7 +41,7 @@ public class Skill_FoundationScript_Ver_1 : MonoBehaviour
         ////スキル冷却(れいきゃく)　カウントダウン  
         if (skillcoolTime > 0)
         {
-            Debug.Log("スキル冷却(れいきゃく)");
+          //  Debug.Log("スキル冷却(れいきゃく)");
 
             skillcoolTime -= Time.deltaTime;
             if (skillcoolTime < 0)
@@ -49,7 +49,7 @@ public class Skill_FoundationScript_Ver_1 : MonoBehaviour
                 skillcoolTime = 0;
                 //冷却完了　再使用許可
                 isSkillStart = true;
-                Debug.Log("冷却完了　再使用許可)");
+          //      Debug.Log("冷却完了　再使用許可)");
 
             }
         }

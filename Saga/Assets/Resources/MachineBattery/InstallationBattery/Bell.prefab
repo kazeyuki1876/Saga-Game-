@@ -92,7 +92,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1, z: 0.95}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &650477334622481176
 MonoBehaviour:
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyHp: 0
+  batteryBox: {fileID: 2416628523430384961}
   MyNum: 3
 --- !u!54 &6614864380544123394
 Rigidbody:

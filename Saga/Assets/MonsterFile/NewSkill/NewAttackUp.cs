@@ -9,7 +9,7 @@ public class NewAttackUp : NewSkill_AbilityUp
  /// </summary>
  　　//最初のHP
     private float startHp;
-    
+    public float startHpMax=1;
     private void Start()
     {//アップしたい能力　
         ability0 = GetComponent<MonsterInstinct>().myDamage;
@@ -17,8 +17,8 @@ public class NewAttackUp : NewSkill_AbilityUp
         abilityUp = ability0;
         //スキルははじめから使える
         isSkillStart = true;
-
         startHp = GetComponent<MonsterInstinct>().myHp;
+      
     }
     void Update()
     {    //スキル維持時間　カウントダウン  
@@ -26,7 +26,7 @@ public class NewAttackUp : NewSkill_AbilityUp
         ////スキル冷却(れいきゃく)　カウントダウン  
         CountingDown();
         //HP< 　startHp*倍率
-        if (GetComponent<MonsterInstinct>().myHp< startHp*0.4f)
+        if (GetComponent<MonsterInstinct>().myHp< startHp* startHpMax)
         {
             Skill_Start();
         }

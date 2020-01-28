@@ -56,21 +56,7 @@ public class CardScript : MonoBehaviour
        
         for (int Move = 0; Move < Moves; Move++) {
             GameObject Mons = Instantiate(Monsu, new Vector3(MonsterStartX + PosX[Move], 5.6f, MonsterStartZ + PosZ[Move]), transform.rotation);
-            if (Mons.GetComponent<MonsterScript>() != null) { 
-            if (Boolean)
-            {
-                Mons.GetComponent<MonsterScript>().StartTarget = GameObject.Find("Gunner").GetComponent<Transform>();
-            }
-            else
-            {
-                Mons.GetComponent<MonsterScript>().StartTarget = GameObject.Find("Castle").GetComponent<Transform>();
-            }
-            Mons.name = Monsu.name + Move;
-            Mons.GetComponent<MonsterScript>().MySeppt = MonsterSpeed;
-                Mons.GetComponent<MonsterScript>().MonsterMagicStone = MonsterMagicStone;
-                Mons.GetComponent<MonsterScript>().MyHP = MonsterHP;
-                Mons.transform.parent = GameObject.Find("MonstersBOX").transform;//MonstersBOXの子ともGameObjectであり
-            }
+            Mons.transform.parent = GameObject.Find("MonstersBOX").transform;//MonstersBOXの子ともGameObjectであり
         }
 
        

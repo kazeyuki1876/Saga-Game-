@@ -38,7 +38,7 @@ public class NewDefenseUp : NewSkill_AbilityUp
         }
         BeforeHpRecordMove();
         //今の防御力
-        GetComponent<MonsterInstinct>().myDamage = abilityUp;
+        GetComponent<MonsterInstinct>().myDefense = abilityUp;
     }
     void BeforeHpRecordMove() {
         if (!isSkillStart)

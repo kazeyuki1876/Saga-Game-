@@ -75,11 +75,26 @@ PrefabInstance:
     - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: repositionTime1
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: repositionTime2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: flyingToolsNumMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: flyingToolsNum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040796660768307891, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: MyNum
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2551237494077443291, guid: 635b640b639cc364fbb39b6df19f1f22,

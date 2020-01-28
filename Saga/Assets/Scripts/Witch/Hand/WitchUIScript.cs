@@ -61,7 +61,7 @@ public class WitchUIScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Load", 0, 3f);
+        InvokeRepeating("Load", 0, 2f);
     }
     void Load()
     {
@@ -142,19 +142,16 @@ public class WitchUIScript : MonoBehaviour
         }
     
        
-
-
-
-
-
+        
             Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX, 0, 0.0f), transform.rotation);//Start Pos
-        Hand[HandNumSheet].GetComponent<CardScript>().MyX = CardX;//Card PosX
-        Hand[HandNumSheet].GetComponent<CardScript>().MyY = CardY[HandNumSheet];//PosY
-        Hand[HandNumSheet].transform.SetParent(CardParent.transform);//Handの子ともGameObjectであり
+            Hand[HandNumSheet].GetComponent<CardScript>().MyX = CardX;//Card PosX
+            Hand[HandNumSheet].GetComponent<CardScript>().MyY = CardY[HandNumSheet];//PosY
+            Hand[HandNumSheet].transform.SetParent(CardParent.transform);//Handの子ともGameObjectであり
         //Hand[HandNumSheet].transform.parent = CardParent(this.transform);
-        Hand[HandNumSheet].GetComponent<CardScript>().MyName = CardName[CardID];//CardName
-        Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
-        Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
+            Hand[HandNumSheet].GetComponent<CardScript>().MyName = CardName[CardID];//CardName
+            Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
+            Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
+
         if (CardID < 6) {
             Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Monsus[CardID];
             Hand[HandNumSheet].GetComponent<CardScript>().MonsterHP = MonsterHP[CardID];

@@ -266,9 +266,9 @@ public class GunnerMoveController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -27.9f);
         }
-        if (transform.position.x < -20)
+        if (transform.position.x < -24)
         {
-            transform.position = new Vector3(-19.90f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-24, transform.position.y, transform.position.z);
         }
         if (transform.position.x > 19)
         {

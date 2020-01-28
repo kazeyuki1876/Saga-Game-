@@ -5,49 +5,38 @@ using UnityEngine;
 public class MachineBatteryScript : MonoBehaviour
 {
     // Start is called before the first frame update
- 
+    //射撃速度
+    
     public float MyLifespan;
+    //ダメージ
     public float MyDamage;
+    //弾の移動速度
     public float MyShootingSpeed;
+    //存在時間
     public float MyBatteryBulletLifespans;
     public GameObject Bullet;
     public GameObject Bullets;
     public bool IsShooting = true;
     public float repositionTime1, repositionTime2;
+    public int flyingToolsNum, flyingToolsNumMax;
+    public int myPenetrationVolume;
+
+    Rigidbody rb;
+
+    private bool isGround;
     //--------------------
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間
-    /*
-     public GameObject Player;//玩家/需要检测的目标
-    public float r0 = 2.0f;//半径
-    public float r = 2.0f;//半径方（距离差值）
-    private float x0 = 0.0f;//园的零点X
-    private float y0 = 0.0f;//园的零点Y
-    private   float x = 0;//检测的目标x x=gameObject.transform.position.x
-    private   float y = 0;//检测的目标y Y=gameObject.transform.position.y
-    void Start()
-    {
-        r = r0 * r0;//初始化//半径方（距离差值）
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if ((gameObject.transform.position.x - x0) * (gameObject.transform.position.x - x0) + (gameObject.transform.position.y - y0) * (gameObject.transform.position.y - y0) <= r) {
-            Debug.Log("玩家在圆圈内");
-        }
-        else
-        {
-            Debug.Log("玩家不在圆圈内");
-        }
-    }
 
-         */
     public void Start()
     {
+        rb = GetComponent<Rigidbody>();
         MyDamage = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletDamages[GetComponent<MachineBatteryHealth>().MyNum - 1];
         MyLifespan = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletLimit[GetComponent<MachineBatteryHealth>().MyNum - 1];
         MyShootingSpeed = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletSeppts[GetComponent<MachineBatteryHealth>().MyNum - 1];
         MyBatteryBulletLifespans = GameObject.Find("DataController").GetComponent<GunnerData>().batteryBulletLifespans[GetComponent<MachineBatteryHealth>().MyNum - 1];
+        myPenetrationVolume = GameObject.Find("DataController").GetComponent<GunnerData>().batterybulletPenetrationvolume[GetComponent<MachineBatteryHealth>().MyNum - 1];
+
     }
     //------------- 
     public GameObject Cate; //回ろ
@@ -80,7 +69,16 @@ public class MachineBatteryScript : MonoBehaviour
 
      void Update()
     {
-        ShootingSupport(); }
+        if (isGround)
+        {
+            ShootingSupport();
+        }
+        else
+        {
+            rb.velocity = new Vector3(0, -80, 0);
+        }
+      
+    }
     public float A;
     public bool isMOve = true;
     void ShootingSupport()
@@ -125,14 +123,19 @@ public class MachineBatteryScript : MonoBehaviour
     }
 
     void Shooting() {
-        if (IsShooting) {
-            IsShooting = false;
+        if (IsShooting&& flyingToolsNum< flyingToolsNumMax) {
+            flyingToolsNum++;
+            GunsMOVE();
+
+        }
+        else
+        {
+            flyingToolsNum = 0;
+               IsShooting = false;
             isMOve = false;
             A = 0;
-            GunsMOVE();
             Invoke("IsMoveON", repositionTime1);
             Invoke("ShootingON", repositionTime2);
-
         }
 
     }
@@ -159,9 +162,10 @@ public class MachineBatteryScript : MonoBehaviour
         // string BulletName = Bullets[0].name;
         Bullet = Instantiate(Bullets, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z), this.transform.rotation);//弾丸を作り　位置と向きを与える
         Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
-        Bullet.GetComponent<BulletMove>().MySeppt = 30;
+        Bullet.GetComponent<BulletMove>().MySeppt = MyShootingSpeed;
         Bullet.GetComponent<BulletMove>().MyLifespan = MyLifespan;
         Bullet.GetComponent<BulletMove>().MyDamage = MyDamage;
+        Bullet.GetComponent<BulletMove>().myPenetrationVolume = myPenetrationVolume;
         /*
          
        public float MyLifespan;
@@ -171,9 +175,13 @@ public class MachineBatteryScript : MonoBehaviour
         //残弾量計算
     }
 
+    void OnCollisionStay(Collision col) //当进入碰撞器
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGround = true;
+        }
+    }
 
-    //atk 
-    // HP
-    //die
 
 }

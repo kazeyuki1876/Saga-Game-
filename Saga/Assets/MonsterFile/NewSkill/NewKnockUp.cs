@@ -67,17 +67,17 @@ public class NewKnockUp : NewSkill_AbilityUp
         else if (col.gameObject.name == "Castle"&& skillTime > 0)
         {
 
-            col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)GetComponent<MonsterInstinct>().myDamage;
+            col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)GetComponent<MonsterInstinct>().myDamage*3;
             col.gameObject.GetComponent<CastleScript>().IsOVER();
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage * 2;
+            col.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage * 3;
             KnockUpMoveEnd();
 
         }
         else if (col.gameObject.tag == "Machine" && skillTime > 0)
         {
 
-            col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)(GetComponent<MonsterInstinct>().myDamage * 2.5f);
+            col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)(GetComponent<MonsterInstinct>().myDamage * 3f);
             col.gameObject.GetComponent<MachineBatteryHealth>().IsDIe();
 
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
