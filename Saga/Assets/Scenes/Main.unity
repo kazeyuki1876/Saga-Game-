@@ -361,7 +361,7 @@ MonoBehaviour:
   - {fileID: 217488686549659550, guid: d27157a553bad9946ac8f87f6916ce16, type: 3}
   - {fileID: 2416628523430384961, guid: 09ec672da3ba7a146b1cf98111054d2f, type: 3}
   InstallationBatteryNumer: 000000000000000000000000
-  BatteryHP: f401000020030000a00f0000
+  BatteryHP: 9001000058020000b0040000
   BatterybulletLimit: 000000000000000000000000
   BatterybulletCost: 050000000a00000002000000
   batteryBulletSeppts:
@@ -376,7 +376,7 @@ MonoBehaviour:
   batteryBulletLimit:
   - 2
   - 2
-  batterybulletPenetrationvolume: 0200000063000000
+  batterybulletPenetrationvolume: 0100000063000000
   GunnerSkillOutTime:
   - 0
   - 0
@@ -24891,7 +24891,7 @@ MonoBehaviour:
   - 
   - 
   - 
-  CardCost: 0a0000000a0000000a0000001e0000001e0000001e00000000000000000000000000000000000000
+  CardCost: 0a0000000a0000000a0000001e000000280000001e00000000000000000000000000000000000000
   CardComment:
   - 1
   - 2
@@ -24930,6 +24930,7 @@ MonoBehaviour:
   - {fileID: 461872199133303287, guid: 41aad74fd7d9af44790d47530dcc5578, type: 3}
   - {fileID: 2724919029581687528, guid: 2be8098107d2de249aa0635425630e08, type: 3}
   - {fileID: 2797235320429804894, guid: 6a66112cdc1857648a20345acb58b97b, type: 3}
+  time: {fileID: 757028142}
   SelecImeji: 0
   SelectionCard: {fileID: 2118426712}
   IsHandsArray: 0
