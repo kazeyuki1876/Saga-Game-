@@ -1384,6 +1384,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Orc
       objectReference: {fileID: 0}
+    - target: {fileID: 461872199133303287, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1520,11 +1525,14 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 1
+  processAttackSpeed: 15
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
   flyingToolsNumMax: 5
   flyingToolsAttackTime: 1
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &231161958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,11 +2044,14 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 1
+  processAttackSpeed: 15
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
   flyingToolsNumMax: 5
   flyingToolsAttackTime: 1
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &298859545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8483,11 +8494,14 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 1
+  processAttackSpeed: 15
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
   flyingToolsNumMax: 5
   flyingToolsAttackTime: 1
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &1080084085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14837,6 +14851,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522665855}
   m_CullTransparentMesh: 0
+--- !u!1001 &1545472907
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8654961717769105985, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Golem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769105986, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: flyingTimeMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769105986, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: flyingToolsNumMax
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17d919f6af241ca44a7e911f15bf5d5b, type: 3}
 --- !u!1 &1553357982
 GameObject:
   m_ObjectHideFlags: 0
@@ -19922,11 +20015,14 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 1
+  processAttackSpeed: 15
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
   flyingToolsNumMax: 5
   flyingToolsAttackTime: 1
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &1615634905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30645,11 +30741,14 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 1
+  processAttackSpeed: 15
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
   flyingToolsNumMax: 5
   flyingToolsAttackTime: 1
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &2044318017
 MonoBehaviour:
   m_ObjectHideFlags: 0

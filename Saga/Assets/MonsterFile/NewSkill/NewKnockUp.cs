@@ -9,8 +9,6 @@ public class NewKnockUp : NewSkill_AbilityUp
     /// このスクリプトはモンスターの能力をアップする発動タイミング　コントローラー
     /// ノックバック　操作
     /// </summary>
-    /// 
-
     private Rigidbody rb;
     public bool isKnockUp;
     private void Start()
@@ -23,15 +21,11 @@ public class NewKnockUp : NewSkill_AbilityUp
         isSkillStart = false;
         //このモンスターは生成された何秒後からスキルが使える
         Invoke("SkillStart", Random.Range(1, 10));
-
     }
     void Update()
     {
-
         ////スキル冷却(れいきゃく)　カウントダウン  
         CountingDown();
- 
-
         //ターゲットあったら　スキル使う
         if (GetComponent<MonsterInstinct>().target != null && isSkillStart)
         {
@@ -40,50 +34,42 @@ public class NewKnockUp : NewSkill_AbilityUp
             //スキルは使ったのでクルーダイム
             Skill_Start();
         }
-        
         //スキル維持時間　カウントダウン  
         SkillMovecontrol();
         //スキル
         KnockUpMove();
-
-
-
     }
     private void OnCollisionStay(Collision col) //
     {
         if (col.gameObject.tag == "Player" && skillTime > 0)
         {
-
+            col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
+            col.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage * 2;
             //もし何かを当たったらダメージを与える
             col.gameObject.GetComponent<GunnaerHealth>().MyHp -= (int)GetComponent<MonsterInstinct>().myDamage * 2;
             //このオブジェクトのHP＜0か
             col.gameObject.GetComponent<GunnaerHealth>().Isdie();
-
-            col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage * 2;
+        
             KnockUpMoveEnd();
             //ノックアップ
         }
-        else if (col.gameObject.name == "Castle"&& skillTime > 0)
+        else if (col.gameObject.name == "Castle" && skillTime > 0)
         {
-
-            col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)GetComponent<MonsterInstinct>().myDamage*3;
+            col.gameObject.GetComponent<CastleScript>().MyHp = col.gameObject.GetComponent<CastleScript>().MyHp - (int)GetComponent<MonsterInstinct>().myDamage * 3;
             col.gameObject.GetComponent<CastleScript>().IsOVER();
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)GetComponent<MonsterInstinct>().myDamage * 3;
             KnockUpMoveEnd();
-
         }
         else if (col.gameObject.tag == "Machine" && skillTime > 0)
         {
-
             col.gameObject.GetComponent<MachineBatteryHealth>().MyHp -= (int)(GetComponent<MonsterInstinct>().myDamage * 3f);
             col.gameObject.GetComponent<MachineBatteryHealth>().IsDIe();
-
             col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
             col.transform.gameObject.GetComponent<TakeDamage>().DamageNum = (int)(GetComponent<MonsterInstinct>().myDamage * 2.5f);
             KnockUpMoveEnd();
-        }  else  if (col.gameObject.tag == "EliaBox")
+        }
+        else if (col.gameObject.tag == "EliaBox")
         {
             KnockUpMoveEnd();
         }
@@ -91,9 +77,9 @@ public class NewKnockUp : NewSkill_AbilityUp
     //スキル開始
     public void KnockUpStart()
     {
-        if (isSkillStart) {
+        if (isSkillStart)
+        {
             isKnockUp = true;
-
             //動きを止める
             GetComponent<MonsterInstinct>().isMove = false;
             GetComponent<MonsterAttack>().isApproachAttack = false;
@@ -102,13 +88,11 @@ public class NewKnockUp : NewSkill_AbilityUp
             transform.LookAt(GetComponent<MonsterInstinct>().target);
             rb = gameObject.GetComponent<Rigidbody>();
         }
-       
-
     }
 
     public void KnockUpMove()
     {
-        if (skillTime > 0&& isKnockUp)
+        if (skillTime > 0 && isKnockUp)
         {
             rb.MovePosition(transform.position + transform.forward * Time.deltaTime * abilityUp);
         }
@@ -129,33 +113,8 @@ public class NewKnockUp : NewSkill_AbilityUp
             GetComponent<MonsterAttack>().isApproachAttack = true;
             GetComponent<MonsterAttack>().isProcessAttack = true;
         }
-     
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-    //このモンスターは生成された何秒後からスキルが使える----------------------
     private void SkillStart()
     {
         isSkillStart = true;

@@ -130,11 +130,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
-  flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
+  processAttack: 0.4
+  processAttackSpeed: 10
+  flyingTools: {fileID: 3606401991122654887, guid: c2dc8db2dcd95d344b171b7295f97a66,
     type: 3}
   flyingToolsNum: 0
-  flyingToolsNumMax: 5
-  flyingToolsAttackTime: 1
+  flyingToolsNumMax: 3
+  flyingToolsAttackTime: 5
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &2724919029581687534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +155,7 @@ MonoBehaviour:
   mySpeed: 2
   myDamage: 50
   myDefense: 20
-  r0: 5
+  r0: 12
   startTarget: {fileID: 0}
   target: {fileID: 0}
   processAttackTarget: {fileID: 0}
@@ -202,7 +206,7 @@ MonoBehaviour:
   Skill_ParticleSystem:
   - {fileID: 3311123888001899774}
   - {fileID: 3422399523507834858}
-  flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
+  flyingTools: {fileID: 3606401991122654887, guid: c2dc8db2dcd95d344b171b7295f97a66,
     type: 3}
   israteOfFireMove: 0
   rateOfFire: 1
@@ -218,16 +222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2724919029581687521}
     m_Modifications:
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_Name
-      value: ATKUp_ParticleSystem (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001989, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -297,6 +291,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_Name
+      value: ATKUp_ParticleSystem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 739510a39af968c4ca78cb591831eb2c, type: 3}
@@ -420,16 +424,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2724919029581687521}
     m_Modifications:
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_Name
-      value: ATKUp_ParticleSystem (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001989, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -499,6 +493,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_Name
+      value: ATKUp_ParticleSystem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001988, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}

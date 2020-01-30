@@ -155,11 +155,14 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 0.6
+  processAttackSpeed: 15
   flyingTools: {fileID: 8130125111512435601, guid: 3c199973b3ab4cd468280e7ccebb1ee3,
     type: 3}
   flyingToolsNum: 0
-  flyingToolsNumMax: 5
+  flyingToolsNumMax: 3
   flyingToolsAttackTime: 1
+  flyingTimeMax: 15
+  flyingTime: 0
 --- !u!114 &461872199133402963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +179,7 @@ MonoBehaviour:
   mySpeed: 6
   myDamage: 30
   myDefense: 10
-  r0: 5
+  r0: 8
   startTarget: {fileID: 0}
   target: {fileID: 0}
   processAttackTarget: {fileID: 0}

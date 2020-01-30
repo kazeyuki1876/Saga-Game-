@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca83846333101748b7a436142d61402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flyingToolsDebris: {fileID: 0}
   MySeppt: 10
   MyLifespan: 5
   MyDamage: 10

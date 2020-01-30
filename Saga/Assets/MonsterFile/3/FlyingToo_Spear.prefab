@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flyingToolsDebris: {fileID: 465395334968898473}
-  MySeppt: 10
-  MyLifespan: 5
+  MySeppt: 15
+  MyLifespan: 3
   MyDamage: 10
 --- !u!54 &4630831121975043950
 Rigidbody:

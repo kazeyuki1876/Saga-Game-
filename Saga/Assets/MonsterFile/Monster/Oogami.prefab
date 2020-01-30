@@ -146,7 +146,7 @@ MonoBehaviour:
   mySpeed: 6
   myDamage: 20
   myDefense: 0
-  r0: 6
+  r0: 8
   startTarget: {fileID: 0}
   target: {fileID: 0}
   processAttackTarget: {fileID: 0}
@@ -172,11 +172,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 0
+  processAttack: 1
+  processAttackSpeed: 15
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
   flyingToolsNumMax: 5
   flyingToolsAttackTime: 1
+  flyingTimeMax: 5
+  flyingTime: 0
 --- !u!114 &3247176164146040272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +202,7 @@ MonoBehaviour:
   abilityMagnification: 2
   abilityUp: 0
   Skill_ParticleSystem:
-  - {fileID: 4497678270767960794, guid: 7d26182853911484f9a7ba02d78dbe8b, type: 3}
+  - {fileID: 3667820714152381811}
 --- !u!1001 &904169158239936425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,6 +277,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d26182853911484f9a7ba02d78dbe8b, type: 3}
+--- !u!1 &3667820714152381811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4497678270767960794, guid: 7d26182853911484f9a7ba02d78dbe8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 904169158239936425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3667820714152381808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4497678270767960793, guid: 7d26182853911484f9a7ba02d78dbe8b,

@@ -7,13 +7,14 @@ public class MonsterAttack : MonoBehaviour
     //      
     
       // //接近攻撃できるか
-  
     public bool isApproachAttack = true;
     // //遠距離攻撃できるか
-    
     public bool isProcessAttack = true;
     [SerializeField]
+
     private float processAttack=1;
+    [SerializeField]
+    private float processAttackSpeed = 15;
     //遠距離攻撃の弾
     [SerializeField]
     private GameObject flyingTools;
@@ -26,36 +27,10 @@ public class MonsterAttack : MonoBehaviour
     //再攻撃の待つ時間
     [SerializeField]
     private float flyingToolsAttackTime = 1;
-   /* //----------狙えサポート aim
-    // public bool isShootingSupport;　//今の狙えてるあるか
-    private GameObject nearObj;      //最も近いオブジェクト
-    private float searchTime = 0;    //経過時間       
-    GameObject serchTag(GameObject nowObj, string tagName)
-    {
-        float tmpDis = 0;           //距離用一時変数
-        float nearDis = 0;          //最も近いオブジェクトの距離
-        //string nearObjName = "";    //オブジェクト名称
-        GameObject targetObj = null; //オブジェクト
-        //タグ指定されたオブジェクトを配列で取得する
-        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
-        {
-            //自身と取得したオブジェクトの距離を取得
-            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+    //一発当たりの時間
+    [SerializeField]
+    private int flyingTimeMax = 5, flyingTime = 0;
 
-            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
-            //一時変数に距離を格納
-            if (nearDis == 0 || nearDis > tmpDis)
-            {
-                nearDis = tmpDis;
-                //nearObjName = obs.name;
-                targetObj = obs;
-            }
-
-        }
-        //最も近かったオブジェクトを返す
-        //return GameObject.Find(nearObjName);
-        return targetObj;
-    }//-----------//----------狙えサポート*/
     private void Start()
     {//初期化準備もし必要でしたら
     }
@@ -114,6 +89,7 @@ public class MonsterAttack : MonoBehaviour
     }
     
 
+  
     //遠距離攻撃のターゲット
     private void ProcessAttackConControl()
     {//接近攻撃できる　ターゲットある　動ける　　遠距離攻撃できる　攻撃範囲内
@@ -121,16 +97,24 @@ public class MonsterAttack : MonoBehaviour
         {
             if (flyingToolsNum < flyingToolsNumMax)
             {
-                flyingToolsNum++;
-                transform.LookAt(GetComponent<MonsterInstinct>().processAttackTarget.transform);
-                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-                //ProcessAttack
-                GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
-                newFlyingTools.GetComponent<flyingToolsControl>().MyDamage = GetComponent<MonsterInstinct>().myDamage * processAttack;
-                newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-10, 10), 0);
-                newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
-            
-               // Debug.Log("ProcessAttackConControl");
+                flyingTime++;
+                if(flyingTime % flyingTimeMax == 0){
+                    flyingToolsNum++;
+                    transform.LookAt(GetComponent<MonsterInstinct>().processAttackTarget.transform);
+                    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                    //ProcessAttack
+                    GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
+                    newFlyingTools.GetComponent<flyingToolsControl>().MyDamage = GetComponent<MonsterInstinct>().myDamage * processAttack;
+                    newFlyingTools.GetComponent<flyingToolsControl>().MySeppt = processAttackSpeed;
+                    newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-10, 10), 0);
+
+                    newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
+
+
+                    // Debug.Log("ProcessAttackConControl");
+                }
+
+
             }
             else
             {

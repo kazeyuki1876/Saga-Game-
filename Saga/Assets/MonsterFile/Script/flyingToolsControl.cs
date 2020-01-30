@@ -32,10 +32,12 @@ public class flyingToolsControl : MonoBehaviour
     public float MyDamage = 1;
     TakeDamage takeDamage;//
 
+    private bool isHit;
+
     void Start()
     {
         //廃棄修理
-        Destroy(this.gameObject, MyLifespan);
+        Destroy(gameObject, MyLifespan);
     }
     // Update is called once per frame
     void Update()
@@ -46,8 +48,9 @@ public class flyingToolsControl : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         // Debug.Log(other.gameObject.name);
-        if (col.gameObject.tag == "Player")
-        {
+        if (col.gameObject.tag == "Player"&&!isHit)
+        { isHit = true;
+
             //  Debug.Log("???");
             //撃退
             //RigidTime
@@ -65,13 +68,15 @@ public class flyingToolsControl : MonoBehaviour
             if (flyingToolsDebris != null)
             {
                 flyingToolsDebris.transform.parent = col.gameObject.transform;
-
+                Destroy(flyingToolsDebris.gameObject, 10.0f);  // 銃弾を崩壊
             }
-            Destroy(this.gameObject);  // 銃弾を崩壊
+            Destroy(this.gameObject,0.2f);  // 銃弾を崩壊
             
         }
-        if (col.gameObject.tag == "Machine")
+        if (col.gameObject.tag == "Machine"&& !isHit)
         {
+            isHit = true;
+
             if (col.GetComponent<MachineBatteryHealth>() != null)
             {
                 col.GetComponent<MachineBatteryHealth>().MyHp -= (int)MyDamage; //着弾されたもののHP判定
@@ -79,17 +84,19 @@ public class flyingToolsControl : MonoBehaviour
                 col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
                 col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
 
-              
+
                 if (flyingToolsDebris != null)
                 {
                     flyingToolsDebris.transform.parent = col.gameObject.transform;
-                 //   Destroy(flyingToolsDebris.gameObject,10.0f);  // 銃弾を崩壊
+
                 }
-                Destroy(this.gameObject);  // 銃弾を崩壊
+
+
+                Destroy(this.gameObject, 0.2f);  // 銃弾を崩壊
+
+
+
             }
-          
-
-
 
 
         }
