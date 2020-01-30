@@ -7,7 +7,11 @@ public class GunnerMoveController : MonoBehaviour
     /// <summary>
     /// このスクリプトはキー入力だけと動きだけ
     /// </summary>
+ 
     [SerializeField] private float speed = 5;
+    [SerializeField] private float shootingSupportSpeed = 1,shootingSupportSpeed0=0.7f;
+    
+
     float moveX = 0f;
     float moveZ = 0f;
     Rigidbody rb;
@@ -17,6 +21,7 @@ public class GunnerMoveController : MonoBehaviour
     [SerializeField]
     private float RotateSpeed = 0.2f;
     //----------狙えサポート aim
+    public GameObject shouTingTarger;
     public bool isShootingSupport;　//今の狙えてるモンスターあるか
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間       
@@ -61,14 +66,19 @@ public class GunnerMoveController : MonoBehaviour
         GunnerMOVE();//キー入力  //  FoundationMove();
     }
     void FixedUpdate()
-    {
-       
+    {//照準しょうじゅんサポート中　移動速度が下がり
+        if (isShootingSupport)
+        {
+            shootingSupportSpeed = shootingSupportSpeed0;
+        }
+        else { shootingSupportSpeed = 1.0f; }
+
         if (isGround)
         {
-            rb.velocity = new Vector3(moveX, 0, moveZ);
+            rb.velocity = new Vector3(moveX* shootingSupportSpeed, 0, moveZ* shootingSupportSpeed);
         }
         else {
-            rb.velocity = new Vector3(moveX, -5, moveZ);
+            rb.velocity = new Vector3(moveX* shootingSupportSpeed, -5, moveZ* shootingSupportSpeed);
         }
     }
     void FoundationMove()
@@ -124,8 +134,10 @@ public class GunnerMoveController : MonoBehaviour
             //もし　 射撃サポート　狙える　対象の位置の方向を向く
             if (nearObj != null)
             {
+              
                 transform.LookAt(nearObj.transform);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                shouTingTarger = nearObj;
 
             }
             else//　L2 推してない　　狙えるやつがない
