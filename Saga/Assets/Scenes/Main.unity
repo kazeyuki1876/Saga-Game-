@@ -345,7 +345,7 @@ MonoBehaviour:
   bulletNums: 0100000007000000
   gunRecoils:
   - 5
-  - 20
+  - 10
   bulletNumer: 0000000000000000
   cartridgeClipMax: 3c00000007000000
   ReloadLimit:
@@ -1372,6 +1372,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190817747}
   m_CullTransparentMesh: 0
+--- !u!1001 &230547975
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 461872199133303287, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_Name
+      value: Orc
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00011184573
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 461872199133793751, guid: 41aad74fd7d9af44790d47530dcc5578,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41aad74fd7d9af44790d47530dcc5578, type: 3}
 --- !u!1 &231161954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
+  processAttack: 1
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
@@ -1965,6 +2035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
+  processAttack: 1
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
@@ -8411,6 +8482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
+  processAttack: 1
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
@@ -19849,6 +19921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
+  processAttack: 1
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0
@@ -30571,6 +30644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
+  processAttack: 1
   flyingTools: {fileID: 7110503625689271974, guid: cc278e57f2585eb4ebb7c6ce6eb6ba37,
     type: 3}
   flyingToolsNum: 0

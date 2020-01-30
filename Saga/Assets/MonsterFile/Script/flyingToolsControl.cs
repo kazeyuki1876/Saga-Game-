@@ -7,7 +7,7 @@ public class flyingToolsControl : MonoBehaviour
   
     public class Repulsion
     {
-        public GameObject targetGameObject;//撃退されるGameObject
+       public GameObject targetGameObject;//撃退されるGameObject
         public GameObject formGameObject;//撃退するGameObject
         public float repulsionSpeed;//撃退速度
         public float repulsionMagnification = 1.0f;//撃退倍率
@@ -23,7 +23,7 @@ public class flyingToolsControl : MonoBehaviour
     }
 
 
-
+    public GameObject flyingToolsDebris;//弾の残り（今は槍だけ）
     //この弾の速度
     public float MySeppt = 10.0f;
     //存在時間lifespan
@@ -62,7 +62,13 @@ public class flyingToolsControl : MonoBehaviour
             NewRepulsion.repulsionSpeed = MySeppt * 5;//撃退速度
             NewRepulsion.repulsionMagnification = 2.0f;//撃退倍率
             NewRepulsion.RepulsionMove();
+            if (flyingToolsDebris != null)
+            {
+                flyingToolsDebris.transform.parent = col.gameObject.transform;
+
+            }
             Destroy(this.gameObject);  // 銃弾を崩壊
+            
         }
         if (col.gameObject.tag == "Machine")
         {
@@ -73,11 +79,19 @@ public class flyingToolsControl : MonoBehaviour
                 col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
                 col.transform.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
 
+              
+                if (flyingToolsDebris != null)
+                {
+                    flyingToolsDebris.transform.parent = col.gameObject.transform;
+                 //   Destroy(flyingToolsDebris.gameObject,10.0f);  // 銃弾を崩壊
+                }
                 Destroy(this.gameObject);  // 銃弾を崩壊
             }
-           
+          
 
-           
+
+
+
         }
     }
     

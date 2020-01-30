@@ -12,6 +12,8 @@ public class MonsterAttack : MonoBehaviour
     // //遠距離攻撃できるか
     
     public bool isProcessAttack = true;
+    [SerializeField]
+    private float processAttack=1;
     //遠距離攻撃の弾
     [SerializeField]
     private GameObject flyingTools;
@@ -122,8 +124,9 @@ public class MonsterAttack : MonoBehaviour
                 flyingToolsNum++;
                 transform.LookAt(GetComponent<MonsterInstinct>().processAttackTarget.transform);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-
+                //ProcessAttack
                 GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
+                newFlyingTools.GetComponent<flyingToolsControl>().MyDamage = GetComponent<MonsterInstinct>().myDamage * processAttack;
                 newFlyingTools.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-10, 10), 0);
                 newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
             
