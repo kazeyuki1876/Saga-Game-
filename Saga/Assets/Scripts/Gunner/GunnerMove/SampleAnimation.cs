@@ -27,6 +27,7 @@ public class SampleAnimation : MonoBehaviour
         {
             Debug.Log("     if (Input.GetK");
             // WaitからRunに遷移する
+
             this.animator.SetBool(key_isRun, true);
         }
         else

@@ -76,6 +76,7 @@ public class GunnerMoveController : MonoBehaviour
         if (isGround)
         {
             rb.velocity = new Vector3(moveX* shootingSupportSpeed, 0, moveZ* shootingSupportSpeed);
+
         }
         else {
             rb.velocity = new Vector3(moveX* shootingSupportSpeed, -5, moveZ* shootingSupportSpeed);
