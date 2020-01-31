@@ -31,14 +31,6 @@ public class ShootingTarget : MonoBehaviour
             ShouTingTargerUI = Instantiate(shootingTargetImaje, 
               GetComponent<GunnerMoveController>().shouTingTarger.transform.position,
               Quaternion.identity);
-
-
-
-            //Instantiate<GameObject>(shootingTargetImaje, GetComponent<GunnerMoveController>().shouTingTarger.GetComponent<SpriteRenderer>().bounds.center - Camera.main.transform.forward * 0.2f, Quaternion.identity);
-      
-
-
-
     }
 
     private void ShootingTargetMove() {

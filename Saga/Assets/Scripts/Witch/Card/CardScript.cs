@@ -38,9 +38,9 @@ public class CardScript : MonoBehaviour
     void Start()
     {
         this.gameObject.name = MyName;
-        CardText[0].text = MyName;
-        CardText[1].text = "Cost"+MyCost;
-        CardText[2].text = MyComment;
+      
+        CardText[1].text = ""+MyCost;
+     
     }
 
     // Update is called once per frame
