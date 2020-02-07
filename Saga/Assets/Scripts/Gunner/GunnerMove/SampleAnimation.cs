@@ -5,7 +5,8 @@ public class SampleAnimation : MonoBehaviour
 {
     //キャラ動きアニメーション
     // Animator コンポーネント
-    public Animator animator;
+    [SerializeField]
+    private Animator animator;
 
     // 設定したフラグの名前
     public const string key_isRun = "isRun";

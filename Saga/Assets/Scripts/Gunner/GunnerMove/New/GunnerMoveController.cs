@@ -12,17 +12,17 @@ public class GunnerMoveController : MonoBehaviour
     [SerializeField] private float shootingSupportSpeed = 1,shootingSupportSpeed0=0.7f;
     
 
-    float moveX = 0f;
-    float moveZ = 0f;
+   public float moveX = 0f;
+  public  float moveZ = 0f;
     Rigidbody rb;
-    private bool isGround;
+    public bool isGround;
     //周り速度
     [SerializeField] private float aroundSeppt = 5;
     [SerializeField]
     private float RotateSpeed = 0.2f;
     //----------狙えサポート aim
     public GameObject shouTingTarger;
-    public bool isShootingSupport;　//今の狙えてるモンスターあるか
+    public bool isShootingSupport;　//今の狙えてるか
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間       
     GameObject serchTag(GameObject nowObj, string tagName)

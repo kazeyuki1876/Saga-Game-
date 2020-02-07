@@ -11,10 +11,9 @@ public class GunnerShootingMoveController : MonoBehaviour
     [SerializeField]
     private GameObject
                 bullet;//弾
-    [SerializeField]
-    private bool
-       
-    isTrigger = true;//射撃できるか
+    
+
+  public bool isTrigger = true;//射撃できるか
     public bool isReload = false;
     [SerializeField]
     private int
@@ -29,7 +28,8 @@ public class GunnerShootingMoveController : MonoBehaviour
     private void Start()
     {
         isTrigger = true;
-     
+        shootingParticleSystem[0].Stop();
+        shootingParticleSystem[1].Stop();
     }
    
     public void GunsMoveStart()

@@ -76,22 +76,7 @@ public class SkillScriot : MonoBehaviour
     }
     public class RecoverySkill : SkillStart
     {
-        //回復
-
-/*
-      new public void SkillMoveStart()
-        {
-            //もし　使える
-            if (isSkillStart && my.GetComponent<GunnaerHealth>().MyHp < my.GetComponent<GunnaerHealth>().myHpMax)
-            {
-                isSkillStart = false;
-                //スキルを放出　
-                Debug.Log("スキル" + this.skillName + "を使+いました");
-                // タイムに入る
-                skillOutTime = skillOutTimeMax;
-                Debug.Log("スキルのクールは" + skillOutTimeMax + "クールの処理に入る");
-            }
-        }*/
+        public ParticleSystem recoverySkillParticleSystem;
         public void SkillMove()
         {
 
@@ -101,6 +86,7 @@ public class SkillScriot : MonoBehaviour
 
                 if (my.GetComponent<GunnaerHealth>() != null && my.GetComponent<GunnaerHealth>().MyHp <(int)my.GetComponent<GunnaerHealth>().myHpMax)
                 {
+                    recoverySkillParticleSystem.Play();
                     my.GetComponent<GunnaerHealth>().MyHp += my.GetComponent<GunnaerHealth>().myHpMax * 0.6f;
                     if (my.GetComponent<GunnaerHealth>().MyHp > my.GetComponent<GunnaerHealth>().myHpMax) {
                         my.GetComponent<GunnaerHealth>().MyHp =(int) my.GetComponent<GunnaerHealth>().myHpMax;
@@ -131,9 +117,12 @@ public class SkillScriot : MonoBehaviour
         rocketGameObject;
     [SerializeField]
     private GameObject[] ImejeBottom;
-  
+
+    [SerializeField]
+    public ParticleSystem recoverySkillParticleSystem;
     public void Start()
     {
+        recoverySkillParticleSystem.Stop();
 
         GunnerSkill.Add((SkillStart)(new ATKSkill()));
         //    rifleGrenade.skillimaje = rifleGrenadeImeje;
@@ -142,11 +131,14 @@ public class SkillScriot : MonoBehaviour
         rifleGrenade.skillimaje = rifleGrenadeImeje;
         rifleGrenade.my = this.gameObject;
         rifleGrenade.grenade = rocketGameObject;
+     
+
         firstAidSprayBox.skillName = "RecoverySkill";
         firstAidSprayBox.skillOutTimeMax = 10;
         firstAidSprayBox.skillimaje = firstAidSprayBoxImeji;
         firstAidSprayBox.my = this.gameObject;
-
+        firstAidSprayBox.recoverySkillParticleSystem = recoverySkillParticleSystem;
+       
         //   GunnerSkills[0] = new ATKSkill();
         // GunnerSkills[1] = new RecoverySkill();
 
