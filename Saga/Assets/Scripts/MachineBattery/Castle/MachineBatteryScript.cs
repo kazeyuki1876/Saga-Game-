@@ -6,7 +6,7 @@ public class MachineBatteryScript : MonoBehaviour
 {
     // Start is called before the first frame update
     //射撃速度
-    
+
     public float MyLifespan;
     //ダメージ
     public float MyDamage;
@@ -20,7 +20,7 @@ public class MachineBatteryScript : MonoBehaviour
     public float repositionTime1, repositionTime2;
     public int flyingToolsNum, flyingToolsNumMax;
     public int myPenetrationVolume;
-
+    public float timeleft;
     Rigidbody rb;
 
     private bool isGround;
@@ -67,7 +67,7 @@ public class MachineBatteryScript : MonoBehaviour
         return targetObj;
     }//-----------
 
-     void Update()
+    void Update()
     {
         if (isGround)
         {
@@ -77,7 +77,7 @@ public class MachineBatteryScript : MonoBehaviour
         {
             rb.velocity = new Vector3(0, -80, 0);
         }
-      
+
     }
     public float A;
     public bool isMOve = true;
@@ -95,16 +95,17 @@ public class MachineBatteryScript : MonoBehaviour
             //経過時間を初期化
             searchTime = 0;
         }
-       float R = 0;
+        float R = 0;
         float RMAX = 90;
-       
+
 
         //対象の位置の方向を向く
-        if(nearObj!=null&& isMOve)
-        if (nearObj.transform.position.x > this.transform.position.x - 30.0f && nearObj.transform.position.x < this.transform.position.x + 30.0f) {
-            transform.LookAt(nearObj.transform);
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            Shooting();
+        if (nearObj != null && isMOve)
+            if (nearObj.transform.position.x > this.transform.position.x - 30.0f && nearObj.transform.position.x < this.transform.position.x + 30.0f)
+            {
+                transform.LookAt(nearObj.transform);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                Shooting();
                 //   R = R + 360 * Time.deltaTime;
                 //   A = R % RMAX;
                 if (A <= 360)
@@ -113,43 +114,61 @@ public class MachineBatteryScript : MonoBehaviour
                     Cate.transform.eulerAngles = new Vector3(A, transform.eulerAngles.y, 0);
                 }
                 else { Cate.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0); }
-              
 
-             
+
+
             }
 
         //自分自身の位置から相対的に移動する
         //transform.Translate(Vector3.forward * 0.01f);
     }
 
-    void Shooting() {
-        if (IsShooting&& flyingToolsNum< flyingToolsNumMax) {
-            flyingToolsNum++;
-            GunsMOVE();
+    void Shooting()
+    {
 
-        }
-        else
+
+
+        timeleft -= Time.deltaTime;
+        if (timeleft <= 0.0)
         {
-            flyingToolsNum = 0;
-               IsShooting = false;
-            isMOve = false;
-            A = 0;
-            Invoke("IsMoveON", repositionTime1);
-            Invoke("ShootingON", repositionTime2);
-        }
+            timeleft = 0.1f;
 
+            //ここに処理
+
+            if (IsShooting && flyingToolsNum < flyingToolsNumMax)
+            {
+                if (flyingToolsNum < 1)
+                {
+                    GetComponent<BatterySE>().GunSE();
+                }
+                flyingToolsNum++;
+                GunsMOVE();
+
+            }
+            else
+            {
+                flyingToolsNum = 0;
+                IsShooting = false;
+                isMOve = false;
+                A = 0;
+                Invoke("IsMoveON", repositionTime1);
+                Invoke("ShootingON", repositionTime2);
+            }
+        }
     }
-    void ShootingON(){
+    void ShootingON()
+    {
 
         IsShooting = true;
     }
-    void IsMoveON() {
+    void IsMoveON()
+    {
         isMOve = true;
         A = 0;
     }
     void GunsMOVE()
     {
-      
+
         //　いまＰＬＡＹＥＲが持っている銃
 
         //銃弾あるか
@@ -160,7 +179,9 @@ public class MachineBatteryScript : MonoBehaviour
 
         //銃によっての弾
         // string BulletName = Bullets[0].name;
-        Bullet = Instantiate(Bullets, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z), this.transform.rotation);//弾丸を作り　位置と向きを与える
+        Bullet = Instantiate(Bullets, new Vector3(this.transform.position.x, this.transform.position.y + 2.0f, this.transform.position.z), this.transform.rotation);//弾丸を作り　位置と向きを与える
+        Bullet.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-flyingToolsNum*3, flyingToolsNum*3), 0);
+
         Bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
         Bullet.GetComponent<BulletMove>().MySeppt = MyShootingSpeed;
         Bullet.GetComponent<BulletMove>().MyLifespan = MyLifespan;

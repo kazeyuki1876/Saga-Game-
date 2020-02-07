@@ -107,5 +107,15 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 388f65da6e95a7f43811daef7f22616a, type: 2}
+    - target: {fileID: 1119993119268848142, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4782322726237692007, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: SE.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 032b042f56e8c4c42b40ef9bee3edbf7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 635b640b639cc364fbb39b6df19f1f22, type: 3}

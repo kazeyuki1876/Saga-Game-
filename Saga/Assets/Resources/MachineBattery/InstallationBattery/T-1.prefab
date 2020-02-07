@@ -47,6 +47,120 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!82 &1119993119268848142
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2505514904879290626}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.12561268
+      value: 0.8188057
+      inSlope: -1.9539088
+      outSlope: -1.9539088
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2764251
+      value: 0.5142288
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.42748126
+      value: 0.26236725
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.63418865
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0027777778
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &4532312221427455122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75,6 +189,21 @@ MonoBehaviour:
   MyHp: 0
   batteryBox: {fileID: 1920126413221467628}
   MyNum: 1
+--- !u!114 &4782322726237692007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2505514904879290626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b314f57ddcc84148a336f5d5822ca27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SE:
+  - {fileID: 8300000, guid: 47dbd2a177342564a969581b040368f4, type: 3}
+  - {fileID: 8300000, guid: 87f25df03325ae54498db20695918c50, type: 3}
 --- !u!114 &5817353918765135231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,17 +315,17 @@ PrefabInstance:
     - target: {fileID: 7482156560025537861, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
         type: 3}
       propertyPath: repositionTime1
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7482156560025537861, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
-        type: 3}
-      propertyPath: repositionTime2
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7482156560025537861, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
         type: 3}
-      propertyPath: flyingToolsNumMax
+      propertyPath: repositionTime2
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482156560025537861, guid: 13ebd03cafed3bd4388b96c501e6b8b4,
+        type: 3}
+      propertyPath: flyingToolsNumMax
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1065065819, guid: 13ebd03cafed3bd4388b96c501e6b8b4, type: 3}
       propertyPath: m_Enabled

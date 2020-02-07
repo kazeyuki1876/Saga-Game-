@@ -58,14 +58,16 @@ public class GunnerShootingMoveController : MonoBehaviour
     //射撃する
     private void GunsMove()
     {
-        //　いまＰＬＡＹＥＲが持っている銃
-
-        //銃弾あるか
-
         //銃が撃つときの火花
-
+        //ParticleSystem 
+        shootingParticleSystem[gunNumber].Play();
         //銃が撃つときの音
-
+        if (gunNumber < 1) {
+            GetComponent<GunnerSE>().GunSE1();
+        } else {
+            GetComponent<GunnerSE>().GunSE2();
+        }
+      
 
         // string BulletName = Bullets[0].name;
 
@@ -73,8 +75,7 @@ public class GunnerShootingMoveController : MonoBehaviour
         bullet = Instantiate(data.GetComponent<GunnerData>().bullets[gunNumber], gunPos.transform.position, gunPos.transform.rotation);
         ////反発
         bullet.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + Random.Range(-data.GetComponent<GunnerData>().gunRecoils[gunNumber], data.GetComponent<GunnerData>().gunRecoils[gunNumber]), 0);
-        //ParticleSystem 
-        shootingParticleSystem[gunNumber].Play();
+    
         //BulleBOXの子ともGameObjectであり
         bullet.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
         //銃弾の速度
