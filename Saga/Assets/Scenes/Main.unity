@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4420111, g: 0.49098474, b: 0.5709191, a: 1}
+  m_IndirectSpecularColor: {r: 0.44201142, g: 0.4909855, b: 0.57091993, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4165,8 +4165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
-  - component: {fileID: 534669906}
-  - component: {fileID: 534669907}
   - component: {fileID: 534669908}
   m_Layer: 0
   m_Name: Main Camera
@@ -4234,42 +4232,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
---- !u!114 &534669906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0222d77649c82d54b8f93af307175864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &534669907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab457761cacd4914c96a31aeca4c3ac3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  line: 
-  values: []
-  Name:
-  - 
-  - 
-  - 
-  - 
-  - 
-  HP: 0000000000000000000000000000000000000000
-  ATK: 0000000000000000000000000000000000000000
-  DEF: 0000000000000000000000000000000000000000
-  Num: 0
 --- !u!114 &534669908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57552,11 +57514,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2044318023}
     m_Modifications:
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_Name
-      value: SpeedUp_ParticleSystem (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001989, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -57611,6 +57568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -179.99998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_Name
+      value: SpeedUp_ParticleSystem (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 739510a39af968c4ca78cb591831eb2c, type: 3}
