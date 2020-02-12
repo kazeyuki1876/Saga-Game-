@@ -313,18 +313,18 @@ public class WitchUIScript : MonoBehaviour
 
     private void FireBallSkillMove()
     {
-        if (Input.GetKeyDown("joystick 2 button 7")&& newFireBallGameObject == null&& NewInAdvanceInstallation == null&& MyMagic>=2)
+        if (Input.GetKeyDown("joystick 2 button 7")&& newFireBallGameObject == null&&  MyMagic>=2)
         {
             MyMagic -= 2;
             newFireBallGameObject = Instantiate(fireBallGameObject, new Vector3(15, 5, -2), new Quaternion(0, 0, 0, 1));
         }
-        if (Input.GetKey("joystick 2 button 7") && newFireBallGameObject != null && NewInAdvanceInstallation == null)
+        if (Input.GetKey("joystick 2 button 7") && newFireBallGameObject != null  )
         {
             newFireBallGameObject.GetComponent<FireBallSkill>().FireBallSkillChargeMove();
             float Z = Input.GetAxis("Horizontal3Player_2");
             newFireBallGameObject.transform.position = new Vector3(newFireBallGameObject.transform.position.x, newFireBallGameObject.transform.position.y, newFireBallGameObject.transform.position.z + Z * 20 * Time.deltaTime);
         }
-        if (Input.GetKeyUp("joystick 2 button 7")&& newFireBallGameObject != null && NewInAdvanceInstallation == null)
+        if (Input.GetKeyUp("joystick 2 button 7")&& newFireBallGameObject != null )
         {
             newFireBallGameObject.GetComponent<FireBallSkill>().FireBallMoveStart();
             Debug.Log("A");

@@ -22,7 +22,7 @@ public class MachineBatteryScript : MonoBehaviour
     public int myPenetrationVolume;
     public float timeleft;
     Rigidbody rb;
-
+    public int MaxX = 8;
     private bool isGround;
     //--------------------
     private GameObject nearObj;         //最も近いオブジェクト
@@ -101,7 +101,7 @@ public class MachineBatteryScript : MonoBehaviour
 
         //対象の位置の方向を向く
         if (nearObj != null && isMOve)
-            if (nearObj.transform.position.x > this.transform.position.x - 30.0f && nearObj.transform.position.x < this.transform.position.x + 30.0f)
+            if (nearObj.transform.position.x > this.transform.position.x - MaxX && nearObj.transform.position.x < this.transform.position.x + MaxX)
             {
                 transform.LookAt(nearObj.transform);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);

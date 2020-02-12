@@ -92,6 +92,11 @@ PrefabInstance:
       propertyPath: flyingToolsNum
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: MaxX
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1040796660768307891, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: MyNum
@@ -110,7 +115,27 @@ PrefabInstance:
     - target: {fileID: 1119993119268848142, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: m_Volume
-      value: 0.44
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119993119268848142, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: 0.99645686
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119993119268848142, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119993119268848142, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1119993119268848142, guid: 635b640b639cc364fbb39b6df19f1f22,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4782322726237692007, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}

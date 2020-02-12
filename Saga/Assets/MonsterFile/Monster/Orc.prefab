@@ -155,7 +155,7 @@ MonoBehaviour:
   isApproachAttack: 1
   isProcessAttack: 1
   processAttack: 0.6
-  processAttackSpeed: 15
+  processAttackSpeed: 20
   flyingTools: {fileID: 8130125111512435601, guid: 3c199973b3ab4cd468280e7ccebb1ee3,
     type: 3}
   flyingToolsNum: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25345b08992fa2542a71341c3cba0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myHp: 1000
+  myHp: 800
   mySpeed: 6
   myDamage: 30
   myDefense: 10
@@ -405,6 +405,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 461872199133793751}
     m_Modifications:
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_Name
+      value: ATKUp_ParticleSystem (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001989, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,11 +464,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -179.99998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_Name
-      value: ATKUp_ParticleSystem (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 739510a39af968c4ca78cb591831eb2c, type: 3}

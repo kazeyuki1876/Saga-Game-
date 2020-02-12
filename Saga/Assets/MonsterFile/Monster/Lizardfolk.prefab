@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
-  processAttack: 0.4
+  processAttack: 0.5
   processAttackSpeed: 10
   flyingTools: {fileID: 3606401991122654887, guid: c2dc8db2dcd95d344b171b7295f97a66,
     type: 3}

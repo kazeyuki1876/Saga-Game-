@@ -8,7 +8,8 @@ using UnityEngine.UI;
 
 public class OutTime : MonoBehaviour
 {
-   
+
+    public static string score;
     public float GameTime;
 
     public float gameTimeMax = 180;
@@ -17,17 +18,19 @@ public class OutTime : MonoBehaviour
     [SerializeField]
     private Image gameTimeImage;
     // Start is called before the first frame update
+ 
     void Start()
     {
-
-    }
+}
 
     // Update is called once per frame
     void Update()
     {
         CastleHPGaugeMove();
         if (GameTime <= 0) {
+
             GameEnd();
+         
         }
 
 
@@ -37,14 +40,29 @@ public class OutTime : MonoBehaviour
         }
     }
     public void GameEnd() {
-        if (GameTime >= 0) {
+        Time.timeScale = 0.1f;
+        GameObject.Find("Gunner").GetComponent<GunnerMoveController>().enabled = false;
+        GameObject.Find("WitchUI").GetComponent<WitchUIScript>().enabled = false;
+        
+        Invoke("EndMmove", 1.0f);
+    }
+    public void EndMmove() {
+
+        if (GameTime >= 0)
+        {
             SceneManager.LoadScene("WitchOver");
         }
-        else {
+        else
+        {
             SceneManager.LoadScene("GunnerOver");
         }
-
     }
+
+
+
+
+
+
     private float fillAmountSpeed = 5;
     private float[]color0 =  new float[] { 1.0f, 1.0f, 0 };
     private float[] colorEnd = new float[] { 1, 0, 0.1f };

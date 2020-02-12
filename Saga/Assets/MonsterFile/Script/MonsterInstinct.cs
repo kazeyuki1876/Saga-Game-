@@ -215,7 +215,12 @@ public class MonsterInstinct : MonoBehaviour
                 nearObj = serchTag(gameObject, "Machine");
                 //経過時間を初期化
                processAttackTargetGameObject = nearObj;
-                if (processAttackTargetGameObject != null)
+                if (processAttackTargetGameObject != null &&
+                    nearObj.transform.position.x > this.transform.position.x - r0 && nearObj.transform.position.x < this.transform.position.x + r0&&
+                    nearObj.transform.position.y > this.transform.position.y - r0 && nearObj.transform.position.y < this.transform.position.y + r0
+
+
+                    )
                 {
                     target = processAttackTargetGameObject.transform;
                 }
