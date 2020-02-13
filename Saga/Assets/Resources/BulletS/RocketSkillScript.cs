@@ -27,16 +27,18 @@ public class RocketSkillScript : MonoBehaviour
     public GameObject bommGameObject;
    // public GameObject Boom;
     TakeDamage takeDamage;//
-
+    public GameObject RocketPS;
     void Start()
     {
+        Destroy(RocketPS,2.0f);
+        Destroy(this.gameObject, 2.0f);
         //廃棄修理
         //Destroy(this.gameObject, MyLifespan);
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
     }
     // Update is called once per frame
     void Update()
-    {
+    { 
         transform.Translate(Vector3.forward * Time.deltaTime * MySeppt, Space.Self);//弾の動き
     }
 
@@ -53,6 +55,7 @@ public class RocketSkillScript : MonoBehaviour
         // Debug.Log(other.gameObject.name);
         if (col.gameObject.tag == "Monster")
         {
+            Destroy(RocketPS);
             GameObject instantiateBommGameObject = Instantiate(bommGameObject, this.transform.position, this.transform.rotation);
            
             if (col.GetComponent<MonsterInstinct>().rigidTime < RigidTime)
@@ -71,7 +74,8 @@ public class RocketSkillScript : MonoBehaviour
     }
     private void BoomStart()
     {
-       // GameObject instantiateBommGameObject = Instantiate(bommGameObject, this.transform.position, this.transform.rotation);
+     
+        // GameObject instantiateBommGameObject = Instantiate(bommGameObject, this.transform.position, this.transform.rotation);
         Destroy(this.gameObject,0.4f);  // 銃弾を崩壊
     }
     

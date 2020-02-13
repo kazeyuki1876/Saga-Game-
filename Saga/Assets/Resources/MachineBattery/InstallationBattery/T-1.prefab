@@ -171,6 +171,7 @@ MonoBehaviour:
   MyHp: 0
   batteryBox: {fileID: 1920126413221467628}
   MyNum: 1
+  diePs: {fileID: 4140753032125035768, guid: 22e6aff2d14b9f844beeed37b22ddc6b, type: 3}
 --- !u!114 &4782322726237692007
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public int MyHp;
  //   [SerializeField]
     public int MyNum=0;
     private bool isHp0;
+    public GameObject diePs;
     private void Start()
     {
 
@@ -20,6 +21,8 @@ public int MyHp;
         {
             //GetComponent<BatterySE>().DieSE();
             isHp0 = true;
+            GameObject Ps   = Instantiate(diePs, transform.position, transform.rotation);
+         //   GetComponent<BatterySE>().DieSE();
             GameObject.Find("Gunner").GetComponent<GunnerBatteryInstallationMove>().batteryQuantity--;
             Destroy(batteryBox.gameObject, 0.1f);
         }

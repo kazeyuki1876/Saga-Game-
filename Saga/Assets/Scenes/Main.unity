@@ -365,7 +365,7 @@ MonoBehaviour:
   - 50
   - 70
   bulletLimit:
-  - 0.12
+  - 0.1
   - 0.4
   bulletNums: 0100000007000000
   gunRecoils:
@@ -4191,7 +4191,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d1d61422b3fbc324d887c201faf1d330, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.331
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -17730,6 +17730,85 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.25828958, y: -0.03077906, z: 0.0023537353}
     m_Extent: {x: 0.6474898, y: 0.13307571, z: 0.13566214}
   m_DirtyAABB: 0
+--- !u!1001 &1254383106
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8654961717769105985, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Golem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00011184573
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0016886579
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769106011, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769105989, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: mySpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8654961717769105989, guid: 17d919f6af241ca44a7e911f15bf5d5b,
+        type: 3}
+      propertyPath: myHp
+      value: 80000
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17d919f6af241ca44a7e911f15bf5d5b, type: 3}
 --- !u!1 &1261773173
 GameObject:
   m_ObjectHideFlags: 0
@@ -29064,6 +29143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rifleGrenadeImeje: {fileID: 16764516}
   firstAidSprayBoxImeji: {fileID: 758050759}
+  rocketGameObjectPS: {fileID: 1000012600307132, guid: 20c0f7e297297fc468f9740f6bb08cb1,
+    type: 3}
   rocketGameObject: {fileID: 7284073727427621343, guid: 1e0db2f183077b340aade45fe2aac5a7,
     type: 3}
   ImejeBottom:

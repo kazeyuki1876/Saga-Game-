@@ -61,12 +61,17 @@ public class SkillScriot : MonoBehaviour
     public class ATKSkill : SkillStart
     {
         public GameObject grenade;
+        public GameObject grenadeUP;
         public void SkillMove()
         {
             if (isSkillStart)
             {
-               GameObject bullet = Instantiate(grenade, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.position, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.rotation);
-          
+                GameObject bullet = Instantiate(grenade, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.position, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.rotation);
+                
+                GameObject bulletUp = Instantiate(grenadeUP, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.position, my.GetComponent<GunnerShootingMoveController>().gunPos.transform.rotation);
+                bullet.GetComponent<RocketSkillScript>().RocketPS = bulletUp;
+
+
             }
             else
             {
@@ -114,7 +119,8 @@ public class SkillScriot : MonoBehaviour
     private GameObject
         rifleGrenadeImeje,
         firstAidSprayBoxImeji,
-        rocketGameObject;
+         rocketGameObjectPS,
+    rocketGameObject;
     [SerializeField]
     private GameObject[] ImejeBottom;
 
@@ -131,7 +137,7 @@ public class SkillScriot : MonoBehaviour
         rifleGrenade.skillimaje = rifleGrenadeImeje;
         rifleGrenade.my = this.gameObject;
         rifleGrenade.grenade = rocketGameObject;
-     
+        rifleGrenade.grenadeUP = rocketGameObjectPS;
 
         firstAidSprayBox.skillName = "RecoverySkill";
         firstAidSprayBox.skillOutTimeMax = 10;
