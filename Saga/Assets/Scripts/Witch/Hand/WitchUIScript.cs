@@ -182,7 +182,7 @@ public class WitchUIScript : MonoBehaviour
 
 
             //---------`上下
-            if (Y != 0 && isWitchPlayerMove&& newFireBallGameObject == null)
+            if (Y != 0 && isWitchPlayerMove)
             {
                 isWitchPlayerMove = false;
                 SelecImeji = SelecImeji + -(int)Y;
@@ -219,7 +219,7 @@ public class WitchUIScript : MonoBehaviour
             }//Hand[HandNumSheet]!=null
              //------------------------
              // Input.GetKeyDown("joystick 1 button 10")
-            if (Input.GetKeyDown("joystick 2 button 2")&&newFireBallGameObject == null)
+            if (Input.GetKeyDown("joystick 2 button 6"))
             {//カードを使用
              //  Debug.Log("カードを使用" + Hand[HandNumSheet]);
                 if (Hand[SelecImeji] != null && MyMagic > Hand[SelecImeji].GetComponent<CardScript>().MyCost)
@@ -248,7 +248,7 @@ public class WitchUIScript : MonoBehaviour
             {
                 NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z - InAdvanceInstallationSpeed * Time.deltaTime);
             }*/
-            if (Input.GetKeyDown("joystick 2 button 2")
+            if (Input.GetKeyDown("joystick 2 button 6")
                // && !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster
                 ) {//召喚する居場所に他のモンスターがないこと
                 MyMagic = MyMagic - Hand[SelecImeji].GetComponent<CardScript>().MyCost;
@@ -256,8 +256,9 @@ public class WitchUIScript : MonoBehaviour
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartY = NewInAdvanceInstallation.transform.position.y;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartZ = NewInAdvanceInstallation.transform.position.z;
 
-                GameObject.Destroy(NewInAdvanceInstallation);
-                Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
+                GameObject.Destroy(NewInAdvanceInstallation,1.0f);
+                NewInAdvanceInstallation = null;
+                    Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
 
                 GameObject.Destroy(Hand[SelecImeji]);//崩壊使ったのカード //CardStart
 
@@ -307,27 +308,30 @@ public class WitchUIScript : MonoBehaviour
         }
 
     }
-    public GameObject 
-        fireBallGameObject,
-        newFireBallGameObject;
+    public int BallNum;
+    public GameObject []fireBallGameObject;
+         public GameObject   newFireBallGameObject;
 
     private void FireBallSkillMove()
     {
         if (Input.GetKeyDown("joystick 2 button 7")&& newFireBallGameObject == null&&  MyMagic>=2)
         {
-            MyMagic -= 2;
-            newFireBallGameObject = Instantiate(fireBallGameObject, new Vector3(15, 5, -2), new Quaternion(0, 0, 0, 1));
+            MyMagic -= 10;
+            newFireBallGameObject = Instantiate(fireBallGameObject[BallNum], new Vector3(15, 5, -2), new Quaternion(0, 0, 0, 1));
         }
         if (Input.GetKey("joystick 2 button 7") && newFireBallGameObject != null  )
         {
+            //!
             newFireBallGameObject.GetComponent<FireBallSkill>().FireBallSkillChargeMove();
-            float Z = Input.GetAxis("Horizontal3Player_2");
-            newFireBallGameObject.transform.position = new Vector3(newFireBallGameObject.transform.position.x, newFireBallGameObject.transform.position.y, newFireBallGameObject.transform.position.z + Z * 20 * Time.deltaTime);
+            float Z = Input.GetAxis("Vertical2Player_2");
+            if (Z < 0.3f && Z > -0.3f) { Z = 0; }
+            newFireBallGameObject.transform.position = new Vector3(newFireBallGameObject.transform.position.x, newFireBallGameObject.transform.position.y, newFireBallGameObject.transform.position.z + -Z * 20 * Time.deltaTime);
         }
         if (Input.GetKeyUp("joystick 2 button 7")&& newFireBallGameObject != null )
         {
+            //!
             newFireBallGameObject.GetComponent<FireBallSkill>().FireBallMoveStart();
-            Debug.Log("A");
+          //  Debug.Log("A");
             newFireBallGameObject = null;
         }
 

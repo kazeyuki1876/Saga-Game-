@@ -42,6 +42,7 @@ public class MonsterInstinct : MonoBehaviour
 
     //地面にいるか
     private bool isGround;
+    public float RoX, RoZ;
 
     //----------狙えサポート aim
     private GameObject nearObj;         //最も近いオブジェクト
@@ -124,7 +125,8 @@ public class MonsterInstinct : MonoBehaviour
                 //目標をみる
                 transform.LookAt(target);
                 //水平で動く
-                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+
+                transform.eulerAngles = new Vector3(RoX, transform.eulerAngles.y, RoZ);
             }
         }
     }
@@ -189,7 +191,7 @@ public class MonsterInstinct : MonoBehaviour
         }
         else if (target == null)//誰でも近きない
         {
-            transform.eulerAngles = new Vector3(0, -90, 0);
+            transform.eulerAngles = new Vector3(RoX, -90, RoZ);
         }
     }
 

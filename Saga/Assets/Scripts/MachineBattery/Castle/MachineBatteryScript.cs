@@ -75,7 +75,7 @@ public class MachineBatteryScript : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector3(0, -80, 0);
+            rb.velocity = new Vector3(0, -70, 0);
         }
 
     }

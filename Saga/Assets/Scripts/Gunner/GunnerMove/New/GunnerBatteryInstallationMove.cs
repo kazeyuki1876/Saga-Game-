@@ -61,6 +61,7 @@ public class GunnerBatteryInstallationMove : MonoBehaviour
             batteryQuantity++;
 
             this.GetComponent<GunnaerHealth>().MyMagicStone -= data.GetComponent<GunnerData>().BatterybulletCost[machineBatteryNum];
+            GetComponent<GunnerSE>().Down();
             //BatterybulletCost
             installationBattery = Instantiate(data.GetComponent<GunnerData>().InstallationBattery[machineBatteryNum], new Vector3((float)machineBatteryX + machineBatteryXplusplus, y, (float)machineBatteryZ), new Quaternion(0, 0, 0, 0));
             MachineBatteryCancel();

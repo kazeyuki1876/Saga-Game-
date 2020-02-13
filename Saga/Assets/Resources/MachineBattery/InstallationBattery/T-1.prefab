@@ -202,6 +202,22 @@ MonoBehaviour:
     type: 3}
   DamageNum: 0
   comment: 
+--- !u!114 &6600941155234916807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234459174197266223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdeb65b614bfed64aae68c2ad5a5784b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageUI: {fileID: 1933311803687809520, guid: 04a76ce659d18214ba5e33a71ad2b89e,
+    type: 3}
+  DamageNum: 0
+  comment: 
 --- !u!1001 &1920126414145590476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -354,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 8853421757717481954, guid: 3cc9a51d5f19b644c873a3dce9243e9e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0061290464
+      value: 0.0582
       objectReference: {fileID: 0}
     - target: {fileID: 8853421757717481954, guid: 3cc9a51d5f19b644c873a3dce9243e9e,
         type: 3}
@@ -416,5 +432,22 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.06666667
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4780129599992141101, guid: 3cc9a51d5f19b644c873a3dce9243e9e,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4780129599992141101, guid: 3cc9a51d5f19b644c873a3dce9243e9e,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4175633030918422352, guid: 3cc9a51d5f19b644c873a3dce9243e9e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3cc9a51d5f19b644c873a3dce9243e9e, type: 3}
+--- !u!1 &3234459174197266223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8523881381003616312, guid: 3cc9a51d5f19b644c873a3dce9243e9e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6533020530935686935}
+  m_PrefabAsset: {fileID: 0}

@@ -98,6 +98,7 @@ public class GunnerShootingMoveController : MonoBehaviour
     {//装填すべきか
         if (cartridgeClip[gunNumber] < data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber] && isTrigger&&!isReload)
         {
+            GetComponent<GunnerSE>().ReloadStart();
             isReload = true;//装填中
             Invoke("GunReloadMove", data.GetComponent<GunnerData>().ReloadLimit[gunNumber]);//装填時間
             GunsReloadComment(transform);
@@ -145,6 +146,7 @@ public class GunnerShootingMoveController : MonoBehaviour
     void GunReloadMove() {
 
         isReload = false;
+        GetComponent<GunnerSE>().ReloadEnd();
         cartridgeClip[gunNumber] = data.GetComponent<GunnerData>().cartridgeClipMax[gunNumber];//装填する
     }
 
