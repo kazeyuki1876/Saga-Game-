@@ -13,7 +13,7 @@ public class WitchUIScript : MonoBehaviour
 
     //手札
 
-    public GameObject[] Hand = new GameObject[5];//手札最大枚数
+    public GameObject[] Hand = new GameObject[7];//手札最大枚数
     public Text myMagicText;
     public float MyMagic = 100;
     public float MyMagicMAX = 100;
@@ -34,7 +34,7 @@ public class WitchUIScript : MonoBehaviour
     public int[] MonsterHP;
     public bool isWitchPlayerMove = true;
     int CardX = 1770;//CardX
-    int[] CardY = new int[5] { 939, 789, 639, 489, 338 };
+    int[] CardY = new int[7] { 1000, 850, 700, 550, 400,250,100 };
     public int[] Monsters = new int[10] { 5, 4, 3, 2, 1, 3, 7, 8, 9, 10 };
     public int[] MonsterSpeeds = new int[10] { 10, 15, 20, 25, 30, 6, 7, 8, 9, 10 };
     public GameObject InAdvanceInstallation;
@@ -66,7 +66,8 @@ public class WitchUIScript : MonoBehaviour
     }
     void Load()
     {
-        if (Hand[4] == null) {
+        if (Hand[6] == null)
+        {
             HandCharge();
         }
 
@@ -77,18 +78,34 @@ public class WitchUIScript : MonoBehaviour
     void Update()
     {
         HandsArray();
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
             HandCharge();
         }
         WitchPlayerMove();
+        if (time.GetComponent<OutTime>().GameTime < 60)
+        {
+            MagicRecoverySpeed = 16;
+            MyMagicMAX = 200  ;
+        }
+        else if (time.GetComponent<OutTime>().GameTime < 120)
+        {
+            MagicRecoverySpeed = 13;
+             MyMagicMAX = 150;
+        }
+
         MagicCharge();
 
     }
 
-    void MagicCharge() {
-        if (MyMagic < MyMagicMAX) {
+    void MagicCharge()
+    {
+        if (MyMagic < MyMagicMAX)
+        {
+
             MyMagic += MagicRecoverySpeed * Time.deltaTime;
-            if (MyMagic > MyMagicMAX) {
+            if (MyMagic > MyMagicMAX)
+            {
                 MyMagic = MyMagicMAX;
             }
 
@@ -117,43 +134,59 @@ public class WitchUIScript : MonoBehaviour
     void CardInstantiate()
     {//Instantiate
         int CardID = 0;
-        int A = Random.Range(0, 20);
-        if (A < 2) {
+        int A = Random.Range(0, 50);
+
+        if (A > 25)
+        {
+            if (time.GetComponent<OutTime>().GameTime < 60)
+            {
+                A -= 5;
+            }
+            else if (time.GetComponent<OutTime>().GameTime < 120)
+            {
+                A -= 10;
+            }
+        }
+
+
+        if (A < 5)
+        {
             CardID = 5;
         }
-        else if (A < 4)
+        else if (A < 12&&time.GetComponent<OutTime>().GameTime < 120)
         {
             CardID = 4;
         }
-        else if (A < 8)
+        else if (A < 18)
         {
             CardID = 3;
         }
-        else if (A < 12)
+        else if (A < 30)
         {
             CardID = 2;
         }
-        else if (A < 16)
+        else if (A < 40)
         {
             CardID = 1;
         }
-        else if (A < 20)
+        else if (A < 50)
         {
             CardID = 0;
         }
-    
-       
-        
-            Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX, 0, 0.0f), transform.rotation);//Start Pos
-            Hand[HandNumSheet].GetComponent<CardScript>().MyX = CardX;//Card PosX
-            Hand[HandNumSheet].GetComponent<CardScript>().MyY = CardY[HandNumSheet];//PosY
-            Hand[HandNumSheet].transform.SetParent(CardParent.transform);//Handの子ともGameObjectであり
-        //Hand[HandNumSheet].transform.parent = CardParent(this.transform);
-            Hand[HandNumSheet].GetComponent<CardScript>().MyName = CardName[CardID];//CardName
-            Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
-            Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
 
-        if (CardID < 6) {
+
+
+        Hand[HandNumSheet] = Instantiate(NewCard[0], new Vector3(CardX, 0, 0.0f), transform.rotation);//Start Pos
+        Hand[HandNumSheet].GetComponent<CardScript>().MyX = CardX;//Card PosX
+        Hand[HandNumSheet].GetComponent<CardScript>().MyY = CardY[HandNumSheet];//PosY
+        Hand[HandNumSheet].transform.SetParent(CardParent.transform);//Handの子ともGameObjectであり
+                                                                     //Hand[HandNumSheet].transform.parent = CardParent(this.transform);
+        Hand[HandNumSheet].GetComponent<CardScript>().MyName = CardName[CardID];//CardName
+        Hand[HandNumSheet].GetComponent<CardScript>().MyCost = CardCost[CardID];//CardCost
+        Hand[HandNumSheet].GetComponent<CardScript>().MyComment = CardComment[CardID];//CardComment
+
+        if (CardID < 6)
+        {
             Hand[HandNumSheet].GetComponent<CardScript>().Monsu = Monsus[CardID];
             Hand[HandNumSheet].GetComponent<CardScript>().MonsterHP = MonsterHP[CardID];
             Hand[HandNumSheet].GetComponent<CardScript>().Moves = Monsters[CardID];
@@ -173,7 +206,8 @@ public class WitchUIScript : MonoBehaviour
     }//カード実例
 
 
-    void WitchPlayerMove() {
+    void WitchPlayerMove()
+    {
         FireBallSkillMove();
         if (NewInAdvanceInstallation == null)
         {
@@ -187,7 +221,7 @@ public class WitchUIScript : MonoBehaviour
                 isWitchPlayerMove = false;
                 SelecImeji = SelecImeji + -(int)Y;
 
-                if (SelecImeji >= 5)
+                if (SelecImeji >= 7)
                 {
                     SelecImeji = 0;
                 }
@@ -236,7 +270,8 @@ public class WitchUIScript : MonoBehaviour
                 }
             }
         }
-        else {
+        else
+        {
             float Z = Input.GetAxis("Horizontal3Player_2");
             NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z + Z * InAdvanceInstallationSpeed * Time.deltaTime);
             /*
@@ -249,16 +284,17 @@ public class WitchUIScript : MonoBehaviour
                 NewInAdvanceInstallation.transform.position = new Vector3(NewInAdvanceInstallation.transform.position.x, NewInAdvanceInstallation.transform.position.y, NewInAdvanceInstallation.transform.position.z - InAdvanceInstallationSpeed * Time.deltaTime);
             }*/
             if (Input.GetKeyDown("joystick 2 button 6")
-               // && !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster
-                ) {//召喚する居場所に他のモンスターがないこと
+                // && !NewInAdvanceInstallation.GetComponent<IsMonsu>().isMonster
+                )
+            {//召喚する居場所に他のモンスターがないこと
                 MyMagic = MyMagic - Hand[SelecImeji].GetComponent<CardScript>().MyCost;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartX = NewInAdvanceInstallation.transform.position.x;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartY = NewInAdvanceInstallation.transform.position.y;
                 Hand[SelecImeji].GetComponent<CardScript>().MonsterStartZ = NewInAdvanceInstallation.transform.position.z;
 
-                GameObject.Destroy(NewInAdvanceInstallation,1.0f);
+                GameObject.Destroy(NewInAdvanceInstallation, 1.0f);
                 NewInAdvanceInstallation = null;
-                    Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
+                Hand[SelecImeji].GetComponent<CardScript>().CardStart();//使用このカード
 
                 GameObject.Destroy(Hand[SelecImeji]);//崩壊使ったのカード //CardStart
 
@@ -272,12 +308,14 @@ public class WitchUIScript : MonoBehaviour
         {
             SelectionCard.transform.position = new Vector3(CardX, 939, 0.0f);
         }
-        else {
+        else
+        {
             SelectionCard.transform.position = Hand[SelecImeji].transform.position;
         }
 
     }//PlayerMove
-    private void WitchPlayerMoveOFF() {
+    private void WitchPlayerMoveOFF()
+    {
         isWitchPlayerMove = true;
     }
     void HandsArray()//カード配列のコントロール
@@ -286,14 +324,15 @@ public class WitchUIScript : MonoBehaviour
         {
 
             Debug.Log("HandsArray");
-            for (int HandNum = 0; HandNum < 4; HandNum++)
+            for (int HandNum = 0; HandNum < 6; HandNum++)
             {
                 Debug.Log("HandsArray++");
                 Debug.Log("Hand[HandNum]" + HandNum + "is" + Hand[HandNum]);
                 int HandLoadingNum = HandNum + 1;
                 if (Hand[HandNum] == null)
                 {
-                    if (Hand[HandLoadingNum] == null) {
+                    if (Hand[HandLoadingNum] == null)
+                    {
                         break;
                     }
                     Debug.Log("Hand[HandNum]" + HandNum + "is" + Hand[HandNum]);
@@ -309,17 +348,17 @@ public class WitchUIScript : MonoBehaviour
 
     }
     public int BallNum;
-    public GameObject []fireBallGameObject;
-         public GameObject   newFireBallGameObject;
+    public GameObject[] fireBallGameObject;
+    public GameObject newFireBallGameObject;
 
     private void FireBallSkillMove()
     {
-        if (Input.GetKeyDown("joystick 2 button 7")&& newFireBallGameObject == null&&  MyMagic>=2)
+        if (Input.GetKeyDown("joystick 2 button 7") && newFireBallGameObject == null && MyMagic >= 2)
         {
             MyMagic -= 10;
             newFireBallGameObject = Instantiate(fireBallGameObject[BallNum], new Vector3(15, 5, -2), new Quaternion(0, 0, 0, 1));
         }
-        if (Input.GetKey("joystick 2 button 7") && newFireBallGameObject != null  )
+        if (Input.GetKey("joystick 2 button 7") && newFireBallGameObject != null)
         {
             //!
             newFireBallGameObject.GetComponent<FireBallSkill>().FireBallSkillChargeMove();
@@ -327,11 +366,11 @@ public class WitchUIScript : MonoBehaviour
             if (Z < 0.3f && Z > -0.3f) { Z = 0; }
             newFireBallGameObject.transform.position = new Vector3(newFireBallGameObject.transform.position.x, newFireBallGameObject.transform.position.y, newFireBallGameObject.transform.position.z + -Z * 20 * Time.deltaTime);
         }
-        if (Input.GetKeyUp("joystick 2 button 7")&& newFireBallGameObject != null )
+        if (Input.GetKeyUp("joystick 2 button 7") && newFireBallGameObject != null)
         {
             //!
             newFireBallGameObject.GetComponent<FireBallSkill>().FireBallMoveStart();
-          //  Debug.Log("A");
+            //  Debug.Log("A");
             newFireBallGameObject = null;
         }
 

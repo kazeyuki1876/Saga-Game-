@@ -75,12 +75,12 @@ PrefabInstance:
     - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: repositionTime1
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: repositionTime2
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 9038827201387059593, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}
       propertyPath: MaxX
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1040796660768307891, guid: 635b640b639cc364fbb39b6df19f1f22,
         type: 3}

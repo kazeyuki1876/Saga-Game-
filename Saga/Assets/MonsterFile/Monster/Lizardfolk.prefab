@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isApproachAttack: 1
   isProcessAttack: 1
-  processAttack: 0.5
+  processAttack: 0.8
   processAttackSpeed: 10
   flyingTools: {fileID: 3606401991122654887, guid: c2dc8db2dcd95d344b171b7295f97a66,
     type: 3}
@@ -155,7 +155,7 @@ MonoBehaviour:
   myHp: 1500
   mySpeed: 2
   myDamage: 50
-  myDefense: 20
+  myDefense: 40
   r0: 12
   startTarget: {fileID: 0}
   target: {fileID: 0}
@@ -168,6 +168,8 @@ MonoBehaviour:
   rigidTime: 0
   rigidResistance: 9
   isMove: 1
+  RoX: 0
+  RoZ: 0
 --- !u!114 &2724919029581687535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +204,7 @@ MonoBehaviour:
   skillTime0: 2
   skillTime: 0
   ability0: 0
-  abilityMagnification: 0.4
+  abilityMagnification: 0.8
   abilityUp: 0
   Skill_ParticleSystem:
   - {fileID: 3311123888001899774}
@@ -223,16 +225,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2724919029581687521}
     m_Modifications:
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_Name
-      value: ATKUp_ParticleSystem (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001989, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -302,6 +294,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_Name
+      value: ATKUp_ParticleSystem (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 739510a39af968c4ca78cb591831eb2c, type: 3}
@@ -425,16 +427,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2724919029581687521}
     m_Modifications:
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_Name
-      value: ATKUp_ParticleSystem (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001989, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -504,6 +496,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_Name
+      value: ATKUp_ParticleSystem (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345428991067001990, guid: 739510a39af968c4ca78cb591831eb2c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1345428991067001988, guid: 739510a39af968c4ca78cb591831eb2c,
         type: 3}
@@ -769,6 +771,10 @@ PrefabInstance:
     - target: {fileID: 100156, guid: aa362886c82154645a6014ee73b54989, type: 3}
       propertyPath: m_Name
       value: Black Dragon with Idle Animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 100290, guid: aa362886c82154645a6014ee73b54989, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100388, guid: aa362886c82154645a6014ee73b54989, type: 3}
       propertyPath: m_IsActive

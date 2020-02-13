@@ -203,7 +203,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5464093427566164205
 MonoBehaviour:
@@ -304,11 +304,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5000001
       objectReference: {fileID: 0}
-    - target: {fileID: 741804544046519142, guid: 1de08452c7b3648458349ea1b97cdf94,
+    - target: {fileID: 741804544046519144, guid: 1de08452c7b3648458349ea1b97cdf94,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: fatherGameObject
+      value: 
+      objectReference: {fileID: 5464093427566164192}
     - target: {fileID: 741804544046519143, guid: 1de08452c7b3648458349ea1b97cdf94,
         type: 3}
       propertyPath: m_Size.x
@@ -324,11 +324,11 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 0.01
       objectReference: {fileID: 0}
-    - target: {fileID: 741804544046519144, guid: 1de08452c7b3648458349ea1b97cdf94,
+    - target: {fileID: 741804544046519142, guid: 1de08452c7b3648458349ea1b97cdf94,
         type: 3}
-      propertyPath: fatherGameObject
-      value: 
-      objectReference: {fileID: 5464093427566164192}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6330346799571591240, guid: 1de08452c7b3648458349ea1b97cdf94,
         type: 3}
       propertyPath: m_Enabled

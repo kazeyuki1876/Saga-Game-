@@ -43,7 +43,7 @@ public class MonsterInstinct : MonoBehaviour
     //地面にいるか
     private bool isGround;
     public float RoX, RoZ;
-
+    private  bool isDieOFF;
     //----------狙えサポート aim
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間       
@@ -147,12 +147,20 @@ public class MonsterInstinct : MonoBehaviour
     //死ぬ
     public void Isdie()
     {
-        if (myHp <= 0)
+        if (myHp <= 0&& !isDieOFF)
         {
+            isDieOFF = true;
             for (int i = 0; i < myMagicStoneNum; i++)
             {
-                magicStoneGameObject = Instantiate(magicStoneGameObject, new Vector3(transform.position.x + Random.Range(-2.0f, 2.0f), transform.position.y, transform.position.z + Random.Range(-1.0f, 1.0f)), transform.rotation);
-                magicStoneGameObject.transform.parent = GameObject.Find("MagicStoneBOX").transform;//MagicStoneBOXの子ともGameObjectであり
+                int N = Random.Range(0, 2);
+                if (N > 0)
+                {
+
+                    magicStoneGameObject = Instantiate(magicStoneGameObject, new Vector3(transform.position.x + Random.Range(-2.0f, 2.0f), transform.position.y, transform.position.z + Random.Range(-1.0f, 1.0f)), transform.rotation);
+
+                    magicStoneGameObject.transform.parent = GameObject.Find("MagicStoneBOX").transform;//MagicStoneBOXの子ともGameObjectであり
+
+                }
             }
 
             Destroy(this.gameObject, 0.1f);

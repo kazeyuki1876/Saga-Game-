@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SuctionMove : MonoBehaviour
 {
-    private float speed=5;
+    private float speed=12;
     void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player" && col.GetComponent<GunnaerHealth>().MyMagicStone< col.GetComponent<GunnaerHealth>(). MyMagicStoneMax)

@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3247176164146040276}
   m_LocalRotation: {x: 0, y: -0.090024225, z: 0, w: 0.9959396}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 3667820714152381808}
   - {fileID: 7649128950915633037}
@@ -82,9 +82,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25345b08992fa2542a71341c3cba0c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myHp: 200
-  mySpeed: 6
-  myDamage: 20
+  myHp: 250
+  mySpeed: 7
+  myDamage: 25
   myDefense: 0
   r0: 8
   startTarget: {fileID: 0}
@@ -156,7 +156,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0.12, z: 0.21}
 --- !u!1001 &904169158239936425
 PrefabInstance:

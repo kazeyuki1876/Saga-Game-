@@ -10,6 +10,10 @@ public class MagicStoneScript : MonoBehaviour
     ///魔石が回るスクリプト
     [SerializeField]
     private float MySpeed=20.0f;
+    private void Start()
+    {
+        Destroy(this.gameObject, Random.Range(20.0f,40.0f));
+    }
     private void Update()
     {
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + MySpeed * Time.deltaTime, 0);

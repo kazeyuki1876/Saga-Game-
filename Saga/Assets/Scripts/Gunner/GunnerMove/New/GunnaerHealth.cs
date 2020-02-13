@@ -48,6 +48,11 @@ public class GunnaerHealth : MonoBehaviour
     // Update is called once per frame				
     void Update()
     {
+        if(MyMagicStone< MyMagicStoneMax)
+        {
+            MyMagicStone += 0.2f * Time.deltaTime;
+
+        }
 
         PlayerHp.text = "PLAYER HP:" + MyHp + "/" + myHpMax;
         PlayerMagicStone.text = "ENERGY:" + MyMagicStone+ "/"+ MyMagicStoneMax;

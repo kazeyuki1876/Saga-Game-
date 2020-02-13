@@ -18,7 +18,7 @@ public int MyHp;
     {
         if (MyHp <= 0&&!isHp0)
         {
-            GetComponent<BatterySE>().DieSE();
+            //GetComponent<BatterySE>().DieSE();
             isHp0 = true;
             GameObject.Find("Gunner").GetComponent<GunnerBatteryInstallationMove>().batteryQuantity--;
             Destroy(batteryBox.gameObject, 0.1f);
