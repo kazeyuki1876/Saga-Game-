@@ -47,8 +47,8 @@ public class FireBallSkill : MonoBehaviour
         transform.localScale = new Vector3(fireBallScale, fireBallScale, fireBallScale);
     }
     public void FireBallMoveStart() {
-        fireBallSpeed = 10 + fireBallAmount * 3.0f;
-        fireBallDamage = 5 + fireBallAmount * 2.0f;
+        fireBallSpeed = 10 + fireBallAmount * 5.0f;
+        fireBallDamage = 5 + fireBallAmount * 5.0f;
         isFireBallMove = true;
         Invoke("FireBallBommEnd", fireBallAmount * 0.2f);
 //Debug.Log("A2");

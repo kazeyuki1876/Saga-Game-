@@ -12,7 +12,7 @@ public class FireBallSkillBoom : MonoBehaviour
     public float BoomMoveTime = 0;
 
     public float BoomMoveTiming = 0;
-    public float BoomMoveSpeed = 0.5f;
+    public float BoomMoveSpeed = 0.1f;
 
     public bool isBoomMoveTiming = false;
 
