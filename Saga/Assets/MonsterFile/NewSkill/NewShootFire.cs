@@ -6,9 +6,7 @@ public class NewShootFire : NewSkill_AbilityUp
 {/// <summary>
  /// shoot fire　炎の吹息（いぶき）
  /// このスクリプトはモンスターの能力をアップする発動タイミング　コントローラー
- /// 
  /// </summary>
- /// 
     private Transform shootFireTarget;
     public GameObject flyingTools;
     //炎の吹息中
@@ -17,7 +15,7 @@ public class NewShootFire : NewSkill_AbilityUp
     public int rateOfFireMin, rateOfFireMax;
     public int rateOfFireNum;
     public int rateOfFireArcDegree;
-    public ParticleSystem energyReserveParticleSystem; 
+    public ParticleSystem energyReserveParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -27,45 +25,33 @@ public class NewShootFire : NewSkill_AbilityUp
         Invoke("SkillStart", Random.Range(1, 10));
 
     }
-
     // Update is called once per frame
     void Update()
     {
-
         ////スキル冷却(れいきゃく)　カウントダウン  
         CountingDown();
         //スキル維持時間　カウントダウン  
         SkillMovecontrol();
-
         if (isSkillStart && GetComponent<MonsterInstinct>().target != null && GetComponent<MonsterInstinct>().processAttackTargetGameObjectPos < 36.0F && !israteOfFireMove)
         {
-            //スキルは使ったのでクルーダイム
-
             //スキル開始
             ShootFireStart();
         }
     }
     private void FixedUpdate()
-    {
+    {//スキル中の処理
         if (skillTime <= 0.0F && israteOfFireMove)
         {
-
             ShootFireEnd();
         }
         if (skillTime > 0.1F)
         {
             ShootFireMove();
         }
-
-
-
     }
-
-
-
+    //スキル開始
     public void ShootFireStart()
-    {
-
+    { //スキルは使ったのでクルーダイム
         Skill_Start();
         israteOfFireMove = true;
         Debug.Log("ShootFireStart");
@@ -73,22 +59,17 @@ public class NewShootFire : NewSkill_AbilityUp
         shootFireTarget = GetComponent<MonsterInstinct>().target;
         rateOfFireNum = 0;
         energyReserveParticleSystem.Play();
-       
-}
+    }
     public void ShootFireMove()
     {
         rateOfFireNum++;
-        
         if (rateOfFireNum % rateOfFire == 0 && rateOfFireNum > rateOfFireMin && rateOfFireNum * skillTime0 < rateOfFireMax * skillTime0)
         {
-          
-
-            //方向獲得
+            //目標の方向獲得して向き
             if (shootFireTarget.transform != null)
             {
                 transform.LookAt(shootFireTarget.transform);
             }
-         
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             //弾作り
             GameObject newFlyingTools = Instantiate(flyingTools, transform.position, transform.rotation);
@@ -97,9 +78,7 @@ public class NewShootFire : NewSkill_AbilityUp
             newFlyingTools.transform.parent = GameObject.Find("BulleBOX").transform;//BulleBOXの子ともGameObjectであり
             Spot();
         }
-
-
-    }
+    }//スキル終了
     public void ShootFireEnd()
     {
         israteOfFireMove = false;
@@ -107,17 +86,15 @@ public class NewShootFire : NewSkill_AbilityUp
         GetComponent<MonsterAttack>().isApproachAttack = true;
         GetComponent<MonsterAttack>().isProcessAttack = true;
         Debug.Log("ShootFireEnd");
-
     }
     //このモンスターは生成された何秒後からスキルが使える----------------------
     private void SkillStart()
     {
         isSkillStart = true;
     }
-
+    //動きを止める
     private void Spot()
     {
-        //動きを止める
         GetComponent<MonsterInstinct>().isMove = false;
         GetComponent<MonsterAttack>().isApproachAttack = false;
         GetComponent<MonsterAttack>().isProcessAttack = false;

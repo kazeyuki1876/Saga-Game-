@@ -25,7 +25,7 @@ public class StartScript : MonoBehaviour
         Input2P = true;
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {//　1P 7th　 2P Horizontal3Player_2 上下　
      //  float Y = Input.GetAxis("Player_1 7th");
         Player1PMoveCO();
@@ -38,9 +38,7 @@ public class StartScript : MonoBehaviour
         float Y = Input.GetAxis("Player_1 7th");
         if (Input1P && Y != 0 && !Player1PStart && !Player1PList && !Player1POver)
         {
-
             Input1P = false;
-
             SceneNum_1P += (int)Y;
             if (SceneNum_1P > 0) { SceneNum_1P = -2; }
             SceneNum_1P = SceneNum_1P % SceneNum_MAX;
@@ -48,7 +46,6 @@ public class StartScript : MonoBehaviour
             //複数処理防ぐ
             Invoke("Input1PON", 0.3f);
         }
-
         //確定
         if (Input.GetKeyDown("joystick 1 button 2")&&!Player1PStart && !Player1PList && !Player1POver)
         {
@@ -90,9 +87,7 @@ public class StartScript : MonoBehaviour
         float Y = Input.GetAxis("Horizontal3Player_2");
         if (Input2P && Y != 0 && !Player2PStart && !Player2PList && !Player2POver)
         {
-
             Input2P = false;
-
             SceneNum_2P += (int)Y;
             if (SceneNum_2P > 0) { SceneNum_2P = -2; }
             SceneNum_2P = SceneNum_2P % SceneNum_MAX;
@@ -100,7 +95,6 @@ public class StartScript : MonoBehaviour
             //複数処理防ぐ
             Invoke("Input2PON", 0.3f);
         }
-
         //確定
         if (Input.GetKeyDown("joystick 2 button 2") && !Player2PStart && !Player2PList && !Player2POver)
         {
@@ -116,7 +110,6 @@ public class StartScript : MonoBehaviour
             {
                 Player2POver = true;
             }
-
             Player_2P.GetComponent<Image>().color = new Color(Player_2P.GetComponent<Image>().color.r, Player_2P.GetComponent<Image>().color.g, Player_2P.GetComponent<Image>().color.b, 255.0f / 255.0f);
             GetComponent<StartSE>().YES(); //         Player_1P.GetComponent<Image>().color = new Color(0,0,0,0);
         }
@@ -141,7 +134,6 @@ public class StartScript : MonoBehaviour
     {
         if (Player1PStart & Player2PStart) {
          //   SceneManager.LoadScene("Main");
-
         GetComponent<LoadSence>().currentProgress = 100;
         }
         else if (Player1PList && Player2PList) {
@@ -154,20 +146,18 @@ public class StartScript : MonoBehaviour
     //-------test
     void TESTInput()
     {
-
         if (Input.GetKeyDown(KeyCode.Z))
         {
-
             SceneManager.LoadScene("Main");
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-
             SceneManager.LoadScene("Start");
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
             Application.Quit();
+
         }
     }
 }

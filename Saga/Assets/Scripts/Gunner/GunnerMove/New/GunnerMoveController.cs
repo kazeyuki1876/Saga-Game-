@@ -84,9 +84,6 @@ public class GunnerMoveController : MonoBehaviour
     }
     void FoundationMove()
     {
-     
-        //移動HorizontaPlayer_1
-      
         //ちゃんと押しているかどうか
         float x = Input.GetAxis("HorizontaPlayer_1");
         if (x < 0.5 && x > -0.5)
@@ -101,15 +98,10 @@ public class GunnerMoveController : MonoBehaviour
             moveX = x * speed;
             moveZ = y * -speed;
          Vector3 direction = new Vector3(moveX, 0, moveZ);
-  
-    
- 
         //---顔むき　L2押し
         if (Input.GetKey("joystick 1 button 6"))
         {
-
             float KeyVertical = Input.GetAxis("Vertical2Player_1");
-
             float KeyHorizontal = Input.GetAxis("Horizontal2Player_1");
             Vector3 newDir = new Vector3(KeyHorizontal, 0, -KeyVertical).normalized;
             transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
@@ -128,76 +120,31 @@ public class GunnerMoveController : MonoBehaviour
             {
                 //最も近かったオブジェクトを取得
                 nearObj = serchTag(gameObject, "Monster");
-
                 //経過時間を初期化
                 searchTime = 0;
             }
             //もし　 射撃サポート　狙える　対象の位置の方向を向く
             if (nearObj != null)
             {
-              
                 transform.LookAt(nearObj.transform);
                 transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
                 shouTingTarger = nearObj;
-
             }
             else//　L2 推してない　　狙えるやつがない
             {
                 Vector3 newDir = new Vector3(x, 0, y).normalized;
                 transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
-                //gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
             }
-
         }
         else
         {
             Vector3 newDir = new Vector3(x, 0, -y).normalized;
             transform.forward = Vector3.Lerp(transform.forward, newDir, RotateSpeed);
-          //  gameObject.transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
         }
-        // 
-        
-        
     }
-    /*   private void ShootingSupport()
-       {//isShootingSupport 射撃サポート
-        //経過時間を取得
-
-               searchTime += Time.deltaTime;
-
-               if (searchTime >= 0.3f)
-               {
-                   //最も近かったオブジェクトを取得
-                   nearObj = serchTag(gameObject, "Monster");
-
-                   //経過時間を初期化
-                   searchTime = 0;
-               }
-
-           //対象の位置の方向を向く
-           if (nearObj != null)
-           {
-
-               transform.LookAt(nearObj.transform);
-               transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-
-           }
-           else
-           {
-           }
-
-
-
-               //自分自身の位置から相対的に移動する
-               //transform.Translate(Vector3.forward * 0.01f);
-
-
-       }*/
-
     private void GunnerMOVE()
     {
         FoundationMove();
-
         //射撃R２
         if (Input.GetKey(KeyCode.Z) || Input.GetKey("joystick 1 button 7"))//
         {
@@ -218,7 +165,6 @@ public class GunnerMoveController : MonoBehaviour
         {
             this.GetComponent<GunnerBatteryInstallationMove>().MachineBatteryCancel();
         }
-
         //狙えるR3
         if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown("joystick 1 button 11"))
         {
@@ -241,9 +187,6 @@ public class GunnerMoveController : MonoBehaviour
             //   Debug.Log("V");
             this.GetComponent<GunnerShootingMoveController>().ReloadMoveStart();
         }
-
-
-
         //スキル変更　とスキル使用
         if (Input.GetKey("joystick 1 button 4") && Input.GetKeyDown("joystick 1 button 2"))
         {
@@ -254,20 +197,7 @@ public class GunnerMoveController : MonoBehaviour
             //   Debug.Log("V");
             this.GetComponent<SkillScriot>().SkillMoveStart();
         }
-
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            // Debug.Log("V");
-            this.GetComponent<GunnerShootingMoveController>().GunsChange();
-        }
-        //スキル切り替え
-
-        //スキル使い
-
         Spot();
-
-
     }
     void Spot()
     {

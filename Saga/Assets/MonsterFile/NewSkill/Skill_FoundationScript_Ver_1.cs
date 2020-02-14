@@ -9,7 +9,6 @@ public class Skill_FoundationScript_Ver_1 : MonoBehaviour
     // スキルが始めると　このオブジェクトの速度が速くなる
     // 時間後　遅くなる　モンスター専用
     //エフェクト　MOVEなど関係ません
-
     //スキルの持ち主
     // public GameObject my;いらない
     //スキル使えるか
@@ -22,7 +21,6 @@ public class Skill_FoundationScript_Ver_1 : MonoBehaviour
     public float skillTime0 = 5;
     //スキル維持時間
     public float skillTime;
-
     public void Skill_Start()
     {
         if (isSkillStart)
@@ -42,7 +40,6 @@ public class Skill_FoundationScript_Ver_1 : MonoBehaviour
         if (skillcoolTime > 0)
         {
           //  Debug.Log("スキル冷却(れいきゃく)");
-
             skillcoolTime -= Time.deltaTime;
             if (skillcoolTime < 0)
             {
@@ -50,7 +47,6 @@ public class Skill_FoundationScript_Ver_1 : MonoBehaviour
                 //冷却完了　再使用許可
                 isSkillStart = true;
           //      Debug.Log("冷却完了　再使用許可)");
-
             }
         }
     }
