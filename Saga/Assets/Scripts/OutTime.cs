@@ -19,19 +19,21 @@ public class OutTime : MonoBehaviour
     private Image gameTimeImage;
     public Text winText;
     // Start is called before the first frame update
- 
+
     void Start()
     {
-}
+        Time.timeScale = 1.0f;
+    }
 
     // Update is called once per frame
     void Update()
     {
         CastleHPGaugeMove();
-        if (GameTime <= 0) {
+        if (GameTime <= 0)
+        {
 
             GameEnd();
-         
+
         }
 
 
@@ -40,7 +42,8 @@ public class OutTime : MonoBehaviour
             SceneManager.LoadScene("Main");
         }
     }
-    public void GameEnd() {
+    public void GameEnd()
+    {
         if (GameTime <= 0)
         {
             winText.text = "PLAYER 1P　WIN ";
@@ -55,10 +58,11 @@ public class OutTime : MonoBehaviour
         Time.timeScale = 0.1f;
         GameObject.Find("Gunner").GetComponent<GunnerMoveController>().enabled = false;
         GameObject.Find("WitchUI").GetComponent<WitchUIScript>().enabled = false;
-        
+
         Invoke("EndMmove", 1.0f);
     }
-    public void EndMmove() {
+    public void EndMmove()
+    {
         Time.timeScale = 1.0f;
         SceneManager.LoadScene("End");
     }
@@ -69,7 +73,7 @@ public class OutTime : MonoBehaviour
 
 
     private float fillAmountSpeed = 5;
-    private float[]color0 =  new float[] { 1.0f, 1.0f, 0 };
+    private float[] color0 = new float[] { 1.0f, 1.0f, 0 };
     private float[] colorEnd = new float[] { 1, 0, 0.1f };
     public float[] testcolor = new float[] { 0, 0, 0, 0, 0, 0 };
 
@@ -77,16 +81,16 @@ public class OutTime : MonoBehaviour
     {
         GameTime -= Time.deltaTime;
         GameTimeUi.text = "REMAINING TINME:" + (int)GameTime;
-         if (gameTimeImage.fillAmount != GameTime / gameTimeMax)
+        if (gameTimeImage.fillAmount != GameTime / gameTimeMax)
         {
             //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
             float gameTimeImageSpeed = gameTimeImage.fillAmount - GameTime / gameTimeMax;
             gameTimeImage.fillAmount = gameTimeImage.fillAmount - gameTimeImageSpeed * fillAmountSpeed * Time.deltaTime;
         }
 
-  
-            gameTimeImage.GetComponent<Image>().color = new Vector4(gameTimeImage.color.r, 1 * GameTime / gameTimeMax, gameTimeImage.color.b, 255 / 255);
-        
+
+        gameTimeImage.GetComponent<Image>().color = new Vector4(gameTimeImage.color.r, 1 * GameTime / gameTimeMax, gameTimeImage.color.b, 255 / 255);
+
 
 
         testcolor[0] = color0[0];
