@@ -11,7 +11,7 @@ public class fireballScript : MonoBehaviour
     // Start is called before the first frame update
     public void Update()
     {
-        Debug.Log(Random.Range(-1.0f, 2.0f));
+    //    Debug.Log(Random.Range(-1.0f, 2.0f));
         transform.position = new Vector3(transform.position.x- Speed * Time.deltaTime, transform.position.y, transform.position.z);
     }
     void OnTriggerEnter(Collider col) //当进入碰撞器

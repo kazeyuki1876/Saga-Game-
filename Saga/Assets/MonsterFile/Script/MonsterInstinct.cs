@@ -43,7 +43,7 @@ public class MonsterInstinct : MonoBehaviour
     //地面にいるか
     private bool isGround;
     public float RoX, RoZ;
-    private  bool isDieOFF;
+    private bool isDieOFF;
     //----------狙えサポート aim
     private GameObject nearObj;         //最も近いオブジェクト
     private float searchTime = 0;    //経過時間       
@@ -129,6 +129,7 @@ public class MonsterInstinct : MonoBehaviour
                 transform.eulerAngles = new Vector3(RoX, transform.eulerAngles.y, RoZ);
             }
         }
+        Spot();
     }
     void OnCollisionStay(Collision col) //当进入碰撞器
     {
@@ -147,7 +148,7 @@ public class MonsterInstinct : MonoBehaviour
     //死ぬ
     public void Isdie()
     {
-        if (myHp <= 0&& !isDieOFF)
+        if (myHp <= 0 && !isDieOFF)
         {
             isDieOFF = true;
             for (int i = 0; i < myMagicStoneNum; i++)
@@ -224,9 +225,9 @@ public class MonsterInstinct : MonoBehaviour
                 //最も近かったオブジェクトを取得
                 nearObj = serchTag(gameObject, "Machine");
                 //経過時間を初期化
-               processAttackTargetGameObject = nearObj;
+                processAttackTargetGameObject = nearObj;
                 if (processAttackTargetGameObject != null &&
-                    nearObj.transform.position.x > this.transform.position.x - r0 && nearObj.transform.position.x < this.transform.position.x + r0&&
+                    nearObj.transform.position.x > this.transform.position.x - r0 && nearObj.transform.position.x < this.transform.position.x + r0 &&
                     nearObj.transform.position.y > this.transform.position.y - r0 && nearObj.transform.position.y < this.transform.position.y + r0
 
 
@@ -234,11 +235,30 @@ public class MonsterInstinct : MonoBehaviour
                 {
                     target = processAttackTargetGameObject.transform;
                 }
-              
+
                 searchTime = 0;
             }
             //もし　 射撃サポート　狙える　対象の位置の方向を向く
 
+        }
+    }
+    void Spot()
+    {
+        if (transform.position.z > 8)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, 7.9f);
+        }
+        if (transform.position.z < -28)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -27.9f);
+        }
+        if (transform.position.x < -24)
+        {
+            transform.position = new Vector3(-24, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > 19)
+        {
+            transform.position = new Vector3(18.90f, transform.position.y, transform.position.z);
         }
     }
 }

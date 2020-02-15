@@ -49,7 +49,7 @@ public class MainEquipmentScript : MonoBehaviour
         if (mainEquipmentImeji[0].GetComponent<Image>().sprite != mainEquipmentImejiSprite[GetComponent<GunnerShootingMoveController>().gunNumber])
         {
             mainEquipmentImeji[0].GetComponent<Image>().sprite = mainEquipmentImejiSprite[GetComponent<GunnerShootingMoveController>().gunNumber];
-            mainEquipmentImeji[1].GetComponent<Image>().sprite = mainEquipmentImejiSprite[GetComponent<GunnerShootingMoveController>().gunNumber];
+           // mainEquipmentImeji[1].GetComponent<Image>().sprite = mainEquipmentImejiSprite[GetComponent<GunnerShootingMoveController>().gunNumber];
 
         }
         //残弾（読み）ざんだん
