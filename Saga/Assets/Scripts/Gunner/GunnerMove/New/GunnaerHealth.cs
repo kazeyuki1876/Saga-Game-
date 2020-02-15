@@ -61,7 +61,7 @@ public class GunnaerHealth : MonoBehaviour
         GannerHpGaugeMove();
         GannerMagicStoneGaugeMove();
         CastleHPGaugeMove();
-
+        batteryQuantityGaugeMove();
         if (MyHp > myHpMax) {
             MyHp = myHpMax;
         }
@@ -139,10 +139,10 @@ public class GunnaerHealth : MonoBehaviour
     }
     void batteryQuantityGaugeMove()
     {
-        if (batteryQuantityGauge.fillAmount != GetComponent<GunnerBatteryInstallationMove>().batteryQuantity /  GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax)
+        if (batteryQuantityGauge.fillAmount != (float)GetComponent<GunnerBatteryInstallationMove>().batteryQuantity / (float)GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax)
         {
             //  Debug.Log(GannerMagicStoneGauge.fillAmount + "       " + MyMagicStone / MyMagicStoneMax);
-            float batteryQuantityGaugeSpeed = batteryQuantityGauge.fillAmount - GetComponent<GunnerBatteryInstallationMove>().batteryQuantity / GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax;
+            float batteryQuantityGaugeSpeed = batteryQuantityGauge.fillAmount - (float)GetComponent<GunnerBatteryInstallationMove>().batteryQuantity / (float)GetComponent<GunnerBatteryInstallationMove>().batteryQuantityMax;
             batteryQuantityGauge.fillAmount = batteryQuantityGauge.fillAmount - batteryQuantityGaugeSpeed * fillAmountSpeed * Time.deltaTime;
         }
 

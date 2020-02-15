@@ -59,6 +59,7 @@ public class OutTime : MonoBehaviour
         Invoke("EndMmove", 1.0f);
     }
     public void EndMmove() {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("End");
     }
 

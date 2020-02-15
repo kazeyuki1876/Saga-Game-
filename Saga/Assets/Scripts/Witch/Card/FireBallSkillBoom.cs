@@ -35,7 +35,7 @@ public class FireBallSkillBoom : MonoBehaviour
 
                 if (MyDamage > 10)
                 {
-                    MyDamage -= 5;
+                    MyDamage =(int) MyDamage*0.7f;
                 }
             }
             else
@@ -63,9 +63,9 @@ public class FireBallSkillBoom : MonoBehaviour
         else if (col.gameObject.tag == "Player" && isBoomMoveTiming)
         {
 
-            col.gameObject.GetComponent<GunnaerHealth>().MyHp -= (int)MyDamage / 2;
+            col.gameObject.GetComponent<GunnaerHealth>().MyHp -= (int)MyDamage;
             col.gameObject.GetComponent<TakeDamage>().Damage(col);//ダメージ文字UI
-            col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage / 2;
+            col.gameObject.GetComponent<TakeDamage>().DamageNum = (int)MyDamage;
             col.gameObject.GetComponent<GunnaerHealth>().Isdie();
 
         }
