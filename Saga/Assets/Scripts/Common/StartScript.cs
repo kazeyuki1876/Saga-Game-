@@ -31,7 +31,7 @@ public class StartScript : MonoBehaviour
         Player1PMoveCO();
         Player2PMoveCO();
         SceneCO();
-        TESTInput();
+    
     }
     private void Player1PMoveCO()
     {//選択 1P 7th　 2P Horizontal3Player_2 上下
