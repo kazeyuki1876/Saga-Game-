@@ -335,7 +335,7 @@ public class WitchUIScript : MonoBehaviour
                     {
                         break;
                     }
-                    Debug.Log("Hand[HandNum]" + HandNum + "is" + Hand[HandNum]);
+              //      Debug.Log("Hand[HandNum]" + HandNum + "is" + Hand[HandNum]);
                     Hand[HandNum] = Hand[HandLoadingNum];
                     Hand[HandLoadingNum] = null;
                     Hand[HandNum].GetComponent<CardScript>().MyY = CardY[HandNum];

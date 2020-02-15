@@ -133,11 +133,11 @@ public class StartScript : MonoBehaviour
     private void SceneCO()
     {
         if (Player1PStart & Player2PStart) {
-         //   SceneManager.LoadScene("Main");
+          SceneManager.LoadScene("Main");
         GetComponent<LoadSence>().currentProgress = 100;
         }
         else if (Player1PList && Player2PList) {
-            SceneManager.LoadScene("List");
+            SceneManager.LoadScene("End");
         }
         else if (Player1POver && Player2POver) {
             Application.Quit();
@@ -152,7 +152,7 @@ public class StartScript : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            SceneManager.LoadScene("Start");
+            SceneManager.LoadScene("End");
         }
         if (Input.GetKeyDown(KeyCode.C))
         {

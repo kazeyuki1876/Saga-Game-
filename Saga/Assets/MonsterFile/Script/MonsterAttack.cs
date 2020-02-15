@@ -41,6 +41,7 @@ public class MonsterAttack : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" && isApproachAttack)
         {
+            GetComponent<MonsterSE>().MonsterSE1();   
             AttackMove(col);
             //もし何かを当たったらダメージを与える
             col.gameObject.GetComponent<GunnaerHealth>().MyHp = col.gameObject.GetComponent<GunnaerHealth>().MyHp - (int)GetComponent<MonsterInstinct>().myDamage;

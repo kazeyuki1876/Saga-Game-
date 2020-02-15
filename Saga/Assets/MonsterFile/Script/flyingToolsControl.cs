@@ -68,6 +68,7 @@ public class flyingToolsControl : MonoBehaviour
             if (flyingToolsDebris != null)
             {
                 flyingToolsDebris.transform.parent = col.gameObject.transform;
+                flyingToolsDebris.GetComponent<FlyingToo_SpearSE>().SE1();
                 Destroy(flyingToolsDebris.gameObject, 10.0f);  // 銃弾を崩壊
             }
             Destroy(this.gameObject,0.2f);  // 銃弾を崩壊
@@ -88,6 +89,8 @@ public class flyingToolsControl : MonoBehaviour
                 if (flyingToolsDebris != null)
                 {
                     flyingToolsDebris.transform.parent = col.gameObject.transform;
+                    Destroy(flyingToolsDebris.gameObject, 10.0f);  // 銃弾を崩壊
+                    flyingToolsDebris.GetComponent<FlyingToo_SpearSE>().SE1();
 
                 }
 

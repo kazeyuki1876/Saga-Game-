@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 5aac3ad87082fa840a520b1943080139
   - enabled: 1
-    path: Assets/Scenes/WitchOver.unity
-    guid: 9377a84eaedcdb84eb75942eb5012fe5
-  - enabled: 1
-    path: Assets/Scenes/GunnerOver.unity
-    guid: 90d679e8f54aa914a8b34a393d957e3a
+    path: Assets/Scenes/End.unity
+    guid: 1c16ad983ad645b4b8a1811e5f5ddda7
   m_configObjects: {}

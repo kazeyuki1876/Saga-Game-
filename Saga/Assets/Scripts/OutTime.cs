@@ -17,6 +17,7 @@ public class OutTime : MonoBehaviour
     private Text GameTimeUi;
     [SerializeField]
     private Image gameTimeImage;
+    public Text winText;
     // Start is called before the first frame update
  
     void Start()
@@ -40,6 +41,17 @@ public class OutTime : MonoBehaviour
         }
     }
     public void GameEnd() {
+        if (GameTime <= 0)
+        {
+            winText.text = "PLAYER 1P　WIN ";
+        }
+        else
+        {
+            winText.text = "PLAYER 2P　WIN ";
+        }
+
+
+        winText.color = new Color(winText.color.r, winText.color.g, winText.color.b, 1);
         Time.timeScale = 0.1f;
         GameObject.Find("Gunner").GetComponent<GunnerMoveController>().enabled = false;
         GameObject.Find("WitchUI").GetComponent<WitchUIScript>().enabled = false;
@@ -47,15 +59,7 @@ public class OutTime : MonoBehaviour
         Invoke("EndMmove", 1.0f);
     }
     public void EndMmove() {
-
-        if (GameTime >= 0)
-        {
-            SceneManager.LoadScene("WitchOver");
-        }
-        else
-        {
-            SceneManager.LoadScene("GunnerOver");
-        }
+        SceneManager.LoadScene("End");
     }
 
 
